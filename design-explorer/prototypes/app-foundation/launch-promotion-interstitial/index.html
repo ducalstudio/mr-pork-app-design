@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Launch Promotion Interstitial (Draft)</title>
+  <script src="../../../prototype-runtime/tiers.js"></script>
+  <script src="../../../prototype-runtime/protocol.js"></script>
+  <script src="../../../prototype-runtime/client.js"></script>
+  <link rel="stylesheet" href="../../_ui-kit/tokens.css">
+  <link rel="stylesheet" href="../../_ui-kit/reference-roles.css"><!-- Draft-only Reference-observed roles, not approved tokens -->
+  <link rel="stylesheet" href="../../_ui-kit/font-inter.css"><!-- Inter: provisional Draft font (To Verify), not an approved brand font -->
+  <link rel="stylesheet" href="../../_ui-kit/base.css">
+  <link rel="stylesheet" href="../../_components/image-placeholder/component.css">
+  <link rel="stylesheet" href="../../_components/media-overlay/component.css">
+  <link rel="stylesheet" href="screen.css">
+</head>
+<body>
+  <!--
+    Draft. TEMPORARY PLACEHOLDER / NOT A SOURCE ASSET: the full-screen promotion artwork (CMS image). Crop rules and safe
+    area are CMS Rule Required. The "Skip 3 s" text is the Reference label; there is no live countdown (timing is CMS Rule Required).
+  -->
+  <main class="media-overlay media-overlay--screen" id="main">
+    <div class="media-overlay__art image-placeholder" data-asset="temporary-placeholder" role="img" aria-label="Promotion artwork placeholder">Launch promotion artwork (CMS)</div>
+    <button class="media-overlay__skip" type="button" data-destination="home-or-authentication" aria-label="Skip promotion, 3 seconds">
+      <span class="media-overlay__skip-pill" aria-hidden="true">Skip 3 s</span>
+    </button>
+  </main>
+</body>
+</html>

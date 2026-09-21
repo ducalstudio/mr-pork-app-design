@@ -11,3 +11,7 @@ Greeting or title on the left, one notification action on the right.
 - **Bell icon is a TEMPORARY PLACEHOLDER / NOT A SOURCE ASSET** (`data-asset="temporary-placeholder"`); not approved iconography. Replace when the original icon set is supplied.
 - **Destination:** Notifications (recorded in metadata; not navigated in the Draft).
 - **Open:** whether the display name and greeting text follow time-of-day rules (`To Verify`).
+
+## Variant back-title (Batch 1)
+
+Back button (`icon-button`) + page title, inside the `app-shell` top band (`app-shell--band` for the tan Reference band; band meaning To Verify). The back glyph lines up with the screen gutter and the title starts 8px after it (Reference: glyph at x 27, title at x 52). Title 20px. The back destination is metadata only; nothing navigates. The back glyph is a TEMPORARY PLACEHOLDER. Other planned variants (`back-search`, `account-actions`) are added at first use.

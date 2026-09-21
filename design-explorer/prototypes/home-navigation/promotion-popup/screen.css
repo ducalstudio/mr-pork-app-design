@@ -1,0 +1,4 @@
+/* Home Promotion Popup (Draft). Reference: full-width square artwork (440 x 439), vertically centered, square corners, no close control. */
+:root { --overlay-align: center; }
+body { background: #ffffff; }
+:focus-visible { outline: 2px solid var(--proto-focus); outline-offset: 2px; }

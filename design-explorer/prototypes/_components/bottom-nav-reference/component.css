@@ -15,3 +15,5 @@
 .bottom-nav__item[aria-current="page"] .bottom-nav__label { font-weight: 700; }
 .bottom-nav__item:active .bottom-nav__icon { background: rgba(0, 0, 0, 0.08); }
 .bottom-nav__item[aria-current="page"]:active .bottom-nav__icon { background: var(--proto-accent); filter: brightness(0.92); }
+/* In-flow variant for review pages (Batch 1): the bar is not fixed. Home does not use this. */
+.bottom-nav--static { position: static; }

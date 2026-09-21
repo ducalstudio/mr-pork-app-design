@@ -9,3 +9,7 @@ Status: **Draft / Provisional** (not an approved Design System component).
 - In the Draft the selected tab is fixed (Home) and tabs are not wired: taps show a pressed state only.
 - Vertical layout matches the Reference (Draft v2): selected circle 44 px, inactive icons about 12 px lower than the circle's icon, labels 6 px below the icon box.
 - **Icons are TEMPORARY PLACEHOLDERS / NOT SOURCE ASSETS** (`data-asset="temporary-placeholder"`): line icons drawn for review. They are not approved iconography. Replace when the original icon set is supplied.
+
+## Review view (Batch 1)
+
+`component.js` renders the four Reference tabs into a container and switches the selected tab (`MPProto.bottomNav.render / select`). Used only by the Bottom Navigation review Draft (optional `?state=home|shop|rewards|account`). Tapping a tab changes the selected state on that page only; nothing navigates. `bottom-nav--static` is an in-flow variant (unused so far). The Home Draft keeps its static markup and is unchanged.

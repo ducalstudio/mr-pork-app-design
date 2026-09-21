@@ -1,0 +1,7 @@
+/* Button. Provisional. Variants: primary (filled accent), neutral (grey action). --block fills its container. */
+.button { display: flex; align-items: center; justify-content: center; min-width: 0; min-height: 46px; padding: 0 16px; border: 0; border-radius: var(--button-radius, 8px); font: inherit; font-size: 16px; font-weight: 500; line-height: 1.25; text-align: center; cursor: pointer; }
+.button--block { width: 100%; }
+.button--primary { background: var(--proto-accent); color: var(--proto-on-accent); }
+.button--neutral { background: var(--proto-neutral-action); color: var(--proto-on-accent); }
+.button:active { filter: brightness(0.92); }
+.button:disabled, .button[aria-disabled="true"] { cursor: default; opacity: 0.5; }

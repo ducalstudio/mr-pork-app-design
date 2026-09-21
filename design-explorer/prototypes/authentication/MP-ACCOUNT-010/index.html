@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Logout Confirmation (Draft)</title>
+  <script src="../../../prototype-runtime/tiers.js"></script>
+  <script src="../../../prototype-runtime/protocol.js"></script>
+  <script src="../../../prototype-runtime/client.js"></script>
+  <link rel="stylesheet" href="../../_ui-kit/tokens.css">
+  <link rel="stylesheet" href="../../_ui-kit/reference-roles.css"><!-- Draft-only Reference-observed roles, not approved tokens -->
+  <link rel="stylesheet" href="../../_ui-kit/font-inter.css"><!-- Inter: provisional Draft font (To Verify), not an approved brand font -->
+  <link rel="stylesheet" href="../../_ui-kit/base.css">
+  <link rel="stylesheet" href="../../_components/overlay/component.css">
+  <link rel="stylesheet" href="../../_components/button/component.css">
+  <link rel="stylesheet" href="../../_components/icon-button/component.css">
+  <link rel="stylesheet" href="../../_components/bottom-sheet/component.css">
+  <link rel="stylesheet" href="screen.css">
+</head>
+<body>
+  <!--
+    Draft. The Reference is a partial-screen capture (400 x 269, capture size To Verify): only the panel is visible, so its
+    position and the screen behind it are unknown. The panel is drawn centered over a blank dimmed backdrop (placeholder,
+    not the Account Home Draft, which is a later batch).
+    Button emphasis follows the Reference: Yes = grey, No = red. That emphasis is To Verify (grey action white text is about 2.5:1).
+    TEMPORARY PLACEHOLDER / NOT A SOURCE ASSET: the close glyph.
+    Draft-only review convenience: the close button, Escape and a tap on the dimmed area hide the panel; real dismissal is To Verify.
+  -->
+  <div class="overlay__underlay" aria-hidden="true"></div>
+  <div class="overlay" id="overlay">
+    <div class="overlay__scrim"></div>
+    <div class="overlay__layer">
+      <section class="sheet sheet--floating" role="dialog" aria-modal="true" aria-labelledby="dlg-title" aria-describedby="dlg-text" tabindex="-1">
+        <div class="sheet__head">
+          <h2 class="sheet__title" id="dlg-title">Logout</h2>
+          <button class="icon-button icon-button--flush-end" type="button" data-dismiss data-asset="temporary-placeholder" aria-label="Close">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+          </button>
+        </div>
+        <p class="sheet__text" id="dlg-text">Confirm Logout?</p>
+        <div class="sheet__actions">
+          <button class="button button--neutral" type="button" data-destination="logged-out-state">Yes</button>
+          <button class="button button--primary" type="button" data-destination="cancel">No</button>
+        </div>
+      </section>
+    </div>
+  </div>
+  <script src="../../_components/overlay/component.js"></script>
+  <script>MPProto.overlay.init(document.getElementById("overlay"), { dismissible: true });</script>
+</body>
+</html>

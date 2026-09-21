@@ -1,0 +1,11 @@
+/* Bottom Navigation review (Draft). Same nav measurements as Home — Member (Reference y 868 to 958). */
+:root {
+  --shell-gutter: 20px;
+  --shell-top-inset: 50px; /* as Home: stands in for the OS status bar / safe area; not drawn */
+  --shell-nav-zone: 90px;
+  --nav-inner-max: none;
+}
+:focus-visible { outline: 2px solid var(--proto-focus); outline-offset: 2px; }
+.review-title { margin: 24px 0 8px; font-size: 20px; font-weight: 600; }
+.review-text { margin: 0 0 12px; font-size: 16px; line-height: 1.5; }
+.review-muted { color: var(--proto-text-muted); font-size: 14px; }

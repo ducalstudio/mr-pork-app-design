@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Home Promotion Popup (Draft)</title>
+  <script src="../../../prototype-runtime/tiers.js"></script>
+  <script src="../../../prototype-runtime/protocol.js"></script>
+  <script src="../../../prototype-runtime/client.js"></script>
+  <link rel="stylesheet" href="../../_ui-kit/tokens.css">
+  <link rel="stylesheet" href="../../_ui-kit/reference-roles.css"><!-- Draft-only Reference-observed roles, not approved tokens -->
+  <link rel="stylesheet" href="../../_ui-kit/font-inter.css"><!-- Inter: provisional Draft font (To Verify), not an approved brand font -->
+  <link rel="stylesheet" href="../../_ui-kit/base.css">
+  <link rel="stylesheet" href="../../_components/image-placeholder/component.css">
+  <link rel="stylesheet" href="../../_components/overlay/component.css">
+  <link rel="stylesheet" href="../../_components/media-overlay/component.css">
+  <link rel="stylesheet" href="screen.css">
+</head>
+<body>
+  <!--
+    Draft. The dimmed screen behind the popup is the Home — Member Draft (inert; embedded, not copied).
+    TEMPORARY PLACEHOLDER / NOT A SOURCE ASSET: the popup artwork (CMS image). Crop rules and safe area are CMS Rule Required.
+    The Reference shows no dismiss control. Escape and a tap on the dimmed area dismiss the popup here as a Draft-only review
+    convenience; the real dismissal behavior is To Verify.
+  -->
+  <iframe class="overlay__underlay" src="../MP-HOME-001/index.html" title="Home (Draft), dimmed" tabindex="-1" aria-hidden="true" inert sandbox="allow-scripts"></iframe>
+  <div class="overlay" id="overlay">
+    <div class="overlay__scrim"></div>
+    <div class="overlay__layer">
+      <div class="media-overlay" role="dialog" aria-modal="true" aria-label="Promotion" tabindex="-1" data-destination="promotion-destination">
+        <div class="media-overlay__art image-placeholder" data-asset="temporary-placeholder" aria-hidden="true">Promotion artwork (CMS)</div>
+      </div>
+    </div>
+  </div>
+  <script src="../../_components/overlay/component.js"></script>
+  <script>MPProto.overlay.init(document.getElementById("overlay"), { dismissible: true });</script>
+</body>
+</html>

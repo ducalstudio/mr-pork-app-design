@@ -1,0 +1,2 @@
+/* Same nav container rule as Home — Member: full-width bar background, four items in a centered container of about 720. */
+[data-tier="medium"], [data-tier="expanded"] { --nav-inner-max: 720px; }

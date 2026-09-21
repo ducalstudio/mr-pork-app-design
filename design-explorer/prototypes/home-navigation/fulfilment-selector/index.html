@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fulfilment Selector (Draft)</title>
+  <script src="../../../prototype-runtime/tiers.js"></script>
+  <script src="../../../prototype-runtime/protocol.js"></script>
+  <script src="../../../prototype-runtime/client.js"></script>
+  <link rel="stylesheet" href="../../_ui-kit/tokens.css">
+  <link rel="stylesheet" href="../../_ui-kit/reference-roles.css"><!-- Draft-only Reference-observed roles, not approved tokens -->
+  <link rel="stylesheet" href="../../_ui-kit/font-inter.css"><!-- Inter: provisional Draft font (To Verify), not an approved brand font -->
+  <link rel="stylesheet" href="../../_ui-kit/base.css">
+  <link rel="stylesheet" href="../../_components/image-placeholder/component.css">
+  <link rel="stylesheet" href="../../_components/fulfilment-option/component.css">
+  <link rel="stylesheet" href="../../_components/overlay/component.css">
+  <link rel="stylesheet" href="../../_components/bottom-sheet/component.css">
+  <link rel="stylesheet" href="screen.css">
+</head>
+<body>
+  <!--
+    Draft. The dimmed screen behind the sheet is the Home — Member Draft (inert; embedded, not copied). The Reference shows the
+    Shop tab highlighted behind the sheet; the embedded Home Draft shows the Home tab (intentional Draft difference).
+    TEMPORARY PLACEHOLDERS / NOT SOURCE ASSETS: the Pickup and Delivery illustrations.
+    Delivery is Future Scope: the Reference visual treatment is kept but the row is inert (aria-disabled, not focusable, no pressed state, no navigation).
+    The Reference shows no dismiss control, so this sheet is not dismissible in the Draft (dismissal is To Verify).
+  -->
+  <iframe class="overlay__underlay" src="../MP-HOME-001/index.html" title="Home (Draft), dimmed" tabindex="-1" aria-hidden="true" inert sandbox="allow-scripts"></iframe>
+  <div class="overlay" id="overlay">
+    <div class="overlay__scrim"></div>
+    <div class="overlay__layer">
+      <section class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title" tabindex="-1">
+        <h2 class="sheet__title sheet__title--center" id="sheet-title">How would you like to get your order?</h2>
+        <div class="sheet__body fulfil-rows">
+          <button class="fulfil-option fulfil-option--row fulfil-option--emphasis fulfil-option--interactive" type="button" data-destination="store-selection">
+            <span class="fulfil-option__art image-placeholder" data-asset="temporary-placeholder" aria-hidden="true"></span>
+            <span class="fulfil-option__label">Pickup</span>
+          </button>
+          <div class="fulfil-option fulfil-option--row fulfil-option--future" role="button" aria-disabled="true" data-scope="future">
+            <span class="fulfil-option__art image-placeholder" data-asset="temporary-placeholder" aria-hidden="true"></span>
+            <span class="fulfil-option__label">Delivery</span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+  <script src="../../_components/overlay/component.js"></script>
+  <script>MPProto.overlay.init(document.getElementById("overlay"), { dismissible: false });</script>
+</body>
+</html>

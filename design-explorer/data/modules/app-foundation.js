@@ -45,6 +45,25 @@ export default defineModule({
           secondaryActions: [],
           notes: [],
           devices: devices({ mobile: phase1("app-foundation/launch-promotion-interstitial_reference.png") })
+        },
+        draft: {
+          status: "Draft",
+          prototype: "prototypes/app-foundation/launch-promotion-interstitial/index.html",
+          description: "Responsive Draft of the launch promotion interstitial: full-screen artwork placeholder with a 'Skip 3 s' pill at the top right.",
+          primaryAction: "To Verify",
+          secondaryActions: [
+            "Skip (destination To Verify)"
+          ],
+          notes: [
+            "TEMPORARY PLACEHOLDER / NOT A SOURCE ASSET: the full-screen artwork (CMS image). Nothing was cropped from the Reference screenshot. Crop rules and safe area are CMS Rule Required.",
+            "'Skip 3 s' is the Reference label, shown statically. There is no live countdown and no auto-advance: timing, skip rule and frequency are CMS Rule Required.",
+            "Intentional difference vs Reference: on tablet presets the artwork placeholder fills the whole viewport (no letterboxing rule exists). How a portrait CMS image is cropped on a landscape-ish tablet viewport is CMS Rule Required.",
+            "The Skip pill keeps the Reference offset (20px from the top and right); it is a 44px-high hit area around the 28px pill. Safe-area handling is To Verify.",
+            "Draft only. Not Approved or Master, and not a handoff source (no handoff.json).",
+            "Migration Batch 1, provisional. Built from Shared Prototype Components (Draft / Provisional, not approved Design System components) under prototypes/_components/. Reference-observed colors come from prototypes/_ui-kit/reference-roles.css (Draft-only role values, not approved tokens).",
+            "Inter is used as a PROVISIONAL Draft font (Draft / Provisional / To Verify), not an approved brand font.",
+            "No OS status bar is drawn (Phase A rule). Where the Reference shows a tan band over the status-bar region, the band's color is kept and its meaning is To Verify."
+          ]
         }
       }
     }),
@@ -66,6 +85,26 @@ export default defineModule({
           secondaryActions: [],
           notes: [],
           devices: devices({ mobile: phase1("system-states/MP-FOUND-005_network-error_reference.png") })
+        },
+        draft: {
+          status: "Draft",
+          prototype: "prototypes/app-foundation/MP-FOUND-005/index.html",
+          description: "Responsive Draft of the full-screen Network Error state: cream page, centered icon, title, message and a Refresh button.",
+          primaryAction: "Retry (To Verify).",
+          secondaryActions: [
+
+          ],
+          notes: [
+            "TEMPORARY PLACEHOLDER / NOT A SOURCE ASSET: the no-signal icon (drawn for review).",
+            "The tan band is the Reference's status-bar-region band (Reference y 0 to 54); nothing is drawn in it. Its meaning is To Verify.",
+            "Intentional differences vs Reference: on medium / expanded the panel is a centered column capped at about 480 (the Reference is phone-only). The block stays vertically centered in the area below the band.",
+            "Refresh behavior (retry the previous request, reload, return destination) is To Verify. The button is not wired.",
+            "Whether other connectivity problems (timeout, server error, offline mode) share this screen is To Verify; only the Reference wording is used.",
+            "Draft only. Not Approved or Master, and not a handoff source (no handoff.json).",
+            "Migration Batch 1, provisional. Built from Shared Prototype Components (Draft / Provisional, not approved Design System components) under prototypes/_components/. Reference-observed colors come from prototypes/_ui-kit/reference-roles.css (Draft-only role values, not approved tokens).",
+            "Inter is used as a PROVISIONAL Draft font (Draft / Provisional / To Verify), not an approved brand font.",
+            "No OS status bar is drawn (Phase A rule). Where the Reference shows a tan band over the status-bar region, the band's color is kept and its meaning is To Verify."
+          ]
         }
       }
     })

@@ -1,0 +1,4 @@
+/* Logout Confirmation (Draft). Reference capture: side margin 20, buttons 169 x 46 with a 22 gap, title 18 bold, message 14 muted. */
+:root { --overlay-align: center; --overlay-pad: 0px; --sheet-margin: 20px; --button-radius: 6px; }
+body { background: #ffffff; }
+:focus-visible { outline: 2px solid var(--proto-focus); outline-offset: 2px; }

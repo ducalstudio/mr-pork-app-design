@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Network Error (Draft)</title>
+  <!-- Order matters: shared tier + protocol scripts, then the client (sets data-tier before first paint), then CSS. -->
+  <script src="../../../prototype-runtime/tiers.js"></script>
+  <script src="../../../prototype-runtime/protocol.js"></script>
+  <script src="../../../prototype-runtime/client.js"></script>
+  <link rel="stylesheet" href="../../_ui-kit/tokens.css">
+  <link rel="stylesheet" href="../../_ui-kit/reference-roles.css"><!-- Draft-only Reference-observed roles, not approved tokens -->
+  <link rel="stylesheet" href="../../_ui-kit/font-inter.css"><!-- Inter: provisional Draft font (To Verify), not an approved brand font -->
+  <link rel="stylesheet" href="../../_ui-kit/base.css">
+  <link rel="stylesheet" href="../../_components/app-shell/component.css">
+  <link rel="stylesheet" href="../../_components/image-placeholder/component.css">
+  <link rel="stylesheet" href="../../_components/button/component.css">
+  <link rel="stylesheet" href="../../_components/state-panel/component.css">
+  <link rel="stylesheet" href="screen.css">
+</head>
+<body>
+  <!--
+    Draft. TEMPORARY PLACEHOLDER / NOT A SOURCE ASSET (data-asset="temporary-placeholder"): the no-signal icon.
+    The tan band is the Reference top band; the OS status bar itself is not drawn (Phase A rule).
+  -->
+  <div class="app-shell app-shell--page app-shell--band">
+    <div class="app-shell__top"><div class="app-shell__inset" aria-hidden="true"></div></div>
+    <main class="app-shell__body app-shell__body--center" id="main">
+      <div class="app-shell__column">
+        <section class="state-panel" aria-labelledby="state-title">
+          <div class="state-panel__icon" data-asset="temporary-placeholder" aria-hidden="true">
+            <svg viewBox="0 0 80 80" fill="currentColor"><path d="M8 62h8v10H8zM24 52h8v20h-8zM40 40h8v32h-8zM56 20h8v52h-8z"/><path d="M8 12l6-6 60 60-6 6z" stroke="#f9f8f3" stroke-width="3"/></svg>
+          </div>
+          <h1 class="state-panel__title" id="state-title">Network Error</h1>
+          <p class="state-panel__text">Please check your connection and refresh the page.</p>
+          <button class="button button--primary button--block state-panel__action" type="button" data-destination="retry-previous-screen">Refresh</button>
+        </section>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

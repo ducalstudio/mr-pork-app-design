@@ -1,0 +1,6 @@
+/* Network Error (Draft). Values observed in the Reference (440 x 956). */
+:root {
+  --shell-gutter: 20px;     /* Reference: button spans x 21 to 419 */
+  --shell-top-inset: 54px;  /* Reference: the tan band ends at y 54 (status-bar region only; nothing drawn) */
+}
+:focus-visible { outline: 2px solid var(--proto-focus); outline-offset: 2px; }

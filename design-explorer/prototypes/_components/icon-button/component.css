@@ -1,0 +1,7 @@
+/* Icon button: 44 x 44 hit area around a 24px glyph. Provisional. Glyphs are temporary placeholders. */
+.icon-button { position: relative; flex: none; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; margin: 0; padding: 0; border: 0; border-radius: 50%; background: transparent; color: inherit; font: inherit; cursor: pointer; }
+.icon-button svg { width: 24px; height: 24px; }
+.icon-button:active { background: rgba(0, 0, 0, 0.08); }
+/* Pull the hit area outward so the glyph (not the hit area) lines up with the screen gutter. */
+.icon-button--flush-start { margin-inline-start: -10px; }
+.icon-button--flush-end { margin-inline-end: -10px; }

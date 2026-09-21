@@ -4,6 +4,7 @@ Shared foundations for every responsive prototype. Phase A ships neutral placeho
 
 - `tokens.css` — neutral grey-scale placeholders. **Not** Mr Pork brand tokens. Real tokens come from `DESIGN-SYSTEM.md` or explicit owner approval; until then they are `To Verify`.
 - `font-inter.css` — Inter (variable, latin) embedded for Drafts. Provisional / To Verify. SIL OFL 1.1, see `font-inter.LICENSE.txt`.
+- `reference-roles.css` — Draft-only semantic role values OBSERVED in the Reference (colors, scrim, cream page, tan band). Opt-in per screen. **Not** an approved token file; `DESIGN-SYSTEM.md` does not list these values. The Home — Member Draft predates it and keeps its own local values.
 - `base.css` — reset, layout primitives and the tier convention.
 
 ## Rules

@@ -6,3 +6,7 @@
 .app-header__action svg { width: 24px; height: 24px; }
 .app-header__dot { position: absolute; top: 9px; right: 9px; width: 10px; height: 10px; border-radius: 50%; background: var(--proto-accent); box-shadow: 0 0 0 2px #ffffff; }
 .app-header__dot[hidden] { display: none; }
+/* Variant back-title (Batch 1): back button + page title. Sits inside the app-shell top band. The back glyph lines up with the gutter. */
+.app-header--back-title { justify-content: flex-start; gap: 8px; min-height: 52px; }
+.app-header--back-title .app-header__title { font-size: 20px; }
+.app-header--back-title .icon-button { margin-inline: -10px; } /* glyph at the gutter, title 8px after the glyph */

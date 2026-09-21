@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bottom Navigation review (Draft)</title>
+  <script src="../../../prototype-runtime/tiers.js"></script>
+  <script src="../../../prototype-runtime/protocol.js"></script>
+  <script src="../../../prototype-runtime/client.js"></script>
+  <link rel="stylesheet" href="../../_ui-kit/tokens.css">
+  <link rel="stylesheet" href="../../_ui-kit/reference-roles.css"><!-- Draft-only Reference-observed roles, not approved tokens -->
+  <link rel="stylesheet" href="../../_ui-kit/font-inter.css"><!-- Inter: provisional Draft font (To Verify), not an approved brand font -->
+  <link rel="stylesheet" href="../../_ui-kit/base.css">
+  <link rel="stylesheet" href="../../_components/app-shell/component.css">
+  <link rel="stylesheet" href="../../_components/bottom-nav-reference/component.css">
+  <link rel="stylesheet" href="screen.css">
+  <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+  <!--
+    Draft review view of the existing Reference Navigation (four tabs). Not Master Navigation. Tapping a tab only changes the
+    selected state on this page; nothing navigates. Icons are TEMPORARY PLACEHOLDERS / NOT SOURCE ASSETS (line icons drawn for review).
+    Optional sample state: ?state=home|shop|rewards|account selects the initial tab (default home).
+  -->
+  <div class="app-shell">
+    <div class="app-shell__top"><div class="app-shell__inset" aria-hidden="true"></div></div>
+    <main class="app-shell__body" id="main">
+      <div class="app-shell__column">
+        <h1 class="review-title">Bottom Navigation</h1>
+        <p class="review-text">Review view of the Reference Navigation. Selected tab: <strong id="selected">Home</strong>.</p>
+        <p class="review-text review-muted">Reference Navigation only (Home, Shop, Rewards, Account). Not newly approved Master Navigation. Tabs are not wired.</p>
+      </div>
+    </main>
+    <nav class="bottom-nav" aria-label="Primary"><div class="bottom-nav__inner" id="nav"></div></nav>
+  </div>
+  <script src="../../_components/bottom-nav-reference/component.js"></script>
+  <script>
+    (function () {
+      var P = window.MPProto;
+      var q = new URLSearchParams(location.search).get("state");
+      var start = q && P.bottomNav.isTab(q) ? q : "home";
+      var label = document.getElementById("selected");
+      function show(key) { label.textContent = key.charAt(0).toUpperCase() + key.slice(1); }
+      P.bottomNav.render(document.getElementById("nav"), start, show);
+      show(start);
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+/* App shell: page frame (top band, body column, bottom clearance) and its tier behaviour. Provisional.
+   Screens supply their own Reference-observed values: --shell-gutter, --shell-top-inset, --shell-nav-zone, --shell-max.
+   The 20px fallbacks below are only a fallback; no screen is expected to rely on them. */
+.app-shell { --shell-max: 9999px; position: relative; display: flex; flex-direction: column; min-height: 100vh; background: var(--shell-bg, var(--proto-bg)); color: var(--proto-text); }
+/* Tier behaviour (lower specificity so a screen's responsive.css can override the width). */
+:where([data-tier="medium"]) .app-shell { --shell-max: 600px; }
+:where([data-tier="expanded"]) .app-shell { --shell-max: 720px; }
+
+.app-shell--page { --shell-bg: var(--proto-page); }
+.app-shell--band { --shell-top-bg: var(--proto-band); }
+
+.app-shell__top { flex: none; background: var(--shell-top-bg, transparent); }
+/* Stands in for the OS status bar / safe area. Nothing is drawn in it. Real safe-area handling is To Verify. */
+.app-shell__inset { height: var(--shell-top-inset, 0px); }
+
+.app-shell__column { width: 100%; max-width: calc(var(--shell-max) + 2 * var(--shell-gutter, 20px)); margin: 0 auto; padding-inline: var(--shell-gutter, 20px); }
+.app-shell__body { flex: 1 1 auto; display: flex; flex-direction: column; min-height: 0; padding-bottom: var(--shell-nav-zone, 0px); }
+.app-shell__body--center { justify-content: center; }

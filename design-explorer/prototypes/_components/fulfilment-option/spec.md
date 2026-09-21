@@ -13,3 +13,7 @@ An illustration slot above a label. Home — Member uses two (Pickup, Delivery).
 - **Fixed height** 160; width follows the column.
 - Corner radius about 8 px (observed in the Reference). Illustration (80 x 72) then label, top-aligned to match the Reference.
 - **Illustration is a TEMPORARY PLACEHOLDER / NOT A SOURCE ASSET** (`image-placeholder`, `data-asset="temporary-placeholder"`). Replace when the original standalone Pickup / Delivery illustrations are supplied.
+
+## Variant row (Batch 1)
+
+Full-width 120px row for the Fulfilment Selector: illustration (80 × 72) at 40px from the left, label centered in the remaining space (18px bold, uppercase). `--emphasis` = filled accent (Pickup in the Reference); the default row is the tinted one (Delivery). `--future` keeps the same inert rules as the tile: `aria-disabled`, not focusable, no pressed state, no navigation. Illustrations remain TEMPORARY PLACEHOLDERS.

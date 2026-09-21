@@ -13,3 +13,8 @@
 .fulfil-option--interactive:active { filter: brightness(0.96); }
 /* Future Scope: visually identical to the Reference, but inert. No dimming, no pressed state, no focus, no pointer events. */
 .fulfil-option--future { cursor: default; pointer-events: none; user-select: none; }
+/* Variant row (Batch 1): full-width row for the Fulfilment Selector. Illustration left, label centered in the rest.
+   --emphasis = filled accent row (Pickup in the Reference); the default row is the tinted one (Delivery). */
+.fulfil-option--row { flex-direction: row; justify-content: flex-start; gap: 0; width: 100%; height: 120px; padding: 0 46px 0 40px; border: 0; border-radius: 0; background: var(--proto-accent-tint, var(--proto-accent-soft)); color: var(--proto-text); }
+.fulfil-option--row .fulfil-option__label { flex: 1; min-width: 0; font-size: 18px; font-weight: 700; letter-spacing: 0.02em; text-transform: uppercase; }
+.fulfil-option--row.fulfil-option--emphasis { background: var(--proto-accent); color: var(--proto-on-accent); }

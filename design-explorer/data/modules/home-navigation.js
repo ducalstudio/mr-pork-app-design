@@ -99,6 +99,26 @@ export default defineModule({
           secondaryActions: ["Dismiss (To Verify)"],
           notes: [],
           devices: devices({ mobile: phase1("home-navigation/home-promotion-popup_reference.png") })
+        },
+        draft: {
+          status: "Draft",
+          prototype: "prototypes/home-navigation/promotion-popup/index.html",
+          description: "Responsive Draft of the Home promotion popup: a full-width square artwork placeholder, vertically centered over the dimmed Home — Member Draft.",
+          primaryAction: "To Verify",
+          secondaryActions: [
+            "Dismiss (To Verify)"
+          ],
+          notes: [
+            "The dimmed screen behind the popup is the Home — Member Draft embedded inert (not copied). Home Draft decisions are unchanged.",
+            "TEMPORARY PLACEHOLDER / NOT A SOURCE ASSET: the popup artwork (CMS image). Crop rules, safe area and image size are CMS Rule Required. Nothing was cropped from the Reference screenshot.",
+            "The Reference shows no dismiss control. Draft-only review convenience: Escape and a tap on the dimmed area hide the popup. Real dismissal, popup trigger and frequency are CMS Rule Required / To Verify.",
+            "Intentional differences vs Reference: on medium / expanded the artwork is a centered square capped at about 480 over the dimmed Home (the Reference is phone-only). The Reference shows the Home tab highlighted behind it and so does the Draft.",
+            "Popup tap destination is CMS Rule Required (recorded as metadata only).",
+            "Draft only. Not Approved or Master, and not a handoff source (no handoff.json).",
+            "Migration Batch 1, provisional. Built from Shared Prototype Components (Draft / Provisional, not approved Design System components) under prototypes/_components/. Reference-observed colors come from prototypes/_ui-kit/reference-roles.css (Draft-only role values, not approved tokens).",
+            "Inter is used as a PROVISIONAL Draft font (Draft / Provisional / To Verify), not an approved brand font.",
+            "No OS status bar is drawn (Phase A rule). Where the Reference shows a tan band over the status-bar region, the band's color is kept and its meaning is To Verify."
+          ]
         }
       }
     }),
@@ -121,6 +141,28 @@ export default defineModule({
           secondaryActions: ["Choose Delivery (Future Scope)"],
           notes: [],
           devices: devices({ mobile: phase1("home-navigation/fulfilment-selector-modal_reference.png") })
+        },
+        draft: {
+          status: "Draft",
+          prototype: "prototypes/home-navigation/fulfilment-selector/index.html",
+          description: "Responsive Draft of the Fulfilment Selector: 'How would you like to get your order?' with Pickup and Delivery rows, vertically centered over the dimmed Home — Member Draft.",
+          primaryAction: "Choose Pickup (Current Scope).",
+          secondaryActions: [
+            "Choose Delivery (Future Scope)"
+          ],
+          notes: [
+            "The dimmed screen behind the sheet is the Home — Member Draft embedded inert (not copied). Intentional difference vs Reference: the Reference shows the Shop tab highlighted behind the sheet (opened from the Shop tab); the embedded Home Draft highlights the Home tab.",
+            "Delivery is Future Scope. The Reference visual treatment is kept but the row is inert: aria-disabled, not focusable, no pressed state, no navigation, no added copy.",
+            "TEMPORARY PLACEHOLDERS / NOT SOURCE ASSETS: the Pickup and Delivery illustrations (80 x 72 slots).",
+            "Layout follows the Reference: panel vertically centered, edge to edge with square corners on compact, 40px above the heading, 120px rows with a 20px gap, 20px side margin.",
+            "Intentional differences vs Reference: on medium / expanded the panel is a centered panel capped at about 480 with 12px radius (Draft tablet presentation).",
+            "The Reference shows no dismiss control; the sheet is not dismissible in the Draft. Dismissal, and behavior when opened from the Shop tab, are To Verify.",
+            "Pickup destination (Store Selection) is recorded as metadata only; nothing navigates. Fulfilment options come from Backend: Fulfilment options (To Verify).",
+            "Draft only. Not Approved or Master, and not a handoff source (no handoff.json).",
+            "Migration Batch 1, provisional. Built from Shared Prototype Components (Draft / Provisional, not approved Design System components) under prototypes/_components/. Reference-observed colors come from prototypes/_ui-kit/reference-roles.css (Draft-only role values, not approved tokens).",
+            "Inter is used as a PROVISIONAL Draft font (Draft / Provisional / To Verify), not an approved brand font.",
+            "No OS status bar is drawn (Phase A rule). Where the Reference shows a tan band over the status-bar region, the band's color is kept and its meaning is To Verify."
+          ]
         }
       }
     }),
@@ -203,6 +245,28 @@ export default defineModule({
             "Uses the same screenshot as Home — Member. This is a review view, not a separate design."
           ],
           devices: devices({ mobile: phase1("home-navigation/MP-HOME-001_home-member_reference.png") })
+        },
+        draft: {
+          status: "Draft",
+          prototype: "prototypes/home-navigation/bottom-navigation/index.html",
+          description: "Draft review view of the existing Reference Navigation: the four tabs (Home, Shop, Rewards, Account) with a switchable selected tab. The same component as the Home — Member Draft.",
+          primaryAction: "Switch between the four tabs.",
+          secondaryActions: [
+            "Home",
+            "Shop",
+            "Rewards",
+            "Account"
+          ],
+          notes: [
+            "Reference Navigation only. Not newly approved Master Navigation. No fifth tab, no redesign.",
+            "Review view, not a separate design: the page only hosts the existing bottom-nav-reference component. Tapping a tab changes the selected state on this page only; nothing navigates. Optional sample state: ?state=home|shop|rewards|account.",
+            "TEMPORARY PLACEHOLDERS / NOT SOURCE ASSETS: the four navigation icons (line icons drawn for review, not approved iconography).",
+            "Same behavior as the Home Draft on medium / expanded: full-width bar background, four items in a centered container of about 720, no side rail.",
+            "Draft only. Not Approved or Master, and not a handoff source (no handoff.json).",
+            "Migration Batch 1, provisional. Built from Shared Prototype Components (Draft / Provisional, not approved Design System components) under prototypes/_components/. Reference-observed colors come from prototypes/_ui-kit/reference-roles.css (Draft-only role values, not approved tokens).",
+            "Inter is used as a PROVISIONAL Draft font (Draft / Provisional / To Verify), not an approved brand font.",
+            "No OS status bar is drawn (Phase A rule). Where the Reference shows a tan band over the status-bar region, the band's color is kept and its meaning is To Verify."
+          ]
         }
       }
     })

@@ -1,0 +1,13 @@
+/* Bottom sheet / centered panel family. Provisional. Panel with optional head (title + close), body and actions.
+   Compact follows the Reference: edge-to-edge and square corners (Fulfilment Selector) or floating with a margin (--floating).
+   medium / expanded: a centered panel with a maximum width and rounded corners (Draft tablet presentation, not in the Reference). */
+.sheet { width: 100%; max-width: var(--sheet-max, none); background: #ffffff; color: var(--proto-text); border-radius: var(--sheet-radius, 0); padding: var(--sheet-pad, 20px); }
+.sheet--floating { width: calc(100% - 2 * var(--sheet-margin, 20px)); --sheet-radius: 8px; }
+:where([data-tier="medium"]) .sheet, :where([data-tier="expanded"]) .sheet { --sheet-max: 480px; --sheet-radius: 12px; }
+
+.sheet__head { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 44px; }
+.sheet__title { flex: 1; min-width: 0; margin: 0; font-size: 18px; font-weight: 700; line-height: 1.3; }
+.sheet__title--center { flex: none; width: 100%; text-align: center; font-size: 24px; font-weight: 600; line-height: 1.2; text-wrap: balance; }
+.sheet__text { margin: 14px 0 0; font-size: 14px; line-height: 1.5; color: var(--proto-text-muted); }
+.sheet__body { margin-top: var(--sheet-body-gap, 24px); }
+.sheet__actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sheet-actions-gap, 22px); margin-top: 26px; }
