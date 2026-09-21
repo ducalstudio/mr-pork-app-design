@@ -2,7 +2,23 @@
 
 This repository contains the Mr Pork App design system, UI structure, review workflow, and programmer handoff documentation.
 
-Before making any meaningful change, read the project context in this order:
+`CLAUDE.md` is the operational entry point for this repository.
+
+Do **not** reread every project document before every task.
+
+## Session Start
+
+At the beginning of a new Claude Code session:
+
+1. Follow this `CLAUDE.md`.
+2. Use the repository documentation as the source of truth.
+3. Read the full project baseline only when:
+   - entering this repository for the first time,
+   - core project rules have changed,
+   - a contradiction is discovered,
+   - or the current task requires project-wide context.
+
+For the first complete project bootstrap, the baseline is:
 
 1. `PROJECT.md`
 2. `APP-STRUCTURE.md`
@@ -10,14 +26,40 @@ Before making any meaningful change, read the project context in this order:
 4. `DESIGN-EXPLORER.md`
 5. `DESIGN-SYSTEM.md`
 6. `AI-GUIDELINES.md`
+7. `REFERENCE-UI-PHASE-1.md`
+8. `DESIGN-EXPLORER-IMPLEMENTATION.md`
 
-When additional files exist, also read the relevant:
+## Per-Task Context
 
+For normal tasks, do not reread the full baseline.
+
+Instead:
+
+1. Identify the relevant Module / Screen / State.
+2. Read only the documentation, Reference UI, Approved UI, Master UI, and code relevant to that task.
+3. Inspect the existing design or implementation.
+4. Audit the current issue.
+5. Propose the change.
+6. Wait for owner approval before making product-level UI/UX changes.
+7. Implement only the approved scope.
+8. Verify the result and update relevant documentation if required.
+
+Relevant task files may include:
+
+- `APP-STRUCTURE.md`
+- `SCREEN-INVENTORY.md`
+- `DESIGN-EXPLORER.md`
+- `DESIGN-SYSTEM.md`
 - `NAVIGATION.md`
 - `USER-FLOWS.md`
-- Screen specification
-- Approved prototype
+- Relevant screen specification
+- Relevant Reference / Approved / Master UI
+- Relevant implementation files
 - `HANDOFF.md`
+
+The standard workflow is:
+
+**Relevant Context → Inspect → Audit → Proposal → Owner Approval → Implement → Verify**
 
 ---
 
