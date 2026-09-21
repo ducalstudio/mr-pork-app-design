@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "mr-pork-handoff.schema.json",
+  "title": "Mr Pork prototype handoff",
+  "description": "Machine-readable contract for handoff.json. Human-readable explanation: schema.md. Approved and Master versions only.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "screenId", "versionType", "components", "states", "interactions", "responsive", "data", "api", "cms", "rules", "notes", "acceptance"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "schemaVersion": { "const": 1 },
+    "screenId": { "type": "string", "minLength": 1, "description": "Product Screen ID (e.g. MP-HOME-001), or 'To Verify'." },
+    "versionType": { "enum": ["approved", "master"], "description": "Same as HANDOFF_TYPES. A Reference or Draft never produces valid handoff data." },
+    "components": { "type": "array", "items": { "type": "string", "minLength": 1 }, "description": "Ids from prototypes/_components/, so reuse is traceable." },
+    "states": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "name": { "type": "string", "minLength": 1 },
+          "file": { "type": "string", "minLength": 1, "description": "Path under the prototype's states/ folder." }
+        }
+      }
+    },
+    "interactions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["trigger", "result"],
+        "properties": {
+          "trigger": { "type": "string", "minLength": 1 },
+          "result": { "type": "string", "minLength": 1 },
+          "targetState": { "type": "string", "minLength": 1 },
+          "marker": { "$ref": "#/$defs/marker" }
+        }
+      }
+    },
+    "responsive": {
+      "type": "array",
+      "description": "Design intent per prototype tier. Not a mandatory production breakpoint contract. Tier names must equal MPTiers.names in prototype-runtime/tiers.js.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["tier", "note"],
+        "properties": {
+          "tier": { "enum": ["compact", "medium", "expanded"] },
+          "note": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "data": { "type": "array", "items": { "$ref": "#/$defs/dependency" }, "description": "Data fields the screen needs." },
+    "api": { "type": "array", "items": { "$ref": "#/$defs/dependency" }, "description": "API dependencies. Unknown = marker 'Backend Dependency Unknown'." },
+    "cms": { "type": "array", "items": { "$ref": "#/$defs/dependency" }, "description": "CMS dependencies. Unknown = marker 'CMS Rule Required'." },
+    "rules": { "type": "array", "items": { "$ref": "#/$defs/dependency" }, "description": "Business rules. Never invented: unknown = marker 'Open Question'." },
+    "notes": { "type": "array", "items": { "type": "string", "minLength": 1 }, "description": "Programmer notes." },
+    "acceptance": { "type": "array", "items": { "type": "string", "minLength": 1 }, "description": "Acceptance criteria." }
+  },
+  "$defs": {
+    "marker": {
+      "enum": ["To Verify", "Open Question", "CMS Rule Required", "Backend Dependency Unknown"],
+      "description": "Keeps unknowns visible. An item with no marker is a confirmed, owner-approved fact."
+    },
+    "dependency": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "detail": { "type": "string", "minLength": 1 },
+        "marker": { "$ref": "#/$defs/marker" }
+      }
+    }
+  }
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Phase A runtime self-test</title>
+  <!-- Order matters: shared tier + protocol scripts, then the client (sets data-tier before first paint), then CSS. -->
+  <script src="../../prototype-runtime/tiers.js"></script>
+  <script src="../../prototype-runtime/protocol.js"></script>
+  <script src="../../prototype-runtime/client.js"></script>
+  <link rel="stylesheet" href="../_ui-kit/tokens.css">
+  <link rel="stylesheet" href="../_ui-kit/base.css">
+  <style>
+    /* Self-test only. Neutral grey-scale; not a Mr Pork screen. No numeric breakpoints: tiers via [data-tier]. */
+    body { box-shadow: inset 0 0 0 2px #444; }
+    .ruler { position: absolute; top: 0; left: 0; width: 100%; height: 10px; background: repeating-linear-gradient(90deg, #444 0 1px, transparent 1px 25px); pointer-events: none; }
+    .corner { position: fixed; width: 14px; height: 14px; background: #444; }
+    .corner--tl { top: 0; left: 0; } .corner--tr { top: 0; right: 0; } .corner--bl { bottom: 0; left: 0; } .corner--br { bottom: 0; right: 0; }
+    .kv { display: grid; grid-template-columns: max-content 1fr; gap: 2px 10px; margin: 0; font: 13px/1.5 ui-monospace, Menlo, Consolas, monospace; }
+    .kv dt { color: var(--proto-text-muted); }
+    .kv dd { margin: 0; overflow-wrap: anywhere; }
+    .note { margin: 8px 0 0; font-size: 12px; color: var(--proto-text-muted); }
+    .ok { color: #1a6b2a; } .bad { color: #a11; }
+    .tiers { display: flex; gap: 6px; margin-top: 8px; }
+    .tiers span { padding: 2px 8px; border: 1px solid var(--proto-border); border-radius: 4px; font-size: 12px; background: var(--proto-surface); }
+    [data-tier="compact"] .tiers [data-t="compact"],
+    [data-tier="medium"] .tiers [data-t="medium"],
+    [data-tier="expanded"] .tiers [data-t="expanded"] { background: #444; color: #fff; }
+    .fill { min-height: 60px; background: repeating-linear-gradient(45deg, #e6e6e6 0 8px, #f2f2f2 8px 16px); }
+  </style>
+</head>
+<body>
+  <div class="ruler" aria-hidden="true"></div>
+  <span class="corner corner--tl" aria-hidden="true"></span><span class="corner corner--tr" aria-hidden="true"></span>
+  <span class="corner corner--bl" aria-hidden="true"></span><span class="corner corner--br" aria-hidden="true"></span>
+
+  <div class="proto-page">
+    <header class="proto-header">
+      <strong>Phase A runtime self-test</strong>
+      <div class="note">Neutral page. Not a Mr Pork screen and not a design version.</div>
+      <div class="tiers" aria-label="Active tier"><span data-t="compact">compact</span><span data-t="medium">medium</span><span data-t="expanded">expanded</span></div>
+    </header>
+
+    <main class="proto-main">
+      <section class="proto-card" aria-label="Live readout">
+        <dl class="kv" id="readout">
+          <dt>viewport (innerWidth × innerHeight)</dt><dd id="r-viewport">…</dd>
+          <dt>data-tier</dt><dd id="r-tier">…</dd>
+          <dt>horizontal overflow</dt><dd id="r-overflow">…</dd>
+          <dt>browser DPR (current runtime)</dt><dd id="r-dpr">…</dd>
+        </dl>
+        <p class="note">DPR is the current browser / runtime <code>window.devicePixelRatio</code>, diagnostic only. It is not the selected device's hardware DPR. A device preset is a CSS viewport profile, not a hardware emulator.</p>
+      </section>
+
+      <div class="proto-grid" style="margin-top: var(--proto-space)">
+        <div class="proto-card">Card A<div class="fill"></div></div>
+        <div class="proto-card">Card B<div class="fill"></div></div>
+        <div class="proto-card">Card C<div class="fill"></div></div>
+        <div class="proto-card">Card D<div class="fill"></div></div>
+        <div class="proto-card">Card E<div class="fill"></div></div>
+        <div class="proto-card">Card F<div class="fill"></div></div>
+      </div>
+    </main>
+
+    <footer class="proto-bar">Sticky bottom bar</footer>
+  </div>
+
+  <script>
+    (function () {
+      var $ = function (id) { return document.getElementById(id); };
+      function paint() {
+        var de = document.documentElement;
+        $("r-viewport").textContent = window.innerWidth + " × " + window.innerHeight;
+        $("r-tier").textContent = de.getAttribute("data-tier") || "(not set)";
+        var over = de.scrollWidth > window.innerWidth;
+        $("r-overflow").textContent = over ? "YES (" + de.scrollWidth + " > " + window.innerWidth + ")" : "none";
+        $("r-overflow").className = over ? "bad" : "ok";
+        $("r-dpr").textContent = String(window.devicePixelRatio);
+      }
+      window.addEventListener("resize", paint);
+      window.addEventListener("load", paint);
+      paint();
+    })();
+  </script>
+</body>
+</html>

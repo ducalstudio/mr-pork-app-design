@@ -1094,6 +1094,18 @@ Do not fill them with placeholder values and later mistake those values for appr
 
 ---
 
+# 37A. Prototype UI Kit and Responsive Tiers (Phase A)
+
+Status: **Draft**. Added for the Design Explorer prototype runtime; no Mr Pork design token is approved by this section.
+
+- `design-explorer/prototypes/_ui-kit/tokens.css` contains **neutral grey-scale placeholders only**, so the runtime can be tested. They are not Mr Pork brand tokens. Real color, type and spacing tokens remain `To Verify` until approved.
+- Responsive tiers used by prototypes: **compact** under 600px, **medium** 600–899px, **expanded** 900px and above. They are prototype / design-system tiers, **not a mandatory production framework contract**; programmers may use their own breakpoints to achieve the same behaviour.
+- The thresholds have one source of truth, `design-explorer/prototype-runtime/tiers.js`. A prototype client sets `data-tier` on `<html>`; component and screen CSS targets `[data-tier="compact|medium|expanded"]` and never repeats the numbers. Base rules are compact (mobile-first).
+- Reuse before creation still applies: check `prototypes/_components/` and the UI kit before adding a component.
+- A device preset is a responsive viewport profile, not a hardware emulator (see `DESIGN-EXPLORER-IMPLEMENTATION.md`, section 31).
+
+---
+
 # 38. Next Step
 
 After this file is added, the next core repository document should be:

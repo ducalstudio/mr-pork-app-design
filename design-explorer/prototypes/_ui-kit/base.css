@@ -1,0 +1,28 @@
+/*
+ * Prototype base: reset, layout primitives, and the tier convention.
+ *
+ * RESPONSIVE RULE: base rules are compact (mobile-first). Larger tiers add overrides with [data-tier="…"] selectors.
+ * The prototype client (prototype-runtime/client.js) sets data-tier on <html> from the iframe viewport.
+ * Never write numeric breakpoints or @media width queries for tiers: the thresholds live only in tiers.js.
+ * Tiers are prototype / design-system tiers, not a mandatory production framework contract.
+ */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--proto-bg);
+  color: var(--proto-text);
+  font: 15px/1.5 var(--proto-font);
+  overflow-x: hidden;
+}
+
+.proto-page { display: flex; flex-direction: column; min-height: 100vh; }
+.proto-header { padding: var(--proto-space); background: var(--proto-surface); border-bottom: 1px solid var(--proto-border); }
+.proto-main { flex: 1; padding: var(--proto-space); }
+.proto-bar { position: sticky; bottom: 0; padding: var(--proto-space); background: var(--proto-surface); border-top: 1px solid var(--proto-border); }
+
+.proto-grid { display: grid; gap: var(--proto-space); grid-template-columns: 1fr; }
+.proto-card { padding: var(--proto-space); background: var(--proto-surface); border: 1px solid var(--proto-border); border-radius: var(--proto-radius); }
+
+[data-tier="medium"] .proto-grid { grid-template-columns: repeat(2, 1fr); }
+[data-tier="expanded"] .proto-grid { grid-template-columns: repeat(3, 1fr); }

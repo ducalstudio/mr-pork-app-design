@@ -20,7 +20,7 @@
 }
 .chip.is-active { background: var(--ex-accent-soft); border-color: var(--ex-accent); color: var(--ex-accent); font-weight: 600; }
 
-.segmented { display: inline-flex; border: 1px solid var(--ex-border); border-radius: 8px; overflow: hidden; }
+.segmented { display: inline-flex; max-width: 100%; overflow-x: auto; border: 1px solid var(--ex-border); border-radius: 8px; }
 .segmented button { padding: 6px 14px; border: 0; background: var(--ex-surface); }
 .segmented button + button { border-left: 1px solid var(--ex-border); }
 .segmented button.is-active { background: var(--ex-accent); color: #fff; font-weight: 600; }
@@ -69,12 +69,31 @@
 .banner--future { background: var(--ex-future-bg); color: var(--ex-future-fg); }
 .banner--external { background: var(--ex-external-bg); color: var(--ex-external-fg); }
 
-/* Preview frame: natural size, never stretched. */
-.frame { display: flex; flex-direction: column; align-items: center; gap: 8px; max-width: 100%; }
+/* Preview toolbar: device preset, view mode, live scale */
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  padding: 8px 16px;
+  background: var(--ex-surface);
+  border-bottom: 1px solid var(--ex-border);
+}
+.toolbar__scale { font-size: 12px; color: var(--ex-text-muted); min-width: 64px; }
+
+/* Preview frame. Fit / 100% is reviewer zoom: a uniform scale around the content, never a reflow. */
+.frame { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.fit__box { position: relative; flex: none; }
+.fit__inner { transform-origin: 0 0; }
+.proto-frame {
+  display: block;
+  border: 0;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+}
 .frame__img {
   display: block;
-  max-width: 100%;
-  height: auto;
+  max-width: none;
   background: #fff;
   border: 1px solid var(--ex-border);
   border-radius: 4px;
@@ -122,3 +141,80 @@
 }
 .callout--future { background: var(--ex-future-bg); color: var(--ex-future-fg); border-color: var(--ex-future-fg); }
 .callout--external { background: var(--ex-external-bg); color: var(--ex-external-fg); border-color: var(--ex-external-fg); }
+
+/* Version switcher (visible only when a screen has 2+ versions) */
+.versions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: var(--ex-surface);
+  border-bottom: 1px solid var(--ex-border);
+}
+.versions[hidden] { display: none; }
+.versions__label { font-size: 12px; color: var(--ex-text-muted); }
+
+/* Device button for a design that does not exist on that device */
+.segmented button.is-unavailable:not(.is-active) { color: var(--ex-text-muted); }
+
+/* Inline button used in the "not available" preview state */
+.btn {
+  margin-top: 12px;
+  padding: 8px 14px;
+  border: 1px solid var(--ex-accent);
+  border-radius: 6px;
+  background: var(--ex-accent-soft);
+  color: var(--ex-accent);
+  font-weight: 600;
+}
+
+/* Info panel helpers */
+.is-muted { color: var(--ex-text-muted); }
+.tag {
+  margin-left: 6px;
+  padding: 0 6px;
+  border-radius: 4px;
+  background: var(--ex-accent-soft);
+  color: var(--ex-accent);
+  font-size: 10.5px;
+  font-weight: 600;
+}
+
+/* Copy Review Link: header action, toast, link-problem notices */
+.topbar__action {
+  padding: 6px 12px;
+  border: 1px solid var(--ex-accent);
+  border-radius: 8px;
+  background: var(--ex-accent-soft);
+  color: var(--ex-accent);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.toast {
+  position: fixed;
+  right: 16px;
+  bottom: 48px;
+  z-index: 30;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: var(--ex-text);
+  color: var(--ex-surface);
+  font-size: 13px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+.toast[hidden] { display: none; }
+.notices[hidden] { display: none; }
+.notice {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  background: var(--ex-verify-bg);
+  color: var(--ex-verify-fg);
+  border-bottom: 1px solid var(--ex-border);
+  font-size: 13px;
+}
+.notice > span { flex: 1; }
+.notice__input { flex: 2; padding: 4px 8px; border: 1px solid var(--ex-border); border-radius: 4px; background: var(--ex-surface); color: var(--ex-text); font: inherit; }
+.notice__close { border: 0; background: transparent; font-size: 18px; line-height: 1; color: inherit; }

@@ -1,0 +1,15 @@
+/*
+ * Prototype UI kit tokens — Phase A: NEUTRAL PLACEHOLDERS ONLY.
+ * These are grey-scale values so the runtime can be tested. They are NOT Mr Pork brand tokens.
+ * Mr Pork colors, type and spacing must come from DESIGN-SYSTEM.md or explicit owner approval (To Verify until then).
+ */
+:root {
+  --proto-bg: #f2f2f2;
+  --proto-surface: #ffffff;
+  --proto-border: #b8b8b8;
+  --proto-text: #222222;
+  --proto-text-muted: #666666;
+  --proto-font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --proto-space: 12px;
+  --proto-radius: 6px;
+}

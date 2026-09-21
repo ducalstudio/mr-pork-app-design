@@ -1,0 +1,20 @@
+{
+  "$schema": "../_handoff/schema.json",
+  "schemaVersion": 1,
+  "screenId": "To Verify",
+  "versionType": "approved",
+  "components": [],
+  "states": [{ "id": "default", "name": "Default" }],
+  "interactions": [],
+  "responsive": [
+    { "tier": "compact", "note": "Neutral fixture: single column." },
+    { "tier": "medium", "note": "Neutral fixture: two columns." },
+    { "tier": "expanded", "note": "Neutral fixture: three columns." }
+  ],
+  "data": [{ "name": "Neutral fixture field", "marker": "To Verify" }],
+  "api": [{ "name": "Neutral fixture endpoint", "marker": "Backend Dependency Unknown" }],
+  "cms": [{ "name": "Neutral fixture content", "marker": "CMS Rule Required" }],
+  "rules": [{ "name": "Neutral fixture rule", "marker": "Open Question" }],
+  "notes": ["Neutral fixture for schema validation only. Not a Mr Pork screen."],
+  "acceptance": ["Validates against ../_handoff/schema.json."]
+}

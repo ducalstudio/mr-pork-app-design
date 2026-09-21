@@ -13,10 +13,7 @@
     <header class="topbar">
       <button class="topbar__drawer" id="toggle-tree" type="button" aria-label="Toggle design tree">☰ Tree</button>
       <h1 class="topbar__title">Mr Pork Design Explorer <span class="topbar__phase">Phase 1 · Reference</span></h1>
-      <div class="segmented" id="devices" role="group" aria-label="Device preview">
-        <button type="button" data-device="mobile" class="is-active" aria-pressed="true">Mobile</button>
-        <button type="button" data-device="tablet" aria-pressed="false">Tablet</button>
-      </div>
+      <button class="topbar__action" id="copy-link" type="button">Copy Review Link</button>
       <button class="topbar__drawer" id="toggle-info" type="button" aria-label="Toggle design info">Info ⓘ</button>
     </header>
 
@@ -33,6 +30,13 @@
 
     <main class="stage">
       <nav class="crumb" id="breadcrumb" aria-label="Design path"></nav>
+      <div class="notices" id="notices" hidden></div>
+      <div class="versions" id="versions" role="group" aria-label="Design version" hidden></div>
+      <div class="toolbar" id="toolbar">
+        <div class="segmented" id="devices" role="group" aria-label="Device preset"></div>
+        <div class="segmented" id="view-modes" role="group" aria-label="View mode"></div>
+        <span class="toolbar__scale" id="scale-label" aria-live="polite"></span>
+      </div>
       <div id="banners"></div>
       <div class="preview" id="preview" tabindex="0" aria-label="UI preview"></div>
     </main>
@@ -42,11 +46,12 @@
     </aside>
 
     <footer class="footer" id="footer-path"></footer>
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
   </div>
 
-  <script src="data/screens.js"></script>
-  <script src="js/data.js"></script>
-  <script src="js/search.js"></script>
-  <script src="js/explorer.js"></script>
+  <!-- Classic scripts, shared with prototype iframes: one copy of the tier thresholds and the message protocol. -->
+  <script src="prototype-runtime/tiers.js"></script>
+  <script src="prototype-runtime/protocol.js"></script>
+  <script type="module" src="js/app.js"></script>
 </body>
 </html>

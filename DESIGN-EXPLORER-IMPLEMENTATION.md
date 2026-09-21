@@ -191,6 +191,8 @@ Requirements:
 
 The preview should represent the selected device.
 
+> **Phase A update:** preview rules are extended by section 31 (device presets, Reference vs Prototype renderers, Fit / 100% reviewer zoom). The rules above still apply to Reference screenshots.
+
 ---
 
 # 8. Mobile Preview
@@ -208,6 +210,8 @@ The screenshot itself remains the source of truth for the old Reference UI.
 ---
 
 # 9. Tablet Preview
+
+> **Superseded by section 31:** the Mobile / Tablet selector is replaced by four device presets. The "do not fabricate / do not scale a mobile screenshot as a tablet design" rule is kept and strengthened.
 
 The top device selector should include:
 
@@ -481,6 +485,8 @@ Do not make Phase 1 unnecessarily complex.
 
 # 17. URL / Deep Link
 
+> **Superseded by section 31.5:** review links use a query string (`?screen=…&version=…&device=<preset>&view=<fit|100>`). Legacy hash links are still read and rewritten.
+
 Where practical, preserve selected design through a URL hash.
 
 Example:
@@ -654,6 +660,8 @@ Phase 1 does not need a sophisticated mobile Explorer experience.
 
 # 26. Suggested Project Structure
 
+> **Superseded by the modular structure now in the repository** (`data/modules/`, `js/components/`, `js/utils/`) plus the Phase A additions in section 31.4.
+
 If the repository has no existing implementation structure, use:
 
 ```text
@@ -770,3 +778,67 @@ Before implementation it must read:
 Then it may create the first Design Explorer implementation.
 
 If it finds contradictions, it should report them before making a product-level decision.
+
+---
+
+# 31. Phase A — Responsive Preview and Prototype Runtime
+
+Status: implemented on branch `feat/design-explorer-phase-1`, pending owner visual review. Design status: **Draft** architecture (the Explorer is a review tool, not the Customer App).
+
+## 31.1 Device presets
+
+A preset is a **responsive viewport profile** (CSS px) for design review. It is **not a hardware emulator**: no physical hardware, real device pixel ratio, notch / Dynamic Island, OS status bar, browser chrome or platform safe-area emulation. Future device metadata may add those if required; none is invented.
+
+| Preset id | Label | Viewport | Class |
+|---|---|---|---|
+| `iphone-se` | iPhone SE | 375 × 667 | mobile |
+| `iphone-16-pro-max` (default) | iPhone 16 Pro Max | 440 × 956 | mobile |
+| `ipad-mini` | iPad mini | 744 × 1133 | tablet |
+| `ipad-pro-12-9` | iPad Pro 12.9 | 1024 × 1366 | tablet |
+
+Presets live in `js/config.js` (`DEVICES`). Legacy `mobile` → `iphone-16-pro-max`, `tablet` → `ipad-mini` (`LEGACY_DEVICE_ALIASES`).
+
+## 31.2 Reference Renderer vs Prototype Renderer
+
+- **Reference Renderer** (`js/components/renderers/referenceRenderer.js`): an unmodified screenshot, displayed **only** for the preset it was captured for (`capturePreset`). Existing Phase 1 Mobile Reference assets are treated as `capturePreset: iphone-16-pro-max` (440 × 956), applied once in `data/helpers.js` (`CLASS_DEFAULT_CAPTURE`) and overridable per asset. A Reference is never reused, stretched, substituted or relabelled for another preset; other presets show "Reference not available". A tablet asset with no explicit `capturePreset` is `To Verify` and shown nowhere.
+- **Prototype Renderer** (`js/components/renderers/prototypeRenderer.js`): a live responsive prototype in a sandboxed iframe. One prototype renders at every preset.
+- The dispatcher (`js/components/uiPreview.js`) chooses by whether the version has a `prototype` path.
+
+## 31.3 Viewing: Fit-to-pane and 100%
+
+Reviewer zoom only; it never reflows or adapts a design.
+
+- **Fit** (default UI mode): uniform scale, aspect ratio preserved, never above 100%.
+- **100%**: prototypes at the exact preset viewport; Reference at its **logical capture size**. The logical capture preset is authoritative: a Reference exported at 2× / 3× density (pixel width an integer multiple of the preset width) is shown at its logical size, not visually enlarged. Source assets are never modified or downsampled.
+- Assets whose pixel size does not match the capture preset (`js/utils/assetCheck.js`: `partial-height`, `width-mismatch`) are reported in the info panel and the console.
+
+## 31.4 Prototype runtime and structure
+
+```text
+design-explorer/
+├── prototype-runtime/   tiers.js (ONLY numeric thresholds) · protocol.js · client.js (runs in iframe)
+│                        frame.js · parent-bridge.js · fit.js (Explorer side)
+└── prototypes/          _ui-kit/ · _components/ · _handoff/ (schema.json + schema.md)
+                         _selftest/ · <module>/<SCREEN-ID>/ (created only after approval)
+```
+
+- **Isolation:** `sandbox="allow-scripts"`, no `allow-same-origin`. The Explorer never touches the iframe DOM.
+- **Bridge:** the prototype client reads its own viewport, derives the tier, sets `data-tier`, and posts `ready` / `viewport` / `tier`. The Explorer parent checks `event.source`, validates the message shape, and drops anything else.
+- **Tiers** (prototype / design-system tiers, **not** a mandatory production framework contract): compact under 600px, medium 600–899px, expanded 900px and above. Thresholds exist only in `prototype-runtime/tiers.js`; prototype CSS uses `[data-tier="…"]` selectors, never numeric breakpoints.
+- `tiers.js` and `protocol.js` are classic scripts, not ES modules, because module scripts inside an opaque-origin iframe need CORS headers that a plain static server does not send.
+
+## 31.5 Review Links
+
+`?screen=<key>&version=<version>&device=<preset-id>&view=<fit|100>`
+
+- `device` and `view` are always written explicitly, so a link reproduces the exact review state.
+- If the URL carries **any** review state, missing values use deterministic defaults (default screen, its highest-ranked version, `iphone-16-pro-max`, `fit`) and the stored last view is **never** read. The stored last view is restored only when the URL has no review state at all.
+- Invalid values fall back to the same defaults with a notice; the URL is rewritten explicitly.
+
+## 31.6 Developer self-test
+
+`?screen=__selftest` opens `prototypes/_selftest/index.html`, a neutral page for verifying the runtime. It is not a screen or a design version, is not in the tree, search or inventory, and is never stored as the last view. Its browser DPR readout is the current browser / runtime `window.devicePixelRatio`, not the selected device's hardware DPR.
+
+## 31.7 Handoff
+
+`prototypes/_handoff/schema.json` (JSON Schema 2020-12) is the machine-readable contract for a future `handoff.json` (Approved / Master only); `schema.md` explains it. No Mr Pork `handoff.json` exists yet.
