@@ -27,9 +27,22 @@ They are not the final product owner or design approver.
 
 ---
 
-# 2. Required Reading Order
+# 2. Context Loading Strategy
 
-Before making any meaningful UI, UX, structure, or implementation change, the AI assistant should read:
+The repository should not be reread in full for every task.
+
+`CLAUDE.md` is the short operational entry point and should guide each Claude Code session.
+
+## First Project Bootstrap
+
+Read the full baseline when:
+
+- entering this repository for the first time,
+- core project rules have changed,
+- a contradiction is found,
+- or a task requires project-wide context.
+
+The baseline includes:
 
 1. `PROJECT.md`
 2. `APP-STRUCTURE.md`
@@ -38,17 +51,26 @@ Before making any meaningful UI, UX, structure, or implementation change, the AI
 5. `DESIGN-SYSTEM.md`
 6. `AI-GUIDELINES.md`
 
-When available, also read:
+## Normal Task Workflow
 
-7. `NAVIGATION.md`
-8. `USER-FLOWS.md`
-9. Relevant screen specification
-10. Relevant approved prototype / Master Design
-11. `HANDOFF.md`
+For normal tasks, read only the context relevant to the current Module / Screen / State.
 
-Do not begin a redesign based only on a single screenshot or prompt when repository rules already exist.
+Relevant files may include:
 
----
+- `NAVIGATION.md`
+- `USER-FLOWS.md`
+- Relevant screen specification
+- Relevant Reference / Approved / Master UI
+- Relevant Design System section
+- `HANDOFF.md`
+
+The standard workflow is:
+
+**Read relevant context → Inspect existing design/code → Audit → Propose → Owner approval → Implement → Verify**
+
+Do not repeatedly reread unrelated project documentation.
+
+Do not begin a redesign based only on a screenshot or isolated prompt when relevant repository context exists.
 
 # 3. Source of Truth Priority
 
