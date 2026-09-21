@@ -12,4 +12,12 @@
   --proto-font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --proto-space: 12px;
   --proto-radius: 6px;
+
+  /* Semantic roles used by the shared prototype components. Neutral grey defaults here; a screen may override them
+     (Home — Member overrides them with values OBSERVED in the Reference, for Draft comparison only). */
+  --proto-accent: #444444;        /* values, selected state, primary outline */
+  --proto-accent-soft: #eeeeee;   /* soft container fill */
+  --proto-accent-border: #bbbbbb; /* soft container border */
+  --proto-on-accent: #ffffff;
+  --proto-focus: #1a5fd0;
 }

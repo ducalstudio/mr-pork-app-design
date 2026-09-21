@@ -1,0 +1,12 @@
+/*
+ * Home — Member responsive rules. Tiers only: [data-tier="…"] selectors, no numeric breakpoints and no @media.
+ * compact is the base (see screen.css). Tiers are prototype / design-system tiers, not a production framework contract.
+ */
+
+/* medium and expanded: centered column; the 1:1 promotion is centered and limited to about 480 (adjustable at review);
+   the bottom bar keeps its full-width background while its four items sit in a centered inner container. */
+[data-tier="medium"], [data-tier="expanded"] {
+  --home-pad: 24px;
+  --promo-max: 480px;
+  --nav-inner-max: 720px;
+}

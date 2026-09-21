@@ -58,6 +58,7 @@
   white-space: nowrap;
 }
 .badge--reference { background: var(--ex-reference-bg); color: var(--ex-reference-fg); }
+.badge--draft { background: var(--ex-draft-bg); color: var(--ex-draft-fg); }
 .badge--future { background: var(--ex-future-bg); color: var(--ex-future-fg); }
 .badge--external { background: var(--ex-external-bg); color: var(--ex-external-fg); }
 .badge--verify { background: var(--ex-verify-bg); color: var(--ex-verify-fg); }

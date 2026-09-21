@@ -5,7 +5,7 @@ export function badge(text, kind) {
 }
 
 export function statusBadge(status) {
-  return badge(String(status).toUpperCase(), status === "To Verify" ? "verify" : "reference");
+  return badge(String(status).toUpperCase(), status === "To Verify" ? "verify" : status === "Draft" ? "draft" : "reference");
 }
 
 export function scopeBadges(scope, short) {

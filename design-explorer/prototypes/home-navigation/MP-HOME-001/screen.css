@@ -1,0 +1,45 @@
+/*
+ * Home — Member (Draft). Screen-specific styles.
+ * Colors below are values OBSERVED in the Reference, used for Draft comparison only. They are NOT approved design
+ * tokens; contrast findings are logged as a global accessibility / token To Verify item.
+ * Font: Inter, a PROVISIONAL Draft font (Status: Draft / Provisional / To Verify). It is the closest match to the Reference
+ * typeface but is NOT an approved Mr Pork brand font and NOT a global token; replace it if the original app font differs.
+ * It is embedded as a data URI (_ui-kit/font-inter.css) because a sandboxed opaque-origin iframe cannot load font files.
+ */
+:root {
+  --proto-accent: #ec1d27;
+  --proto-accent-soft: #fde8e9;
+  --proto-accent-border: #f3b6ba;
+  --proto-on-accent: #ffffff;
+  --proto-text: #1f2937;
+  --proto-text-muted: #6b7280;
+  --proto-bg: #ffffff;
+  --proto-font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; /* Inter: provisional Draft font */
+
+  --home-pad: 20px;      /* side margin (Reference) */
+  --home-inset: 50px;    /* stands in for the OS status bar / safe area. Not drawn. Real safe-area handling is To Verify. */
+  --nav-zone: 90px;      /* bottom navigation height (Reference y 868-958) */
+  --promo-max: none;     /* set per tier in responsive.css */
+  --nav-inner-max: none; /* set per tier in responsive.css */
+}
+
+body { background: #ffffff; box-shadow: none; }
+:focus-visible { outline: 2px solid var(--proto-focus); outline-offset: 2px; }
+
+.home-top-inset { height: var(--home-inset); }
+.home-column {
+  max-width: calc(720px + 2 * var(--home-pad));
+  margin: 0 auto;
+  padding: 0 var(--home-pad) calc(var(--nav-zone) + 24px);
+}
+
+/* Vertical rhythm measured from the Reference: header row 65-109, boxes 116, tiles 197, promotion 397, heading ~837. */
+.home-header { margin-top: 14px; }
+.home-summary { margin-top: 8px; }
+.home-fulfil { margin-top: 32px; }
+.home-promo { margin-top: 40px; }
+.home-shop { margin-top: 38px; }
+.home-shop .card-row { margin-top: 12px; }
+
+/* Scrollers are keyboard focusable so arrow keys work. */
+.promo-carousel__scroller:focus-visible, .card-row:focus-visible { outline-offset: -2px; }

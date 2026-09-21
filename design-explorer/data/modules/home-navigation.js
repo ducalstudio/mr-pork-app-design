@@ -34,6 +34,50 @@ export default defineModule({
             "Whether the Reference image is captured mid-scroll is To Verify (the 'Shop & more' section is cut off)."
           ],
           devices: devices({ mobile: phase1("home-navigation/MP-HOME-001_home-member_reference.png") })
+        },
+        /*
+         * Responsive Draft (one prototype, all four device presets). The Reference version above and its screenshot are
+         * unchanged; everything below is Draft-specific behaviour and is recorded here (overrides / notes), not by
+         * rewriting the Reference or any related screen's canonical metadata.
+         */
+        draft: {
+          status: "Draft",
+          prototype: "prototypes/home-navigation/MP-HOME-001/index.html",
+          description:
+            "Responsive Draft of Home — Member (default Member state only). Order: greeting + notification bell, Credit / Points / Rewards, Pickup / Delivery, Promotion (1:1), Shop & more, Reference bottom navigation. Neutral placeholders stand in for images, illustrations and icons.",
+          primaryAction: "Choose Pickup (opens Store Selection).",
+          secondaryActions: [
+            "Open notifications (unread dot when unread exists)",
+            "Open My Credit / Points Summary / My Rewards from the summary boxes",
+            "Swipe the promotion banner (banner tap: CMS Rule Required)",
+            "Use bottom navigation (Reference Navigation)"
+          ],
+          overrides: {
+            flow: {
+              entryPoint: "Authenticated app entry",
+              nextStep:
+                "Pickup → Store Selection. Delivery → Future Scope (no destination in this Draft). Credit → My Credit. Points → Points Summary (no design yet). Rewards → My Rewards. Bell → Notifications."
+            },
+            scopeNote:
+              "Delivery is Future Scope. In this Draft the Delivery tile keeps the Reference visual treatment but is inert: aria-disabled, not focusable, no pressed state, no navigation, no added copy. Pickup and Home remain Current Scope."
+          },
+          notes: [
+            "Draft only. Not Approved or Master, and not a handoff source (no handoff.json yet).",
+            "Intentional IA change vs Reference (approved): Pickup / Delivery moved above the Promotion. Reason: ordering is the primary Home task and the ordering entry fell below the first viewport on iPhone SE.",
+            "Draft behaviour (not a canonical flow change): Home does not reopen the Fulfilment Selector after Pickup was explicitly selected. The Fulfilment Selector Reference metadata is unchanged; it remains for entry points where fulfilment mode has not been chosen (for example the Shop tab).",
+            "Proposed formatting (Proposed / To Verify until backend and product requirements confirm it): Credit is a numeric balance only, shown as 'Credit' above '100.00' (two decimals, thousands separators, no currency symbol or code). Points and Rewards are integers with thousands separators. Credit / Points / Rewards stay equal width. This supersedes the earlier 'Credit (RM)' proposal.",
+            "Visual Draft v2 (fidelity to the Reference, Draft only): Inter is used as a PROVISIONAL Draft font (Draft / Provisional / To Verify). It is the closest match to the Reference typeface, is not recorded as an approved Mr Pork brand font, and is not a global token. Radii: tiles about 8 px, summary boxes about 5 px. Summary value 16 px. Section heading weight 600. Promotion dots follow the Reference (bottom-left, active about 14 px, inactive about 8 px, no pill; indicators only). Bottom-navigation vertical positions follow the Reference.",
+            "TEMPORARY PLACEHOLDERS / NOT SOURCE ASSETS: the Pickup and Delivery illustrations, the Promotion artwork, the Shop & more imagery, the bell icon and the four navigation icons (line icons drawn for review, not approved iconography). No original standalone asset exists in the repository yet; replace them when supplied. Nothing was cropped from the Reference screenshot.",
+            "Notification indicator: a small unread dot, never a number. Whether Home shows it, and its source, is To Verify.",
+            "Greeting uses the preferred display name from the member profile. No first-name / surname rule. Time-of-day greeting rules are To Verify.",
+            "Promotion: manual swipe, scroll-snap, no autoplay, no looping; dots are indicators only. Banner tap, real slide count, image size and safe area are CMS Rule Required. Banner is 1:1 at every tier; medium / expanded is centered with a proposed max width of about 480 (adjustable at visual review).",
+            "Shop & more: section and horizontal-card structure kept. Content type, source and destination are To Verify; cards are neutral placeholders.",
+            "Bottom navigation is Reference Navigation (same four tabs), not Master Navigation. On medium / expanded the bar background is full width and its four items sit in a centered container of about 720. No side rail.",
+            "Destinations are recorded here only: a prototype runs in a sandboxed iframe and does not navigate the Explorer.",
+            "Colors are values observed in the Reference, for Draft comparison only, not approved tokens. Contrast findings (red on white 4.40:1, red on pink tile 3.75:1, pink box border on white 1.72:1) are logged as a global accessibility / token To Verify item.",
+            "Shared prototype components under prototypes/_components/ are Shared Prototype Components, Draft / Provisional, not approved Design System components.",
+            "Not included in this Draft: Member QR shortcut, active order, extra voucher section, other potential Home content; Loading, Partial Error, Empty and Guest states."
+          ]
         }
       }
     }),

@@ -24,6 +24,8 @@
   --ex-verify-fg: #8a1f14;
   --ex-reference-bg: #e2eaf3;
   --ex-reference-fg: #24425f;
+  --ex-draft-bg: #e3f2e1;
+  --ex-draft-fg: #1d5a22;
 
   --ex-left: 300px;
   --ex-right: 340px;
@@ -52,5 +54,7 @@
     --ex-verify-fg: #ffb9b0;
     --ex-reference-bg: #23303f;
     --ex-reference-fg: #b8cee6;
+    --ex-draft-bg: #213a22;
+    --ex-draft-fg: #b9e2b5;
   }
 }

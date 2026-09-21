@@ -1,0 +1,16 @@
+/* Promotion carousel: 1:1 frame, manual swipe, scroll-snap, no autoplay, no loop. Dots are indicators only. Provisional. */
+.promo-carousel { position: relative; width: 100%; max-width: var(--promo-max, none); margin: 0 auto; aspect-ratio: 1 / 1; border-radius: 20px; overflow: hidden; background: #e4e4e4; }
+.promo-carousel__scroller {
+  display: flex; width: 100%; height: 100%; overflow-x: auto; overflow-y: hidden;
+  scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch;
+}
+.promo-carousel__scroller::-webkit-scrollbar { display: none; }
+.promo-carousel__slide { flex: 0 0 100%; width: 100%; height: 100%; scroll-snap-align: start; scroll-snap-stop: always; }
+/* Reference: plain white dots at the bottom-left (no pill). Active about 14 px, inactive about 8 px. Indicators only. */
+.promo-carousel__dots {
+  position: absolute; left: 43px; bottom: 23px;
+  display: flex; align-items: center; gap: 20px; pointer-events: none;
+}
+.promo-carousel__dot { width: 8px; height: 8px; border-radius: 50%; background: #ffffff; box-shadow: 0 0 3px rgba(0, 0, 0, 0.3); }
+.promo-carousel__dot.is-active { width: 14px; height: 14px; margin-right: 3px; }
+.promo-carousel__status { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
