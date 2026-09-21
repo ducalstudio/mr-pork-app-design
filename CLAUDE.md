@@ -1,274 +1,122 @@
 # Mr Pork App — Claude Code Instructions
 
-This repository contains the Mr Pork App design system, UI structure, review workflow, and programmer handoff documentation.
+Mr Pork App design system, UI structure, review workflow, Design Explorer and responsive Drafts.
 
-`CLAUDE.md` is the operational entry point for this repository.
-
-Do **not** reread every project document before every task.
-
-## Session Start
-
-At the beginning of a new Claude Code session:
-
-1. Follow this `CLAUDE.md`.
-2. Use the repository documentation as the source of truth.
-3. Read the full project baseline only when:
-   - entering this repository for the first time,
-   - core project rules have changed,
-   - a contradiction is discovered,
-   - or the current task requires project-wide context.
-
-For the first complete project bootstrap, the baseline is:
-
-1. `PROJECT.md`
-2. `APP-STRUCTURE.md`
-3. `SCREEN-INVENTORY.md`
-4. `DESIGN-EXPLORER.md`
-5. `DESIGN-SYSTEM.md`
-6. `AI-GUIDELINES.md`
-7. `REFERENCE-UI-PHASE-1.md`
-8. `DESIGN-EXPLORER-IMPLEMENTATION.md`
-
-## Per-Task Context
-
-For normal tasks, do not reread the full baseline.
-
-Instead:
-
-1. Identify the relevant Module / Screen / State.
-2. Read only the documentation, Reference UI, Approved UI, Master UI, and code relevant to that task.
-3. Inspect the existing design or implementation.
-4. Audit the current issue.
-5. Propose the change.
-6. Wait for owner approval before making product-level UI/UX changes.
-7. Implement only the approved scope.
-8. Verify the result and update relevant documentation if required.
-
-Relevant task files may include:
-
-- `APP-STRUCTURE.md`
-- `SCREEN-INVENTORY.md`
-- `DESIGN-EXPLORER.md`
-- `DESIGN-SYSTEM.md`
-- `NAVIGATION.md`
-- `USER-FLOWS.md`
-- Relevant screen specification
-- Relevant Reference / Approved / Master UI
-- Relevant implementation files
-- `HANDOFF.md`
-
-The standard workflow is:
-
-**Relevant Context → Inspect → Audit → Proposal → Owner Approval → Implement → Verify**
+`CLAUDE.md` is the **context-loading protocol and navigation guide**, not project documentation. Project truth lives in the canonical documents it points to.
 
 ---
 
-## Core Rule
+## 1. Context Loading Protocol (read this first)
 
-Do not redesign the Mr Pork App freely.
+Use **Relevant Context Only**. A normal task must start from a small, targeted set of files.
 
-The repository contains an existing product direction and existing UI designs that are being consolidated and reviewed.
+1. **Determine the task scope first**: Module, Screen (Explorer key or screen ID), State, and task type (audit, proposal, Draft, fix, docs).
+2. **Load only what that scope needs.** Route through `docs/CONTEXT-MAP.md`, then the one module file in `docs/modules/`.
+3. Read the target screen's metadata, its Reference screenshot(s), and only the specs of components the screen actually uses.
+4. **Expand only when** a conflict, a dependency or a missing fact requires it, and only to the specific section needed.
 
-Existing designs should normally be imported as `Reference` first.
+Do **not**, by default:
 
-Do not automatically replace them with a new design.
+- read every project document (the eight canonical documents listed in section 2);
+- inspect every module or every `design-explorer/data/modules/*.js` file;
+- inspect every Reference screenshot;
+- read all component specs;
+- read `.ai-output/` (see section 4);
+- re-read documents already read in this session.
+
+Prefer `rg -n` with an exact key, screen ID or heading and read only the matching section over reading whole files.
+
+### Default startup sequence for UI work
+
+1. `CLAUDE.md`
+2. `docs/CONTEXT-MAP.md`
+3. the relevant `docs/modules/<MODULE>.md`
+4. target screen metadata (`rg -n 'key: "<explorer-key>"' design-explorer/data/modules/<file>.js -A 40`)
+5. target Reference screenshot (plus only directly relevant sibling states)
+6. component registry (`design-explorer/prototypes/_components/README.md`) and specs of the components actually used
+7. expand only if required
+
+`DESIGN-EXPLORER-IMPLEMENTATION.md` § 30 ("read nine documents before implementation") applied to the initial Phase 1 Explorer build. It is not the routine task-start rule; this section governs.
+
+A **full project baseline read** (the eight canonical documents) happens only when the owner asks for a project-wide audit, when core project rules have changed, or when a contradiction cannot be settled from the relevant sections.
 
 ---
 
-## Source of Truth
+## 2. Authority
 
-Use this priority when information conflicts:
+Canonical project/product documents are authoritative. `docs/CONTEXT-MAP.md` and `docs/modules/*.md` are **summaries and indexes only**; they are not a second source of truth. If a summary conflicts with an authoritative source, use the authoritative source and update the summary afterwards.
+
+Source of truth priority when information conflicts:
 
 1. Latest explicit owner approval
 2. Latest approved Master Design
 3. Current repository documentation
 4. Approved screen specification
 5. Approved prototype
-6. Existing reference design
+6. Existing Reference design
 7. Historical design
-8. Your own interpretation
+8. Your own interpretation (lowest)
 
-Your interpretation has the lowest priority.
-
----
-
-## Task Scope
-
-Work only within the requested scope.
-
-If asked to modify one screen, do not also redesign:
-
-- Other modules
-- Primary navigation
-- Global colors
-- Typography
-- Spacing system
-- Icon system
-- Shared components
-
-unless the broader change is explicitly approved.
+Canonical documents: `PROJECT.md`, `APP-STRUCTURE.md`, `SCREEN-INVENTORY.md`, `DESIGN-EXPLORER.md`, `DESIGN-EXPLORER-IMPLEMENTATION.md`, `DESIGN-SYSTEM.md`, `AI-GUIDELINES.md`, `REFERENCE-UI-PHASE-1.md`.
 
 ---
 
-## Major Changes Require Proposal First
+## 3. Workflow
 
-Before changing any of the following, explain the proposed change and its impact first:
+**Relevant Context → Inspect → Audit → Proposal → Owner Approval → Implement → Verify**
 
-- Primary navigation
-- Information architecture
-- Authentication flow
-- Membership logic
-- Rewards logic
-- Checkout flow
-- Order flow
-- Global design tokens
-- Shared component architecture
-- Responsive strategy
-- CMS/backend assumptions
+- Do not redesign freely. Existing designs are imported as `Reference` first and never replaced or edited.
+- Wait for owner approval before product-level UI/UX changes; implement only the approved scope.
+- Finish with: files changed, what and why, open questions, decisions needing approval.
+- Do not commit unless asked. Never merge to main.
 
-Do not treat the proposal as approved until the owner approves it.
+### Major changes require a proposal first
+
+Primary navigation, information architecture, authentication flow, membership logic, rewards logic, checkout flow, order flow, global design tokens, shared component architecture, responsive strategy, CMS/backend assumptions. A proposal is not approved until the owner says so.
+
+Work only within the requested scope: changing one screen does not license changes to other modules, navigation, global tokens or shared components.
 
 ---
 
-## Design Status
+## 4. `.ai-output/`
 
-Use these statuses consistently:
+`.ai-output/` holds **historical working reports and temporary task output**. It is excluded from Git and is **not** part of normal context.
 
-- `Reference`
-- `Draft`
-- `Review`
-- `Approved`
-- `Master`
-- `Deprecated`
-- `To Verify`
-
-Do not promote a design to `Approved` or `Master` without explicit owner approval.
+- Do **not** read or scan it during context loading.
+- Read one specific file only when the owner refers to it, the current task continues that report, or a comparison with a prior audit is necessary.
+- New long reports are saved there (as the owner requests); show only a short summary and the path in the terminal.
 
 ---
 
-## Existing CMS
+## 5. Design status and protection
 
-Administrative operations are handled by the existing in-house CMS.
+Statuses: `Reference`, `Draft`, `Review`, `Approved`, `Master`, `Deprecated`, `To Verify`.
 
-Do not design a new Admin Portal unless explicitly requested.
+- Never promote a design to `Approved` or `Master` without explicit owner approval. Be conservative with Master.
+- **Reference** files (`reference-ui/`) and every `versions.reference` block are never modified.
+- Drafts are `Draft / Provisional`. Shared prototype components are Draft / Provisional, not authoritative Design System components.
+- No `handoff.json` or handoff data until the owner asks.
 
-Document CMS dependencies where they affect the App.
+## 6. Do not invent
 
----
+Do not invent business rules, points conversion, reward eligibility, membership tiers, referral or credit rules, voucher stacking, payment methods, delivery rules, order statuses, CMS capabilities or design tokens. Unknown items are marked `To Verify`, `Open Question`, `CMS Rule Required` or `Backend Dependency Unknown`.
 
-## Staff Membership POS
+## 7. Fixed product facts
 
-The Staff Membership POS is for membership-related operations.
+- Administrative operations belong to the existing in-house CMS. Do not design a new Admin Portal.
+- The Staff Membership POS is for membership operations only, not a retail cashier POS.
+- The Design Explorer hierarchy (`Parent → Child → Sub-child → Screen / Review View → State`) is for review; it is not the customer App navigation.
+- Delivery is Future Scope.
+- Reuse before creation: check the component registry, prefer a variant, create a component only when a screen first needs it.
 
-It is not the store's cashier/accounting POS.
+## 8. Draft / prototype work (short checklist)
 
-Do not expand it into a full retail POS unless explicitly requested.
+- Registry: `design-explorer/prototypes/_components/README.md`. Runtime and presets: `DESIGN-EXPLORER-IMPLEMENTATION.md` section 31.
+- Every Draft renders at 375 × 667, 440 × 956, 744 × 1133 and 1024 × 1366 with no horizontal overflow (measure it; `base.css` hides `overflow-x`), Reference untouched, temporary assets marked `data-asset="temporary-placeholder"`, sample data marked, and differences recorded in `versions.draft.notes`.
+- Draft-only colour roles: `_ui-kit/reference-roles.css` (not tokens). Inter is a provisional Draft font.
 
----
+## 9. Documentation discipline
 
-## Design Explorer
+When an approved decision changes repository truth, update the canonical document (navigation → `APP-STRUCTURE.md` and inventory entries; new screen → `SCREEN-INVENTORY.md` and the Explorer hierarchy; global component → `DESIGN-SYSTEM.md`), then the matching `docs/modules/*.md` summary. Do not let implementation and documentation drift apart.
 
-The Design Explorer hierarchy is:
-
-`Parent → Child → Sub-child → Screen / Review View → State`
-
-This hierarchy is for reviewing and organizing designs.
-
-It does not define the real Customer App navigation.
-
----
-
-## Reuse Before Creation
-
-Before creating a new component:
-
-1. Check the existing design system.
-2. Reuse an existing component where possible.
-3. Use a variant if appropriate.
-4. Create a new component only when necessary.
-
-Avoid duplicate components with slightly different names.
-
----
-
-## Do Not Invent
-
-Do not invent:
-
-- Business rules
-- Points conversion
-- Reward eligibility
-- Membership tier rules
-- Referral rules
-- Credit rules
-- Voucher stacking
-- Payment methods
-- Delivery rules
-- Order statuses
-- CMS capabilities
-- Design tokens
-
-If something is unknown, mark it as:
-
-- `To Verify`
-- `Open Question`
-- `CMS Rule Required`
-- `Backend Dependency Unknown`
-
----
-
-## File Discipline
-
-Keep changes focused.
-
-Modify only files required by the task.
-
-Before finishing a task, summarize:
-
-- Files changed
-- What changed
-- Why
-- Open questions
-- Any decision still requiring approval
-
----
-
-## Documentation Discipline
-
-When an approved product or design decision changes repository truth, update the relevant documentation.
-
-Examples:
-
-Navigation change:
-- Update `NAVIGATION.md`
-- Update `APP-STRUCTURE.md`
-- Update affected inventory entries
-
-New screen:
-- Update `SCREEN-INVENTORY.md`
-- Update the Design Explorer hierarchy
-
-Global component change:
-- Update `DESIGN-SYSTEM.md`
-
-Do not allow implementation and documentation to drift apart.
-
----
-
-## Preferred Workflow
-
-Use this workflow:
-
-`Read context → inspect existing design → identify issue → propose → owner approval → create Draft → review → revise → owner approval → Master → programmer handoff`
-
-Do not jump directly from an old design to a new Master Design.
-
----
-
-## Final Reminder
-
-Protect approved work.
-
-Be conservative when modifying Master Design.
-
-Be clear and ambitious when proposing improvements, but always label proposals as proposals until approved.
+Protect approved work. Label proposals as proposals until approved.

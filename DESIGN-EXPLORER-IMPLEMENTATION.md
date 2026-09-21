@@ -761,6 +761,8 @@ Shop & Ordering
 
 # 30. Claude Code Task Rule
 
+> **Historical note.** This section documents the **original Phase 1 full-bootstrap workflow** used for the first Design Explorer build. It is **not** the default routine context-loading rule anymore. Normal UI / design tasks follow `CLAUDE.md` and `docs/CONTEXT-MAP.md` and use **Relevant Context Only**: expand context only when dependencies, conflicts or missing information require it. The original instructions below are kept unchanged for history.
+
 Claude Code should implement this specification without modifying unrelated repository documentation or Reference images.
 
 Before implementation it must read:

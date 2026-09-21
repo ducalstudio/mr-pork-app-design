@@ -35,6 +35,8 @@ The repository should not be reread in full for every task.
 
 ## First Project Bootstrap
 
+Precedence: `CLAUDE.md` section 1 governs where it differs from the list below. A full baseline read is not a per-task or first-entry requirement; it is done for an owner-requested project-wide audit, when core project rules have changed, or when a contradiction cannot be settled from the relevant sections. Routine entry goes through `docs/CONTEXT-MAP.md`.
+
 Read the full baseline when:
 
 - entering this repository for the first time,
@@ -55,14 +57,13 @@ The baseline includes:
 
 For normal tasks, read only the context relevant to the current Module / Screen / State.
 
-Relevant files may include:
+Routine tasks follow `CLAUDE.md` and `docs/CONTEXT-MAP.md`. Relevant files may include:
 
-- `NAVIGATION.md`
-- `USER-FLOWS.md`
-- Relevant screen specification
+- `docs/CONTEXT-MAP.md` and the relevant `docs/modules/<MODULE>.md` (routing summaries, not sources of truth)
+- The relevant `APP-STRUCTURE.md` module section and `SCREEN-INVENTORY.md` entry
+- Relevant screen metadata (`design-explorer/data/modules/*.js`)
 - Relevant Reference / Approved / Master UI
-- Relevant Design System section
-- `HANDOFF.md`
+- Relevant `DESIGN-SYSTEM.md` section and the component registry (`design-explorer/prototypes/_components/README.md`)
 
 The standard workflow is:
 
@@ -710,7 +711,6 @@ Examples:
 
 Navigation change:
 
-- Update `NAVIGATION.md`
 - Update `APP-STRUCTURE.md`
 - Update affected screen inventory entries
 
