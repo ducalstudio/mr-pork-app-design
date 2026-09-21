@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mr Pork Design Explorer</title>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/explorer.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+  <div class="shell" id="shell">
+    <header class="topbar">
+      <button class="topbar__drawer" id="toggle-tree" type="button" aria-label="Toggle design tree">☰ Tree</button>
+      <h1 class="topbar__title">Mr Pork Design Explorer <span class="topbar__phase">Phase 1 · Reference</span></h1>
+      <div class="segmented" id="devices" role="group" aria-label="Device preview">
+        <button type="button" data-device="mobile" class="is-active" aria-pressed="true">Mobile</button>
+        <button type="button" data-device="tablet" aria-pressed="false">Tablet</button>
+      </div>
+      <button class="topbar__drawer" id="toggle-info" type="button" aria-label="Toggle design info">Info ⓘ</button>
+    </header>
+
+    <aside class="panel panel--tree" aria-label="Design tree">
+      <div class="panel__head">
+        <label class="visually-hidden" for="search">Search designs</label>
+        <input id="search" class="search" type="search" placeholder="Search name, ID, module, state…" autocomplete="off">
+        <div class="chips" id="filters" role="group" aria-label="Filter designs"></div>
+        <p class="panel__count" id="result-count"></p>
+      </div>
+      <nav class="tree" id="tree" aria-label="Design hierarchy"></nav>
+      <p class="tree__empty" id="tree-empty" hidden>No designs match.</p>
+    </aside>
+
+    <main class="stage">
+      <nav class="crumb" id="breadcrumb" aria-label="Design path"></nav>
+      <div id="banners"></div>
+      <div class="preview" id="preview" tabindex="0" aria-label="UI preview"></div>
+    </main>
+
+    <aside class="panel panel--info" aria-label="Design info">
+      <div class="info" id="info"></div>
+    </aside>
+
+    <footer class="footer" id="footer-path"></footer>
+  </div>
+
+  <script src="data/screens.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/explorer.js"></script>
+</body>
+</html>

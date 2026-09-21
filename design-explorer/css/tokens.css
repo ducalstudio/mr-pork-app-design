@@ -1,0 +1,56 @@
+/*
+ * Design Explorer chrome tokens.
+ *
+ * These style the review tool only. They are NOT Mr Pork product design tokens
+ * and must not be treated as approved brand colors, type or spacing.
+ * Deliberately neutral so nothing here resembles a product design decision.
+ */
+:root {
+  --ex-bg: #f3f4f6;
+  --ex-surface: #ffffff;
+  --ex-surface-alt: #f9fafb;
+  --ex-border: #d9dce1;
+  --ex-text: #1f2430;
+  --ex-text-muted: #5b6272;
+  --ex-accent: #2f5fd0;
+  --ex-accent-soft: #e4ebfb;
+  --ex-focus: #2f5fd0;
+
+  --ex-future-bg: #fff3d6;
+  --ex-future-fg: #7a4d00;
+  --ex-external-bg: #e8e1f7;
+  --ex-external-fg: #46308a;
+  --ex-verify-bg: #ffe3e0;
+  --ex-verify-fg: #8a1f14;
+  --ex-reference-bg: #e2eaf3;
+  --ex-reference-fg: #24425f;
+
+  --ex-left: 300px;
+  --ex-right: 340px;
+  --ex-topbar: 52px;
+  --ex-footer: 32px;
+  --ex-font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ex-bg: #14161b;
+    --ex-surface: #1c1f26;
+    --ex-surface-alt: #23272f;
+    --ex-border: #363b46;
+    --ex-text: #e8eaf0;
+    --ex-text-muted: #9aa1b1;
+    --ex-accent: #7d9df0;
+    --ex-accent-soft: #26324f;
+    --ex-focus: #7d9df0;
+
+    --ex-future-bg: #3d3010;
+    --ex-future-fg: #f3d58a;
+    --ex-external-bg: #2f2850;
+    --ex-external-fg: #cdbdf5;
+    --ex-verify-bg: #4a2320;
+    --ex-verify-fg: #ffb9b0;
+    --ex-reference-bg: #23303f;
+    --ex-reference-fg: #b8cee6;
+  }
+}
