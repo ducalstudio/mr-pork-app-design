@@ -1,0 +1,14 @@
+/* text-field. Provisional. Base: a filled pill field (Authentication phone number: dial-code prefix + divider + placeholder value).
+   --inline: a borderless label / value row (Authentication registration form). Screens set --field-height / --field-radius / --field-gap
+   from Reference measurements; the pale pink fill matches the Reference's own "disabled-looking" field treatment (kept as-is). */
+.text-field { display: flex; align-items: center; gap: 12px; min-height: var(--field-height, 46px); padding: 0 16px; border-radius: var(--field-radius, 8px); background: var(--proto-accent-pale); }
+.text-field__prefix { display: flex; align-items: center; gap: 4px; font-size: 16px; color: var(--proto-text); flex: none; }
+.text-field__prefix svg { width: 14px; height: 14px; }
+.text-field__divider { width: 1px; align-self: stretch; margin: 10px 0; background: currentColor; opacity: 0.35; flex: none; }
+.text-field__value { flex: 1; min-width: 0; font-size: 16px; color: var(--proto-text); background: none; border: 0; font: inherit; }
+.text-field__value::placeholder { color: var(--proto-text); opacity: 1; }
+
+/* --inline: label left, value right, no fill (registration form rows). */
+.text-field--inline { background: none; padding: 0; min-height: auto; justify-content: space-between; gap: 8px; }
+.text-field--inline .text-field__prefix { font-size: 14px; color: var(--proto-text-muted); }
+.text-field--inline .text-field__value { flex: none; max-width: 60%; text-align: right; font-size: 14px; color: var(--proto-text); }

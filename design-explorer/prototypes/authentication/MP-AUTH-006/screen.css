@@ -1,0 +1,16 @@
+/* Login — Phone Entry (Draft). Measured from the Reference (440 x 956) with tools/lib/png.mjs:
+   header row 106 total (63 inset + 43 row, reused from the band screens though this screen has no band — the title lands
+   at the same y either way); brand mark 240 x 240 square, x 100 to 340 (centered), y 106 to 346; phone field 400 x 59 at
+   x 20, y 366 to 425 (pale fill #ffa8a8); Send OTP button 400 x 59 at y 435 to 494 (10px below the field, same fill);
+   alt-login row y 507 to 523 (13px below the button, #909090); sign-up row y 536 to 553 (13px below); footer (legal-footnote)
+   y 888 to 916 — pinned to the bottom via margin-top: auto, not this fixed y (see legal-footnote/spec.md). */
+:root { --shell-gutter: 20px; --shell-top-inset: 63px; }
+body { background: #ffffff; }
+:focus-visible { outline: 2px solid var(--proto-focus); outline-offset: 2px; }
+
+.login-body { display: flex; flex-direction: column; }
+.login-brand { width: 240px; height: 240px; margin: 0 auto; }
+.login-phone-field { margin-top: 20px; --field-height: 59px; }
+.login-submit { margin-top: 10px; min-height: 59px; }
+.login-alt-row { display: flex; justify-content: space-between; gap: 12px; margin-top: 13px; font-size: 14px; }
+.login-signup-row { margin: 13px 0 0; text-align: center; font-size: 14px; color: var(--proto-text); }

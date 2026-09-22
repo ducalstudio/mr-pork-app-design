@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OTP Verification (Draft)</title>
+  <script src="../../../prototype-runtime/tiers.js"></script>
+  <script src="../../../prototype-runtime/protocol.js"></script>
+  <script src="../../../prototype-runtime/client.js"></script>
+  <link rel="stylesheet" href="../../_ui-kit/tokens.css">
+  <link rel="stylesheet" href="../../_ui-kit/reference-roles.css"><!-- Draft-only Reference-observed roles, not approved tokens -->
+  <link rel="stylesheet" href="../../_ui-kit/font-inter.css"><!-- Inter: provisional Draft font (To Verify), not an approved brand font -->
+  <link rel="stylesheet" href="../../_ui-kit/base.css">
+  <link rel="stylesheet" href="../../_components/app-shell/component.css">
+  <link rel="stylesheet" href="../../_components/app-header/component.css">
+  <link rel="stylesheet" href="../../_components/icon-button/component.css">
+  <link rel="stylesheet" href="../../_components/image-placeholder/component.css">
+  <link rel="stylesheet" href="../../_components/otp-input/component.css">
+  <link rel="stylesheet" href="../../_components/link-button/component.css">
+  <link rel="stylesheet" href="../../_components/legal-footnote/component.css">
+  <link rel="stylesheet" href="screen.css">
+</head>
+<body>
+  <!--
+    Draft. ONE prototype, state-driven: ?state=login (title "Login", MP-AUTH-007) or ?state=register (title "Sign Up",
+    MP-AUTH-003) — the two Reference captures are otherwise identical in structure. Byte-for-byte layout reused, not duplicated.
+    SAMPLE DATA / NOT BUSINESS RULE: the phone number is the Reference's own sample, sanitized (a real phone number was
+    visible in the Reference; replaced with a fictional number of the same length/format, consistent with the Account Draft's
+    sample identity). TEMPORARY PLACEHOLDER / NOT A SOURCE ASSET: the brand mark and back glyph.
+    Code length (6) is assumed fixed (To Verify). Resend / Contact Us destinations are recorded only; nothing navigates.
+  -->
+  <div class="app-shell app-shell--page">
+    <div class="app-shell__top">
+      <div class="app-shell__inset" aria-hidden="true"></div>
+      <div class="app-shell__column">
+        <header class="app-header app-header--back-title">
+          <button class="icon-button icon-button--flush-start" type="button" data-destination="previous-screen" data-asset="temporary-placeholder" aria-label="Back">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15.2 7L10 12l5.2 5"/></svg>
+          </button>
+          <h1 class="app-header__title" id="otp-title">Login</h1>
+        </header>
+      </div>
+    </div>
+    <main class="app-shell__body" id="main">
+      <div class="app-shell__column otp-body">
+        <div class="image-placeholder image-placeholder--circle otp-brand" data-asset="temporary-placeholder" aria-hidden="true"></div>
+        <h2 class="otp-heading">Verification</h2>
+        <p class="otp-instructions">Enter the verification code we sent to your registered phone number <span id="otp-phone">+60 17 112 0210</span></p>
+        <div class="otp-input" role="group" aria-labelledby="otp-title" id="otp-boxes">
+          <input class="otp-input__box" type="tel" inputmode="numeric" maxlength="1" aria-label="Digit 1 of 6">
+          <input class="otp-input__box" type="tel" inputmode="numeric" maxlength="1" aria-label="Digit 2 of 6">
+          <input class="otp-input__box" type="tel" inputmode="numeric" maxlength="1" aria-label="Digit 3 of 6">
+          <input class="otp-input__box" type="tel" inputmode="numeric" maxlength="1" aria-label="Digit 4 of 6">
+          <input class="otp-input__box" type="tel" inputmode="numeric" maxlength="1" aria-label="Digit 5 of 6">
+          <input class="otp-input__box" type="tel" inputmode="numeric" maxlength="1" aria-label="Digit 6 of 6">
+        </div>
+        <p class="otp-resend-row"><button class="link-button" type="button" data-destination="resend-otp">Resend code</button></p>
+        <p class="otp-help">If you encounter any issues receiving code, please <button class="link-button" type="button" data-destination="contact-us">Contact Us</button> for help.</p>
+      </div>
+      <footer class="legal-footnote app-shell__column">
+        By logging or registering, you agree to our <button class="link-button" type="button" data-destination="terms">Terms of Service</button>, <button class="link-button" type="button" data-destination="privacy">Privacy Policy</button> and <button class="link-button" type="button" data-destination="pdpa">Personal Data Protection Policy</button>.
+      </footer>
+    </main>
+  </div>
+  <script src="../../_components/otp-input/component.js"></script>
+  <script>
+    (function () {
+      var q = new URLSearchParams(location.search);
+      var state = q.get("state") === "register" ? "register" : "login";
+      document.documentElement.setAttribute("data-state", state);
+      document.getElementById("otp-title").textContent = state === "register" ? "Sign Up" : "Login";
+      document.title = (state === "register" ? "Registration" : "Login") + " OTP (Draft)";
+      MPProto.otpInput.init(document.getElementById("otp-boxes"));
+    })();
+  </script>
+</body>
+</html>

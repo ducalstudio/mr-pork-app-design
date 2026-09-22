@@ -1,0 +1,17 @@
+/* Sign Up — Registration Form (Draft). Measured from the Reference (440 x 956) with tools/lib/png.mjs: header 106 total
+   (63 + 43, reused); brand mark circle 120 x 120, centered, right after the header; "Create an account" heading about 8px
+   below; 8 label/value rows on a 40px pitch starting at y 258 (label #707070-ish / --proto-text-muted, value --proto-text,
+   both 14px); "Send OTP" button 400 x 60 at x 20, starting about 171px after the last row (Reference's own large gap,
+   preserved, see index.html); footer pinned to the bottom via margin-top: auto (see legal-footnote/spec.md). */
+:root { --shell-gutter: 20px; --shell-top-inset: 63px; }
+body { background: #ffffff; }
+:focus-visible { outline: 2px solid var(--proto-focus); outline-offset: 2px; }
+
+.register-body { display: flex; flex-direction: column; }
+.register-brand { width: 120px; height: 120px; margin: 0 auto; }
+.register-heading { margin: 8px 0 0; font-size: 16px; font-weight: 600; color: var(--proto-text); text-align: center; }
+.register-rows { margin: 26px 0 0; padding: 0; display: flex; flex-direction: column; }
+.register-rows .text-field--inline { min-height: 40px; }
+.register-rows dt, .register-rows dd { margin: 0; }
+.register-rows dd.text-field__value { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.register-submit { margin-top: 171px; min-height: 60px; }

@@ -1,0 +1,6 @@
+/* legal-footnote. Provisional. The Authentication disclaimer line ("By logging or registering, you agree to..."), pinned to
+   the bottom of the screen. Combine with `app-shell__column` on the same element so it gets the screen gutter and is the
+   flex item that `margin-top: auto` pushes down inside `app-shell__body` (already a flex column). Reference: 12px text,
+   left-aligned, 2 lines at 440 x 956, about 24px above the bottom edge. */
+.legal-footnote { margin-top: auto; padding-top: 24px; padding-bottom: 24px; font-size: 12px; line-height: 1.45; color: var(--proto-text-muted); text-align: left; }
+.legal-footnote .link-button { font-size: inherit; }

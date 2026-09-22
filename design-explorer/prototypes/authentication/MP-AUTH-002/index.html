@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign Up — Registration Form (Draft)</title>
+  <script src="../../../prototype-runtime/tiers.js"></script>
+  <script src="../../../prototype-runtime/protocol.js"></script>
+  <script src="../../../prototype-runtime/client.js"></script>
+  <link rel="stylesheet" href="../../_ui-kit/tokens.css">
+  <link rel="stylesheet" href="../../_ui-kit/reference-roles.css"><!-- Draft-only Reference-observed roles, not approved tokens -->
+  <link rel="stylesheet" href="../../_ui-kit/font-inter.css"><!-- Inter: provisional Draft font (To Verify), not an approved brand font -->
+  <link rel="stylesheet" href="../../_ui-kit/base.css">
+  <link rel="stylesheet" href="../../_components/app-shell/component.css">
+  <link rel="stylesheet" href="../../_components/app-header/component.css">
+  <link rel="stylesheet" href="../../_components/icon-button/component.css">
+  <link rel="stylesheet" href="../../_components/image-placeholder/component.css">
+  <link rel="stylesheet" href="../../_components/text-field/component.css">
+  <link rel="stylesheet" href="../../_components/button/component.css">
+  <link rel="stylesheet" href="../../_components/legal-footnote/component.css">
+  <link rel="stylesheet" href="../../_components/link-button/component.css">
+  <link rel="stylesheet" href="screen.css">
+</head>
+<body>
+  <!--
+    Draft. SAMPLE DATA / NOT BUSINESS RULE: Name, NRIC / Passport / Other and Phone Number are masked in the Reference
+    itself ("xxxxx" / "xxxx", kept verbatim). Birthday, Address and Email were real-looking un-redacted values in the
+    Reference; sanitized to fictional values of similar length/format per CLAUDE.md (Race and City are generic sample
+    values, not personal to an individual, and are kept as the Reference shows them).
+    The large gap between the form and "Send OTP" is the Reference's own layout (measured, not a Draft mistake); its
+    meaning (more fields reserved, a notice, or unused space) is To Verify.
+    TEMPORARY PLACEHOLDER / NOT A SOURCE ASSET: the brand mark and back glyph. Field values are static text, not editable
+    inputs (the Reference does not show an active edit state for this screen).
+  -->
+  <div class="app-shell app-shell--page">
+    <div class="app-shell__top">
+      <div class="app-shell__inset" aria-hidden="true"></div>
+      <div class="app-shell__column">
+        <header class="app-header app-header--back-title">
+          <button class="icon-button icon-button--flush-start" type="button" data-destination="previous-screen" data-asset="temporary-placeholder" aria-label="Back">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15.2 7L10 12l5.2 5"/></svg>
+          </button>
+          <h1 class="app-header__title">Sign Up</h1>
+        </header>
+      </div>
+    </div>
+    <main class="app-shell__body" id="main">
+      <div class="app-shell__column register-body">
+        <div class="image-placeholder image-placeholder--circle register-brand" data-asset="temporary-placeholder" aria-hidden="true"></div>
+        <h2 class="register-heading">Create an account</h2>
+        <dl class="register-rows">
+          <div class="text-field text-field--inline"><dt class="text-field__prefix">*Name</dt><dd class="text-field__value">xxxxx</dd></div>
+          <div class="text-field text-field--inline"><dt class="text-field__prefix">*NRIC / Passport / Other</dt><dd class="text-field__value">xxxx</dd></div>
+          <div class="text-field text-field--inline"><dt class="text-field__prefix">*Race</dt><dd class="text-field__value">Chinese</dd></div>
+          <div class="text-field text-field--inline"><dt class="text-field__prefix">*Birthday</dt><dd class="text-field__value">1990-03-14</dd></div>
+          <div class="text-field text-field--inline"><dt class="text-field__prefix">*Address</dt><dd class="text-field__value">24, Jalan Selasih 5B&hellip;</dd></div>
+          <div class="text-field text-field--inline"><dt class="text-field__prefix">*City</dt><dd class="text-field__value">Bintulu</dd></div>
+          <div class="text-field text-field--inline"><dt class="text-field__prefix">Phone Number</dt><dd class="text-field__value">xxxxx</dd></div>
+          <div class="text-field text-field--inline"><dt class="text-field__prefix">Email (Optional)</dt><dd class="text-field__value">limwei8820@mailbox.co</dd></div>
+        </dl>
+        <button class="button button--pale button--block register-submit" type="button" data-destination="authentication/register/otp">Send OTP</button>
+      </div>
+      <footer class="legal-footnote app-shell__column">
+        By logging or registering, you agree to our <button class="link-button" type="button" data-destination="terms">Terms of Service</button>, <button class="link-button" type="button" data-destination="privacy">Privacy Policy</button> and <button class="link-button" type="button" data-destination="pdpa">Personal Data Protection Policy</button>.
+      </footer>
+    </main>
+  </div>
+</body>
+</html>

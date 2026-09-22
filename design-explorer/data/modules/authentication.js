@@ -24,6 +24,22 @@ export default defineModule({
           secondaryActions: [],
           notes: ["Screen shows password / email alternatives whose full flows have not been supplied."],
           devices: devices({ mobile: phase1("authentication/MP-AUTH-006_login-phone_reference.png") })
+        },
+        draft: {
+          status: "Draft",
+          prototype: "prototypes/authentication/MP-AUTH-006/index.html",
+          description: "Responsive Draft of the Login phone-entry screen: brand mark, phone field, Send OTP, password/email alternatives and Sign Up link.",
+          primaryAction: "Send OTP",
+          secondaryActions: ["Use Password login (To Verify)", "Use Email Login (To Verify)", "Sign Up"],
+          notes: [
+            "Measured from the Reference (440 x 956) with tools/lib/png.mjs, not by eye: header row 106px total (reused from the band screens' 63 + 43, even though this screen has no tan band — the title lands at the same y either way); brand mark 240 x 240 square centered; phone field 400 x 59 (pale fill, measured #ffa8a8); Send OTP button 400 x 59, 10px below the field, same fill (button--pale, text measured #905f5f); alt-login row 13px below (measured text colour #909090); sign-up row 13px below that.",
+            "Send OTP navigates to the Login OTP Draft (authentication/login/otp), matching the Reference's implied flow. Sign Up navigates to the Registration Form Draft. Password login, Email login, and the three footnote links are recorded destinations only (To Verify); nothing else navigates.",
+            "New shared components (Batch 3, build at first use): text-field (phone field, dial-code prefix + divider + value), link-button (blue Reference links; --muted for the plain-text password/email row), legal-footnote (bottom disclaimer, pinned via margin-top: auto so it stays at the bottom across all four presets and content lengths). Extended: button gained --pale (the Reference's own pale/\"disabled-looking\" fill, reproduced as-is, not a real disabled state).",
+            "TEMPORARY PLACEHOLDER / NOT A SOURCE ASSET: the brand mark (image-placeholder--square) and the back glyph. The dial-code dropdown's country list is not supplied (To Verify); \"+60\" is fixed sample content, not a working selector.",
+            "Draft only. Not Approved or Master, and not a handoff source (no handoff.json). Migration Batch 3, provisional. Built from Shared Prototype Components under prototypes/_components/. Reference-observed colours come from prototypes/_ui-kit/reference-roles.css (Draft-only role values, not approved tokens).",
+            "Inter is used as a PROVISIONAL Draft font (Draft / Provisional / Typeface To Verify), not an approved brand font. Sizes and weights are matched to the Reference by measured text extents.",
+            "No OS status bar is drawn (Phase A rule)."
+          ]
         }
       }
     }),
@@ -45,6 +61,22 @@ export default defineModule({
           secondaryActions: ["Resend OTP (To Verify)"],
           notes: [],
           devices: devices({ mobile: phase1("authentication/MP-AUTH-007_login-otp_reference.png") })
+        },
+        draft: {
+          status: "Draft",
+          prototype: "prototypes/authentication/otp-verification/index.html?state=login",
+          description: "Responsive Draft of the Login OTP verification screen: brand mark, instructions, 6-box code entry, Resend code and Contact Us.",
+          primaryAction: "Verify OTP (auto-advance is a Draft convenience; not wired to a destination)",
+          secondaryActions: ["Resend code (To Verify)", "Contact Us (To Verify)"],
+          notes: [
+            "ONE prototype, state-driven (prototypes/authentication/otp-verification/), shared with Registration OTP via ?state=login|register: the two Reference captures (MP-AUTH-007, MP-AUTH-003) are structurally identical, only the header title differs (\"Login\" vs \"Sign Up\"). No screen HTML is duplicated.",
+            "Measured from the Reference (440 x 956) with tools/lib/png.mjs: header 106px total (reused); brand mark circle 120 x 120, centered; \"Verification\" heading 22px below; instructions 15px below that; 6 otp-input boxes (55 x 54, 11px gap, 1px border) 10px below the instructions; \"Resend code\" 18px below the boxes; help text 15px below that.",
+            "SAMPLE DATA / NOT BUSINESS RULE: the phone number was a real-looking number in the Reference; sanitized to a fictional number of the same length/format (+60 17 112 0210), consistent with the Account Draft's sample identity.",
+            "New shared component (Batch 3): otp-input (6 real <input> boxes, not styled <div>s — typing advances focus, Backspace on an empty box returns to the previous one; a Draft-only convenience, a static Reference capture cannot show this interaction and it does not change the visual result). Code length (6) is assumed fixed: To Verify.",
+            "TEMPORARY PLACEHOLDER / NOT A SOURCE ASSET: the brand mark (image-placeholder--circle) and the back glyph. Resend timing/lockout and the verify destination are To Verify; nothing navigates on submit.",
+            "Draft only. Not Approved or Master, and not a handoff source (no handoff.json). Migration Batch 3, provisional. Built from Shared Prototype Components under prototypes/_components/. Reference-observed colours come from prototypes/_ui-kit/reference-roles.css.",
+            "Inter is used as a PROVISIONAL Draft font (Draft / Provisional / Typeface To Verify). No OS status bar is drawn (Phase A rule)."
+          ]
         }
       }
     }),
@@ -66,6 +98,22 @@ export default defineModule({
           secondaryActions: [],
           notes: ["Requests many fields; flow simplification is a known review item."],
           devices: devices({ mobile: phase1("authentication/MP-AUTH-002_register_reference.png") })
+        },
+        draft: {
+          status: "Draft",
+          prototype: "prototypes/authentication/MP-AUTH-002/index.html",
+          description: "Responsive Draft of the Registration form: brand mark, 8 label/value rows and Send OTP.",
+          primaryAction: "Send OTP",
+          secondaryActions: [],
+          notes: [
+            "Measured from the Reference (440 x 956) with tools/lib/png.mjs: header 106px total (reused); brand mark circle 120 x 120, centered; \"Create an account\" heading 8px below; 8 label/value rows (text-field--inline) on a 40px pitch; \"Send OTP\" button 400 x 60, about 171px below the last row — the Reference's own large gap between the form and the button, preserved as measured (not a Draft mistake); its meaning (reserved fields, a notice, unused space) is To Verify.",
+            "SAMPLE DATA / NOT BUSINESS RULE: Name, NRIC / Passport / Other and Phone Number are masked in the Reference itself (\"xxxxx\" / \"xxxx\", kept verbatim — not a Draft redaction). Birthday, Address and Email were real-looking un-redacted values in the Reference; sanitized to fictional values of similar length/format (CLAUDE.md §5). Race (\"Chinese\") and City (\"Bintulu\") are generic sample values, not personal to an individual, and are kept as the Reference shows them.",
+            "Field values render as static text (a dt/dd row), not editable inputs: the Reference does not show an active edit state for this screen. Which fields are required beyond the shown \"*\" markers, and the input type for each (date picker, free text, dropdown), are To Verify.",
+            "Send OTP navigates to the Registration OTP Draft (authentication/register/otp). Field set and simplification remain a known review item (unchanged from the Reference note).",
+            "TEMPORARY PLACEHOLDER / NOT A SOURCE ASSET: the brand mark (image-placeholder--circle) and the back glyph.",
+            "Draft only. Not Approved or Master, and not a handoff source (no handoff.json). Migration Batch 3, provisional. Built from Shared Prototype Components under prototypes/_components/. Reference-observed colours come from prototypes/_ui-kit/reference-roles.css.",
+            "Inter is used as a PROVISIONAL Draft font (Draft / Provisional / Typeface To Verify). No OS status bar is drawn (Phase A rule)."
+          ]
         }
       }
     }),
@@ -87,6 +135,18 @@ export default defineModule({
           secondaryActions: ["Resend OTP (To Verify)"],
           notes: [],
           devices: devices({ mobile: phase1("authentication/MP-AUTH-003_registration-otp_reference.png") })
+        },
+        draft: {
+          status: "Draft",
+          prototype: "prototypes/authentication/otp-verification/index.html?state=register",
+          description: "Responsive Draft of the Registration OTP verification screen: same structure as Login OTP, header reads \"Sign Up\".",
+          primaryAction: "Verify OTP (auto-advance is a Draft convenience; not wired to a destination)",
+          secondaryActions: ["Resend code (To Verify)", "Contact Us (To Verify)"],
+          notes: [
+            "Shares the ONE state-driven prototype with Login OTP (prototypes/authentication/otp-verification/, ?state=register): the two Reference captures are structurally identical, only the header title differs. See authentication/login/otp for the full measurement and component notes (not repeated here).",
+            "Next step after this screen (Complete Profile / Registration Success) is not supplied: To Verify. Nothing navigates on submit.",
+            "Draft only. Not Approved or Master, and not a handoff source (no handoff.json). Migration Batch 3, provisional."
+          ]
         }
       }
     }),

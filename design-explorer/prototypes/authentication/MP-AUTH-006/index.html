@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login — Phone Entry (Draft)</title>
+  <script src="../../../prototype-runtime/tiers.js"></script>
+  <script src="../../../prototype-runtime/protocol.js"></script>
+  <script src="../../../prototype-runtime/client.js"></script>
+  <link rel="stylesheet" href="../../_ui-kit/tokens.css">
+  <link rel="stylesheet" href="../../_ui-kit/reference-roles.css"><!-- Draft-only Reference-observed roles, not approved tokens -->
+  <link rel="stylesheet" href="../../_ui-kit/font-inter.css"><!-- Inter: provisional Draft font (To Verify), not an approved brand font -->
+  <link rel="stylesheet" href="../../_ui-kit/base.css">
+  <link rel="stylesheet" href="../../_components/app-shell/component.css">
+  <link rel="stylesheet" href="../../_components/app-header/component.css">
+  <link rel="stylesheet" href="../../_components/icon-button/component.css">
+  <link rel="stylesheet" href="../../_components/image-placeholder/component.css">
+  <link rel="stylesheet" href="../../_components/text-field/component.css">
+  <link rel="stylesheet" href="../../_components/button/component.css">
+  <link rel="stylesheet" href="../../_components/link-button/component.css">
+  <link rel="stylesheet" href="../../_components/legal-footnote/component.css">
+  <link rel="stylesheet" href="screen.css">
+</head>
+<body>
+  <!--
+    Draft. No tan band (Reference top is plain white; measured), but the header row occupies the same 63 + 43 = 106px
+    geometry as the band screens (Privacy / Terms / Notifications) — the Reference title lands at the same y regardless
+    of the band colour, so the same app-shell / app-header values are reused, just without --band.
+    TEMPORARY PLACEHOLDER / NOT A SOURCE ASSET: the brand mark (measured 240 x 240 square, centered) and the back glyph.
+    The dial-code dropdown and its country list are not supplied (To Verify); "+60" is fixed sample content.
+    "Use Password login" / "Use Email Login" / "Send OTP" / "Sign Up" are recorded destinations only; nothing navigates
+    except Send OTP, which opens the Login OTP Draft (same flow the Reference implies).
+  -->
+  <div class="app-shell app-shell--page">
+    <div class="app-shell__top">
+      <div class="app-shell__inset" aria-hidden="true"></div>
+      <div class="app-shell__column">
+        <header class="app-header app-header--back-title">
+          <button class="icon-button icon-button--flush-start" type="button" data-destination="previous-screen" data-asset="temporary-placeholder" aria-label="Back">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15.2 7L10 12l5.2 5"/></svg>
+          </button>
+          <h1 class="app-header__title">Login</h1>
+        </header>
+      </div>
+    </div>
+    <main class="app-shell__body" id="main">
+      <div class="app-shell__column login-body">
+        <div class="image-placeholder image-placeholder--square login-brand" data-asset="temporary-placeholder" aria-hidden="true"></div>
+        <div class="text-field login-phone-field">
+          <span class="text-field__prefix">+60
+            <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" data-asset="temporary-placeholder"><path d="M6 9l6 6 6-6"/></svg>
+          </span>
+          <span class="text-field__divider" aria-hidden="true"></span>
+          <input class="text-field__value" type="tel" inputmode="numeric" placeholder="Phone Number" aria-label="Phone number">
+        </div>
+        <button class="button button--pale button--block login-submit" type="button" data-destination="authentication/login/otp">Send OTP</button>
+        <div class="login-alt-row">
+          <button class="link-button link-button--muted" type="button" data-destination="password-login">Use Password login</button>
+          <button class="link-button link-button--muted" type="button" data-destination="email-login">Use Email Login</button>
+        </div>
+        <p class="login-signup-row">Don&rsquo;t have an account? <button class="link-button" type="button" data-destination="authentication/register/registration-form">Sign Up</button></p>
+      </div>
+      <footer class="legal-footnote app-shell__column">
+        By logging or registering, you agree to our <button class="link-button" type="button" data-destination="terms">Terms of Service</button>, <button class="link-button" type="button" data-destination="privacy">Privacy Policy</button> and <button class="link-button" type="button" data-destination="pdpa">Personal Data Protection Policy</button>.
+      </footer>
+    </main>
+  </div>
+</body>
+</html>

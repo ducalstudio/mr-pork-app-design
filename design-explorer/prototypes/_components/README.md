@@ -21,7 +21,7 @@ Rules:
 | `bottom-nav-reference` | Home — Member | Reference Navigation only (not Master); review view render (Batch 1) |
 | `image-placeholder` | Home — Member | square / fill; `circle` (Batch 2) |
 | `app-shell` | Batch 1 (Network Error, Legal) | `--band`, `--page`, centered body; screens supply `--shell-gutter` / inset / nav zone |
-| `button` | Batch 1 (Network Error, Logout) | primary, neutral; `--block` |
+| `button` | Batch 1 (Network Error, Logout) | primary, neutral; `--block`; `pale` (Batch 3) |
 | `icon-button` | Batch 1 (Legal, Logout) | 44px hit area; flush start / end |
 | `overlay` | Batch 1 (internal base) | underlay + scrim + layer + focus / dismiss |
 | `bottom-sheet` | Batch 1 (Fulfilment Selector, Logout) | edge-to-edge, `--floating` |
@@ -32,3 +32,7 @@ Rules:
 | `notification-row` | Batch 2 (Notifications) | unread / read, optional call-to-action text |
 | `menu-row` | Batch 2 (Account Home) | label + chevron, single column |
 | `profile-card` | Batch 2 (Account Home) | avatar, name, phone, inline stats |
+| `text-field` | Batch 3 (Login, Registration form) | pale-filled pill (prefix + divider + value); `--inline` label/value row |
+| `otp-input` | Batch 3 (Login / Registration OTP) | 6-box code entry, real inputs, auto-advance |
+| `link-button` | Batch 3 (Authentication) | blue underlined link; `--muted` plain text action |
+| `legal-footnote` | Batch 3 (Authentication) | bottom disclaimer, pinned via `margin-top: auto` |

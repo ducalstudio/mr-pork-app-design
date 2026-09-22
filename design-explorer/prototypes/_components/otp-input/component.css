@@ -1,0 +1,5 @@
+/* otp-input. Provisional. A row of single-digit boxes (Authentication: Login / Registration OTP verification). Screens set
+   --otp-gap / --otp-radius from Reference measurements (Reference: 6 boxes, 55px each, 11px gap, 1px border). */
+.otp-input { display: flex; gap: var(--otp-gap, 11px); }
+.otp-input__box { flex: 1; min-width: 0; height: var(--otp-height, 54px); border: 1px solid var(--proto-accent-border); border-radius: var(--otp-radius, 8px); background: var(--proto-bg); font: inherit; font-size: 18px; color: var(--proto-text); text-align: center; padding: 0; }
+.otp-input__box:focus-visible { outline: 2px solid var(--proto-focus); outline-offset: 2px; }

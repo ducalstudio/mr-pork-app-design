@@ -1,0 +1,17 @@
+/* OTP Verification (Draft: Login OTP / Registration OTP). Measured from both Reference captures (440 x 956, identical
+   structure) with tools/lib/png.mjs: header 106 total (63 + 43, reused); brand mark circle 120 x 120, x 160 to 280, y 106
+   to 226; "Verification" heading y 248 to 262 (22px gap after the circle); instructions paragraph x 60 to 381, y 277 to
+   313 (15px gap, 2 lines); 6 otp boxes 55 x 54 with an 11px gap, x 20 to 405, y 323 to 377 (10px gap after the paragraph);
+   "Resend code" y 395 to 408 (18px gap); help text x 57 to 382, y 423 to 460 (15px gap, 2 lines); footer pinned to the
+   bottom via margin-top: auto (see legal-footnote/spec.md), not the Reference's fixed y. */
+:root { --shell-gutter: 20px; --shell-top-inset: 63px; --otp-gap: 11px; --otp-height: 54px; }
+body { background: #ffffff; }
+:focus-visible { outline: 2px solid var(--proto-focus); outline-offset: 2px; }
+
+.otp-body { display: flex; flex-direction: column; text-align: center; }
+.otp-brand { width: 120px; height: 120px; margin: 0 auto; }
+.otp-heading { margin: 22px 0 0; font-size: 16px; font-weight: 600; color: var(--proto-text); }
+.otp-instructions { margin: 15px auto 0; max-width: 321px; font-size: 14px; line-height: 18px; color: var(--proto-text); }
+.otp-input { margin-top: 10px; }
+.otp-resend-row { margin: 18px 0 0; font-size: 13px; }
+.otp-help { margin: 15px auto 0; max-width: 325px; font-size: 14px; line-height: 18px; color: var(--proto-text); }
