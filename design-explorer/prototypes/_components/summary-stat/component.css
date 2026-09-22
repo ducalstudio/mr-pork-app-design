@@ -9,3 +9,8 @@
 .summary-stat:active { background: var(--proto-accent-soft); }
 .summary-stat__label { font-size: 12px; line-height: 14px; color: var(--proto-text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .summary-stat__value { display: block; max-width: 100%; height: 22px; font-size: 16px; line-height: 22px; font-weight: 500; color: var(--proto-accent); white-space: nowrap; }
+/* Variant inline (Batch 2): no box, value above the label, centered. Used in the Account profile card. Reading order stays label then value. */
+.summary-stat--inline { align-items: center; justify-content: center; flex-direction: column-reverse; gap: 6px; min-height: 44px; padding: 0 4px; border: 0; border-radius: 0; background: transparent; text-align: center; }
+.summary-stat--inline:active { background: rgba(0, 0, 0, 0.04); }
+.summary-stat--inline .summary-stat__label { max-width: 100%; text-align: center; line-height: 16px; }
+.summary-stat--inline .summary-stat__value { max-width: 100%; text-align: center; }

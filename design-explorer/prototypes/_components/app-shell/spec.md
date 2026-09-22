@@ -9,3 +9,7 @@ Page frame: optional top band (safe-area stand-in + header), body column, bottom
 - **Variants:** `--band` (tan Reference header band; meaning To Verify; it also colors the safe-area stand-in as in the Reference), `--page` (cream page background), `__body--center` (vertically centers content in the area below the band).
 - **Safe area:** `__inset` is blank. No OS status bar is drawn. Real safe-area handling is To Verify.
 - No behavior, no JS.
+
+## Reference-fidelity pass
+
+Band screens set `--shell-top-inset` from the Reference: **63px** with a **43px** header row (band ends y 106, title centre y 85) for Privacy, Terms and Notifications; **54px** (status-bar region only) for Network Error; Home / Account keep 50. Values are screen-level, measured, and commented with the Reference coordinates.

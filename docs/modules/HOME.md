@@ -15,6 +15,7 @@
 - Pickup / Delivery sit above the Promotion (approved IA change). Delivery is Future Scope: inert tile and inert selector row (`aria-disabled`, not focusable, no navigation, no added copy).
 - Credit / Points / Rewards: numeric only, no currency symbol (proposed formatting, To Verify). Promotion 1:1, manual scroll-snap, no autoplay, max about 480 on tablet. Bottom bar: full-width background, inner container about 720. Home does not reopen the selector after Pickup was chosen.
 - Overlay panels: tablet panel about 480, sheet radius 12 (provisional). Inter is Draft / Provisional / To Verify.
+- Reference-fidelity pass: the greeting name is fictional (`Ivan`; the Reference shows a real person's name) and the "Shop & more" cards carry the Reference's sample label "Outlet A Name" (visible in the Popup / Selector Reference screenshots).
 - The Home Draft predates `_ui-kit/reference-roles.css` and keeps its own local colour values. It is regression-checked as pixel-identical; do not edit its files casually.
 
 **Major To Verify:** greeting / time-of-day rules; unread-dot source; banner tap and slide count (CMS Rule Required); "Shop & more" content type; popup trigger, frequency, dismissal; selector dismissal and Shop-tab behavior; safe-area handling; Master Navigation (not decided).

@@ -17,3 +17,7 @@ An illustration slot above a label. Home — Member uses two (Pickup, Delivery).
 ## Variant row (Batch 1)
 
 Full-width 120px row for the Fulfilment Selector: illustration (80 × 72) at 40px from the left, label centered in the remaining space (18px bold, uppercase). `--emphasis` = filled accent (Pickup in the Reference); the default row is the tinted one (Delivery). `--future` keeps the same inert rules as the tile: `aria-disabled`, not focusable, no pressed state, no navigation. Illustrations remain TEMPORARY PLACEHOLDERS.
+
+## Reference-fidelity pass
+
+Row labels are **left-aligned** (start at x 221 in both rows in the Reference), 20px / 500, uppercase, no letter-spacing. Art-to-label gap is `--fulfil-row-gap` (80).

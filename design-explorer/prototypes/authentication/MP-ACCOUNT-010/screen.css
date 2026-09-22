@@ -1,4 +1,13 @@
-/* Logout Confirmation (Draft). Reference capture: side margin 20, buttons 169 x 46 with a 22 gap, title 18 bold, message 14 muted. */
-:root { --overlay-align: center; --overlay-pad: 0px; --sheet-margin: 20px; --button-radius: 6px; }
+/* Logout Confirmation (Draft). Geometry from the Reference capture (400 x 269): panel 400 wide, 269 tall, radius about 20 on all four corners
+   (a floating card, not an edge-attached sheet); title centre y 52 (20px / 700); close glyph 14 x 14 at x 361 to 375 (muted grey);
+   message centre y 114 (14px muted); buttons 168 x 46 at y 162 with a 22px gap, radius about 8; 61px below the buttons; 21px side padding.
+   Vertical position on screen is NOT in the capture (still To Verify); centered/floating (not bottom-anchored) by decision, following the
+   Fulfilment Selector precedent. The screen behind the panel is the Account Home Draft, dimmed (see index.html). */
+:root {
+  --overlay-align: center; --overlay-pad: 0px; --sheet-margin: 20px;
+  --sheet-pad: 30px 21px 61px; --sheet-radius: 20px; --sheet-title-size: 20px;
+  --sheet-text-top: 30px; --sheet-text-lh: 20px; --sheet-actions-top: 38px; --sheet-actions-gap: 22px;
+}
 body { background: #ffffff; }
 :focus-visible { outline: 2px solid var(--proto-focus); outline-offset: 2px; }
+.sheet__head .icon-button { color: var(--proto-text-muted); }

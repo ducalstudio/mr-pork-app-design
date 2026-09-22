@@ -1,6 +1,7 @@
-/* Fulfilment Selector (Draft). Values observed in the Reference (440 x 956): panel y 238 to 716, vertically centered, square corners;
-   heading 40px below the top; rows 120 tall with a 20px gap; side margin 20. */
-:root { --overlay-align: center; --sheet-pad: 40px 20px 79px; --sheet-body-gap: 40px; }
+/* Fulfilment Selector (Draft). Values measured from the Reference (440 x 956): panel y 238 to 716, vertically centered, square corners;
+   heading 24px / 600 wrapping after "to" (line 1 is 251px wide); rows 120 tall with a 20px gap; side margin 20; illustration x 60 to 140;
+   row labels start at x 221 in BOTH rows (left-aligned, 20px / 500). */
+:root { --overlay-align: center; --sheet-pad: 42px 20px 79px; --sheet-body-gap: 40px; --sheet-heading-max: 280px; --fulfil-row-gap: 80px; }
 body { background: #ffffff; }
 :focus-visible { outline: 2px solid var(--proto-focus); outline-offset: 2px; }
 .fulfil-rows { display: flex; flex-direction: column; gap: 20px; }

@@ -69,9 +69,9 @@ export default defineModule({
             "Visual Draft v2 (fidelity to the Reference, Draft only): Inter is used as a PROVISIONAL Draft font (Draft / Provisional / To Verify). It is the closest match to the Reference typeface, is not recorded as an approved Mr Pork brand font, and is not a global token. Radii: tiles about 8 px, summary boxes about 5 px. Summary value 16 px. Section heading weight 600. Promotion dots follow the Reference (bottom-left, active about 14 px, inactive about 8 px, no pill; indicators only). Bottom-navigation vertical positions follow the Reference.",
             "TEMPORARY PLACEHOLDERS / NOT SOURCE ASSETS: the Pickup and Delivery illustrations, the Promotion artwork, the Shop & more imagery, the bell icon and the four navigation icons (line icons drawn for review, not approved iconography). No original standalone asset exists in the repository yet; replace them when supplied. Nothing was cropped from the Reference screenshot.",
             "Notification indicator: a small unread dot, never a number. Whether Home shows it, and its source, is To Verify.",
-            "Greeting uses the preferred display name from the member profile. No first-name / surname rule. Time-of-day greeting rules are To Verify.",
+            "Greeting uses the preferred display name from the member profile. The sample name 'Ivan' is fictional and replaces a real person's name shown in the Reference. No first-name / surname rule. Time-of-day greeting rules are To Verify.",
             "Promotion: manual swipe, scroll-snap, no autoplay, no looping; dots are indicators only. Banner tap, real slide count, image size and safe area are CMS Rule Required. Banner is 1:1 at every tier; medium / expanded is centered with a proposed max width of about 480 (adjustable at visual review).",
-            "Shop & more: section and horizontal-card structure kept. Content type, source and destination are To Verify; cards are neutral placeholders.",
+            "Shop & more: the cards carry the Reference's own sample label 'Outlet A Name' (visible in the Popup and Selector Reference screenshots) with a store-glyph placeholder and photo-tile placeholders: SAMPLE DATA / NOT BUSINESS RULE. Content type, source and destination remain To Verify.",
             "Bottom navigation is Reference Navigation (same four tabs), not Master Navigation. On medium / expanded the bar background is full width and its four items sit in a centered container of about 720. No side rail.",
             "Destinations are recorded here only: a prototype runs in a sandboxed iframe and does not navigate the Explorer.",
             "Colors are values observed in the Reference, for Draft comparison only, not approved tokens. Contrast findings (red on white 4.40:1, red on pink tile 3.75:1, pink box border on white 1.72:1) are logged as a global accessibility / token To Verify item.",
@@ -116,7 +116,8 @@ export default defineModule({
             "Popup tap destination is CMS Rule Required (recorded as metadata only).",
             "Draft only. Not Approved or Master, and not a handoff source (no handoff.json).",
             "Migration Batch 1, provisional. Built from Shared Prototype Components (Draft / Provisional, not approved Design System components) under prototypes/_components/. Reference-observed colors come from prototypes/_ui-kit/reference-roles.css (Draft-only role values, not approved tokens).",
-            "Inter is used as a PROVISIONAL Draft font (Draft / Provisional / To Verify), not an approved brand font.",
+            "Inter is used as a PROVISIONAL Draft font (Draft / Provisional / Typeface To Verify), not an approved brand font. Sizes and weights are matched to the Reference by measured text width (within about 1 to 3%); if the original typeface is confirmed, Inter is replaced.",
+            "Reference-fidelity pass: the 440 x 956 render was measured against the Reference (positions, sizes, text extents, colours). What still differs is limited to marked placeholders for missing assets, approved changes, responsive-only changes and To Verify items.",
             "No OS status bar is drawn (Phase A rule). Where the Reference shows a tan band over the status-bar region, the band's color is kept and its meaning is To Verify."
           ]
         }
@@ -154,13 +155,14 @@ export default defineModule({
             "The dimmed screen behind the sheet is the Home — Member Draft embedded inert (not copied). Intentional difference vs Reference: the Reference shows the Shop tab highlighted behind the sheet (opened from the Shop tab); the embedded Home Draft highlights the Home tab.",
             "Delivery is Future Scope. The Reference visual treatment is kept but the row is inert: aria-disabled, not focusable, no pressed state, no navigation, no added copy.",
             "TEMPORARY PLACEHOLDERS / NOT SOURCE ASSETS: the Pickup and Delivery illustrations (80 x 72 slots).",
-            "Layout follows the Reference: panel vertically centered, edge to edge with square corners on compact, 40px above the heading, 120px rows with a 20px gap, 20px side margin.",
+            "Layout follows the Reference (measured at 440): panel y 238 to 716, vertically centered, edge to edge with square corners; heading 24px / 600 wrapping after 'to'; 120px rows with a 20px gap; 20px side margin; illustration x 60 to 140; row labels left-aligned at x 221 in both rows (20px / 500).",
             "Intentional differences vs Reference: on medium / expanded the panel is a centered panel capped at about 480 with 12px radius (Draft tablet presentation).",
             "The Reference shows no dismiss control; the sheet is not dismissible in the Draft. Dismissal, and behavior when opened from the Shop tab, are To Verify.",
             "Pickup destination (Store Selection) is recorded as metadata only; nothing navigates. Fulfilment options come from Backend: Fulfilment options (To Verify).",
             "Draft only. Not Approved or Master, and not a handoff source (no handoff.json).",
             "Migration Batch 1, provisional. Built from Shared Prototype Components (Draft / Provisional, not approved Design System components) under prototypes/_components/. Reference-observed colors come from prototypes/_ui-kit/reference-roles.css (Draft-only role values, not approved tokens).",
-            "Inter is used as a PROVISIONAL Draft font (Draft / Provisional / To Verify), not an approved brand font.",
+            "Inter is used as a PROVISIONAL Draft font (Draft / Provisional / Typeface To Verify), not an approved brand font. Sizes and weights are matched to the Reference by measured text width (within about 1 to 3%); if the original typeface is confirmed, Inter is replaced.",
+            "Reference-fidelity pass: the 440 x 956 render was measured against the Reference (positions, sizes, text extents, colours). What still differs is limited to marked placeholders for missing assets, approved changes, responsive-only changes and To Verify items.",
             "No OS status bar is drawn (Phase A rule). Where the Reference shows a tan band over the status-bar region, the band's color is kept and its meaning is To Verify."
           ]
         }
@@ -197,6 +199,35 @@ export default defineModule({
             "Any Delivery-related account items, if present further down the list, are Future Scope."
           ],
           devices: devices({ mobile: phase1("home-navigation/MP-ACCOUNT-001_account-home_reference-a.png") })
+        },
+        draft: {
+          status: "Draft",
+          prototype: "prototypes/home-navigation/MP-ACCOUNT-001/index.html?state=variant-a",
+          description: "Responsive Draft of Account Home (Variant A, primary): profile card with Credit / Points / Rewards, My Purchase, Exclusive For You and Need Help? menu groups, and Reference bottom navigation with Account selected.",
+          primaryAction: "To Verify",
+          secondaryActions: [
+            "Order",
+            "Daily Check-In",
+            "Coupons & Vouchers",
+            "Invite Your Friends",
+            "Help Centre",
+            "Feedback",
+            "Settings"
+          ],
+          notes: [
+            "Variant A is the primary Draft. Variant B reuses the SAME prototype (?state=variant-b): the two Reference captures are byte-identical, so the two entries render identically. Which capture is authoritative is To Verify. Nothing is duplicated.",
+            "Menu items are exactly those visible in the Reference: My Purchase (Order); Exclusive For You (Daily Check-In, Coupons & Vouchers, Invite Your Friends); Need Help? (Help Centre, Feedback, Settings); then the 'General' heading. The Reference is cut off at 'General': nothing below it is shown or invented (To Verify). No review note is drawn on the page.",
+            "SAMPLE DATA / NOT BUSINESS RULE: the Reference sample shows what looks like a real person's name and phone, so the Draft uses a fictional name ('Kelvin Tan') and phone ('0171120210') of similar length and format. Credit / Points / Rewards (100.00 / 15 / 2) are the Reference's own. Formatting follows the proposed Home rule (Credit two decimals with separators, no currency symbol; Points and Rewards integers), To Verify. Very long names wrap up to two lines and then truncate; very large values step their font size down to 12px. The three stats sit on 80px items justified across the card, as in the Reference.",
+            "Destinations are recorded, not navigated: Order (Order History, no design yet), Daily Check-In, Coupons & Vouchers, Invite Your Friends, Help Centre, Feedback, Settings, language (EN), settings icon, notifications bell, edit profile photo, and the three profile stats (My Credit, Points Summary, My Rewards). Whether the stats are tappable here, what EN does, and Order / Coupons targets are To Verify. Any Delivery-related items further down are Future Scope.",
+            "Single column at every tier: profile card and menu rows are never split into columns. On medium / expanded the column is centered and capped at about 600 / 720. The bottom bar keeps a full-width background; its four items sit in a centered container of about 720 (same as Home). Reference Navigation with Account selected; not Master Navigation.",
+            "Header follows the Reference: language (EN), settings and notification actions on the right, no title, no tan band. A small unread dot on the bell is supported (source and display rule To Verify).",
+            "TEMPORARY PLACEHOLDERS / NOT SOURCE ASSETS: the avatar photo, edit (pencil), settings and bell glyphs, the menu chevrons and the four navigation icons. The edit glyph is a 44px touch target overlapping the avatar corner.",
+            "Draft only. Not Approved or Master, and not a handoff source (no handoff.json).",
+            "Migration Batch 2, provisional. Built from Shared Prototype Components (Draft / Provisional, not approved Design System components) under prototypes/_components/. Reference-observed colors come from prototypes/_ui-kit/reference-roles.css (Draft-only role values, not approved tokens).",
+            "Inter is used as a PROVISIONAL Draft font (Draft / Provisional / Typeface To Verify), not an approved brand font. Sizes and weights are matched to the Reference by measured text width (within about 1 to 3%); if the original typeface is confirmed, Inter is replaced.",
+            "Reference-fidelity pass: the 440 x 956 render was measured against the Reference (positions, sizes, text extents, colours). What still differs is limited to marked placeholders for missing assets, approved changes, responsive-only changes and To Verify items.",
+            "No OS status bar is drawn (Phase A rule). The Reference tan band over the status-bar region is kept where shown; its meaning is To Verify."
+          ]
         }
       }
     }),
@@ -221,6 +252,29 @@ export default defineModule({
             "Duplicate version. Do not assume either is authoritative until confirmed by the owner."
           ],
           devices: devices({ mobile: phase1("home-navigation/MP-ACCOUNT-001_account-home_reference-b.png") })
+        },
+        draft: {
+          status: "Draft",
+          prototype: "prototypes/home-navigation/MP-ACCOUNT-001/index.html?state=variant-b",
+          description: "Variant B of Account Home. Reuses the Variant A Draft prototype (?state=variant-b); the two Reference captures are byte-identical.",
+          primaryAction: "To Verify",
+          secondaryActions: [
+            "See Variant A for content"
+          ],
+          notes: [
+            "Variant A is the primary Draft. Variant B reuses the SAME prototype (?state=variant-b): the two Reference captures are byte-identical, so the two entries render identically. Which capture is authoritative is To Verify. Nothing is duplicated.",
+            "Menu items are exactly those visible in the Reference: My Purchase (Order); Exclusive For You (Daily Check-In, Coupons & Vouchers, Invite Your Friends); Need Help? (Help Centre, Feedback, Settings); then the 'General' heading. The Reference is cut off at 'General': nothing below it is shown or invented (To Verify). No review note is drawn on the page.",
+            "SAMPLE DATA / NOT BUSINESS RULE: the Reference sample shows what looks like a real person's name and phone, so the Draft uses a fictional name ('Kelvin Tan') and phone ('0171120210') of similar length and format. Credit / Points / Rewards (100.00 / 15 / 2) are the Reference's own. Formatting follows the proposed Home rule (Credit two decimals with separators, no currency symbol; Points and Rewards integers), To Verify. Very long names wrap up to two lines and then truncate; very large values step their font size down to 12px. The three stats sit on 80px items justified across the card, as in the Reference.",
+            "Destinations are recorded, not navigated: Order (Order History, no design yet), Daily Check-In, Coupons & Vouchers, Invite Your Friends, Help Centre, Feedback, Settings, language (EN), settings icon, notifications bell, edit profile photo, and the three profile stats (My Credit, Points Summary, My Rewards). Whether the stats are tappable here, what EN does, and Order / Coupons targets are To Verify. Any Delivery-related items further down are Future Scope.",
+            "Single column at every tier: profile card and menu rows are never split into columns. On medium / expanded the column is centered and capped at about 600 / 720. The bottom bar keeps a full-width background; its four items sit in a centered container of about 720 (same as Home). Reference Navigation with Account selected; not Master Navigation.",
+            "Header follows the Reference: language (EN), settings and notification actions on the right, no title, no tan band. A small unread dot on the bell is supported (source and display rule To Verify).",
+            "TEMPORARY PLACEHOLDERS / NOT SOURCE ASSETS: the avatar photo, edit (pencil), settings and bell glyphs, the menu chevrons and the four navigation icons. The edit glyph is a 44px touch target overlapping the avatar corner.",
+            "Draft only. Not Approved or Master, and not a handoff source (no handoff.json).",
+            "Migration Batch 2, provisional. Built from Shared Prototype Components (Draft / Provisional, not approved Design System components) under prototypes/_components/. Reference-observed colors come from prototypes/_ui-kit/reference-roles.css (Draft-only role values, not approved tokens).",
+            "Inter is used as a PROVISIONAL Draft font (Draft / Provisional / Typeface To Verify), not an approved brand font. Sizes and weights are matched to the Reference by measured text width (within about 1 to 3%); if the original typeface is confirmed, Inter is replaced.",
+            "Reference-fidelity pass: the 440 x 956 render was measured against the Reference (positions, sizes, text extents, colours). What still differs is limited to marked placeholders for missing assets, approved changes, responsive-only changes and To Verify items.",
+            "No OS status bar is drawn (Phase A rule). The Reference tan band over the status-bar region is kept where shown; its meaning is To Verify."
+          ]
         }
       }
     }),
@@ -264,7 +318,8 @@ export default defineModule({
             "Same behavior as the Home Draft on medium / expanded: full-width bar background, four items in a centered container of about 720, no side rail.",
             "Draft only. Not Approved or Master, and not a handoff source (no handoff.json).",
             "Migration Batch 1, provisional. Built from Shared Prototype Components (Draft / Provisional, not approved Design System components) under prototypes/_components/. Reference-observed colors come from prototypes/_ui-kit/reference-roles.css (Draft-only role values, not approved tokens).",
-            "Inter is used as a PROVISIONAL Draft font (Draft / Provisional / To Verify), not an approved brand font.",
+            "Inter is used as a PROVISIONAL Draft font (Draft / Provisional / Typeface To Verify), not an approved brand font. Sizes and weights are matched to the Reference by measured text width (within about 1 to 3%); if the original typeface is confirmed, Inter is replaced.",
+            "Reference-fidelity pass: the 440 x 956 render was measured against the Reference (positions, sizes, text extents, colours). What still differs is limited to marked placeholders for missing assets, approved changes, responsive-only changes and To Verify items.",
             "No OS status bar is drawn (Phase A rule). Where the Reference shows a tan band over the status-bar region, the band's color is kept and its meaning is To Verify."
           ]
         }

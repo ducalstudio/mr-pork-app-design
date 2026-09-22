@@ -15,3 +15,11 @@ Greeting or title on the left, one notification action on the right.
 ## Variant back-title (Batch 1)
 
 Back button (`icon-button`) + page title, inside the `app-shell` top band (`app-shell--band` for the tan Reference band; band meaning To Verify). The back glyph lines up with the screen gutter and the title starts 8px after it (Reference: glyph at x 27, title at x 52). Title 20px. The back destination is metadata only; nothing navigates. The back glyph is a TEMPORARY PLACEHOLDER. Other planned variants (`back-search`, `account-actions`) are added at first use.
+
+## Variant account-actions (Batch 2)
+
+No title; actions right-aligned: a text action (language, "EN"), then icon actions (settings, notifications). Each is a 44px hit area. The bell reuses the unread dot. What the language action does is To Verify. Icons are TEMPORARY PLACEHOLDERS.
+
+## Reference-fidelity pass
+
+`back-title`: 43px row, title 20px **regular** (Inter width matches the Reference within 1 to 3%), 9px gap after the glyph. The back glyph is drawn at the Reference size (about 8 x 12, thin) and stays a TEMPORARY PLACEHOLDER. `account-actions`: EN text action 20px / 500.

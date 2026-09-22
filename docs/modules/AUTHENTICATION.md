@@ -11,6 +11,7 @@
 - Login / Register Drafts are **Batch 3, not started**.
 
 **Approved decisions**
+- Logout geometry follows the Reference capture (400 x 269, radius about 20, buttons 168 x 46); centered floating dialog (not bottom-anchored), decided by precedent (Fulfilment Selector is the only sheet with a full capture, and it is centered), dimmed over the Account Home Draft; exact on-screen offset stays To Verify.
 - Logout keeps the Reference emphasis: Yes = grey, No = red (To Verify; contrast about 2.5:1). It reuses `bottom-sheet` (`--floating`), not a separate dialog component.
 - Batch 3 scope: build from existing Reference, no new business rules.
 

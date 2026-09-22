@@ -1,0 +1,7 @@
+/* Chip: one primitive with roles. Role now: tab (Notifications). filter / option roles are added at first use. Provisional.
+   The visible chip is 25px high (Reference); the button around it is at least 44 x 44 so the touch target is met. */
+.chips { display: flex; flex-wrap: wrap; column-gap: calc(var(--chips-gap, 20px) - 10px); row-gap: 0; margin-inline-start: -5px; } /* each chip button adds 5px per side, so the visible gap stays --chips-gap and the first label sits on the gutter */
+.chip { display: flex; align-items: center; justify-content: flex-start; min-width: 44px; min-height: 44px; padding: 0 5px; border: 0; background: transparent; color: #000000; font: inherit; cursor: pointer; }
+.chip__label { display: block; height: 25px; padding: 0 10px; background: var(--proto-chip, #eaeaea); color: inherit; font-size: 12px; line-height: 25px; white-space: nowrap; }
+.chip[aria-selected="true"] .chip__label { background: var(--proto-accent); color: var(--proto-on-accent); }
+.chip:active .chip__label { filter: brightness(0.94); }

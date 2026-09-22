@@ -6,3 +6,7 @@ Status: **Shared Prototype Component — Draft / Provisional** (not an approved 
 - **Screen variant (`--screen`):** artwork fills the viewport; a "Skip 3 s" pill sits at the top right (Reference: 20px from the top and right, 80 × 28). The pill is a 44px-high button around the 28px visual pill. The text is the Reference label, **static**: no live countdown, no auto-advance.
 - **Artwork is a TEMPORARY PLACEHOLDER / NOT A SOURCE ASSET** (`image-placeholder`).
 - **Open:** `CMS Rule Required`: image size, crop rule and safe area (a portrait image on tablet viewports is unresolved), trigger and frequency, skip timing, tap destination, dismissal.
+
+## Reference-fidelity pass
+
+Skip pill: 16px text, 28px high, 10px side padding (about 80 wide), sitting at y 20 to 48 as in the Reference; the 44px hit area starts 12px from the top (`--media-skip-top`).

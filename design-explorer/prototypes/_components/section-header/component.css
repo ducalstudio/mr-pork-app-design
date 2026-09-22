@@ -1,2 +1,4 @@
 /* Section header. Provisional. */
 .section-header { margin: 0; font-size: 16px; font-weight: 600; line-height: 22px; color: var(--proto-text); }
+/* Variant menu (Batch 2): larger heading above a menu group (Account Home). */
+.section-header--menu { font-size: 18px; font-weight: 500; line-height: 24px; color: var(--proto-text); }

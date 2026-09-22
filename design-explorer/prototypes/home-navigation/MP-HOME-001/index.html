@@ -33,7 +33,7 @@
 
   <main class="home-column" id="main">
     <header class="app-header home-header">
-      <h1 class="app-header__title" id="greeting">Good morning, <span id="display-name">Ting</span>!</h1>
+      <h1 class="app-header__title" id="greeting">Good morning, <span id="display-name">Ivan</span>!</h1>
       <button class="app-header__action" id="bell" type="button" data-destination="notifications" data-asset="temporary-placeholder" aria-label="Notifications">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5a5.5 5.5 0 0 0-5.5 5.5v3.4L4.5 16v1h15v-1l-2-3.6V9A5.5 5.5 0 0 0 12 3.5z"/><path d="M10 19.5a2 2 0 0 0 4 0"/></svg>
         <span class="app-header__dot" id="bell-dot" hidden></span>
@@ -165,7 +165,7 @@
       for (var c = 1; c <= S.cards; c++) {
         var card = document.createElement("div");
         card.className = "card-row__card";
-        card.innerHTML = '<div class="card-row__title"><span class="card-row__glyph" aria-hidden="true"></span><span>Card title ' + c + '</span></div><div class="card-row__image image-placeholder" aria-hidden="true"></div>';
+        card.innerHTML = '<div class="card-row__title"><span class="card-row__glyph" aria-hidden="true"></span><span>' + S.cardLabel + '</span></div><div class="card-row__image image-placeholder" aria-hidden="true"></div>';
         row.appendChild(card);
       }
     })();

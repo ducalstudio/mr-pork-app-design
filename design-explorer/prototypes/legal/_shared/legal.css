@@ -1,9 +1,9 @@
 /* Legal pages (Privacy Policy, Terms & Conditions). Shared by both Drafts; values observed in the Reference (440 x 956). */
 :root {
   --shell-gutter: 20px;     /* Reference: text starts at x 20 */
-  --shell-top-inset: 54px;  /* Reference: band 0 to 106 = status-bar region (nothing drawn) + 52px header */
+  --shell-top-inset: 63px;  /* Reference: band 0 to 106; title centre y 85 (blank status-bar / safe-area stand-in 63 + 43px header row) */
 }
 /* Reading width (Draft tablet presentation, not in the Reference): the shell default is 600 / 720; legal text is capped a little tighter. */
 [data-tier="expanded"] .app-shell { --shell-max: 640px; }
 :focus-visible { outline: 2px solid var(--proto-focus); outline-offset: 2px; }
-.legal-body { padding-block: 14px 32px; } /* block only: the inline gutter comes from --shell-gutter */
+.legal-body { padding-block: 10px 32px; } /* Reference: heading centre y 126 */ /* block only: the inline gutter comes from --shell-gutter */

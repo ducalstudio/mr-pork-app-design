@@ -1,0 +1,18 @@
+/* Notification row: thumb, title, body (+ optional call-to-action text), date. The whole row is one button. Provisional.
+   Geometry is CONTENT-DRIVEN, measured from the Reference (440 wide): row = 15px padding + the taller of the 40px thumb and the text block,
+   so a row whose text wraps is taller (Reference: 70px single, 98px wrapped). Unread = dark text, read = muted text (Reference evidence, To Verify). */
+.notification-list { list-style: none; margin: 0; padding: 0; }
+.notification-row { display: grid; grid-template-columns: 40px minmax(0, 1fr) auto; align-items: center; column-gap: 10px; width: 100%; min-height: 60px; padding: 15px 0; border: 0; background: transparent; color: var(--row-fg, #000000); font: inherit; text-align: left; cursor: pointer; }
+.notification-row[data-read="true"] { --row-fg: var(--proto-text-muted); }
+.notification-row:active { background: rgba(0, 0, 0, 0.04); }
+.notification-row__thumb { width: 40px; height: 40px; border-radius: 50%; background: var(--proto-thumb, #f32323); } /* Reference: solid red disc; a placeholder for the real thumbnail */
+.notification-row__text { display: block; min-width: 0; }
+.notification-row__title { display: block; font-size: 14px; font-weight: 400; line-height: 17px; overflow-wrap: anywhere; }
+.notification-row__line { display: flex; align-items: flex-end; gap: 8px; margin-top: 4px; }
+.notification-row__body { display: block; flex: 0 1 auto; min-width: 0; font-size: 12px; line-height: 15px; overflow-wrap: anywhere; }
+.notification-row__cta { flex: none; margin-left: auto; margin-right: var(--cta-inset, 0px); font-size: 12px; line-height: 15px; white-space: nowrap; }
+.notification-row__date { padding-left: 2px; font-size: 10px; line-height: 16px; white-space: nowrap; }
+
+/* Variant narrow: the Reference's wrapped row (title breaks inside the word at about 66px, body wraps at about 115px). Kept as visible sample density. */
+.notification-row--narrow .notification-row__title { max-width: 66px; word-break: break-all; }
+.notification-row--narrow .notification-row__body { max-width: 124px; } /* Reference wraps after "extra" (115px in its face); Inter needs about 124 for the same break */

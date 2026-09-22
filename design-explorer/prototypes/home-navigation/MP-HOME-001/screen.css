@@ -39,7 +39,7 @@ body { background: #ffffff; box-shadow: none; }
 .home-fulfil { margin-top: 32px; }
 .home-promo { margin-top: 40px; }
 .home-shop { margin-top: 38px; }
-.home-shop .card-row { margin-top: 12px; }
+.home-shop .card-row { margin-top: 17px; } /* Reference: heading centre to card label centre = 38px */
 
 /* Scrollers are keyboard focusable so arrow keys work. */
 .promo-carousel__scroller:focus-visible, .card-row:focus-visible { outline-offset: -2px; }

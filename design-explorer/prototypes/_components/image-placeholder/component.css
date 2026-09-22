@@ -13,3 +13,5 @@
   overflow: hidden;
 }
 .image-placeholder--square { aspect-ratio: 1 / 1; }
+/* Variant circle (Batch 2): avatar / thumbnail stand-in. */
+.image-placeholder--circle { border-radius: 50%; }

@@ -1,0 +1,3 @@
+/* Account Home responsive rules. Single column at every tier (no multi-column menu). The shell caps the column (600 medium / 720 expanded).
+   The bottom bar keeps its full-width background; its four items sit in a centered container of about 720 (same as Home). */
+[data-tier="medium"], [data-tier="expanded"] { --nav-inner-max: 720px; }

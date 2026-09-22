@@ -36,14 +36,15 @@ export default defineModule({
 
           ],
           notes: [
-            "SAMPLE CONTENT: the Reference shows 'xxxxx' placeholder lines. The Draft uses neutral sample paragraphs, headings and lists. The real legal text is CMS Rule Required.",
-            "Intentional differences vs Reference: body text is 16px with a 1.5 line height (the Reference sample lines are set tighter); the reading column is centered and capped (about 600 at medium, about 640 at expanded); sample headings, bullet and numbered lists are added to exercise the layout.",
+            "SAMPLE DATA / NOT BUSINESS RULE: the 'xxxxx / x / xx' filler lines are the Reference's own placeholder text, kept exactly (same lines, same 19px line pitch) because visible text length is part of the design. The real legal text is CMS Rule Required.",
+            "Intentional differences vs Reference: only the tablet reading column (centered, about 600 at medium and about 640 at expanded). The 440 render follows the Reference: header title 20px regular at y 85, heading at y 126, 16px text on a 19px line pitch.",
             "Gutter 20px is taken from the Reference (text starts at x 20) through --shell-gutter.",
             "TEMPORARY PLACEHOLDER: the back glyph. The back destination is recorded as metadata only; nothing navigates.",
             "Membership, refund / return, PDPA and other applicable policy screens remain a known review item (unchanged).",
             "Draft only. Not Approved or Master, and not a handoff source (no handoff.json).",
             "Migration Batch 1, provisional. Built from Shared Prototype Components (Draft / Provisional, not approved Design System components) under prototypes/_components/. Reference-observed colors come from prototypes/_ui-kit/reference-roles.css (Draft-only role values, not approved tokens).",
-            "Inter is used as a PROVISIONAL Draft font (Draft / Provisional / To Verify), not an approved brand font.",
+            "Inter is used as a PROVISIONAL Draft font (Draft / Provisional / Typeface To Verify), not an approved brand font. Sizes and weights are matched to the Reference by measured text width (within about 1 to 3%); if the original typeface is confirmed, Inter is replaced.",
+            "Reference-fidelity pass: the 440 x 956 render was measured against the Reference (positions, sizes, text extents, colours). What still differs is limited to marked placeholders for missing assets, approved changes, responsive-only changes and To Verify items.",
             "No OS status bar is drawn (Phase A rule). Where the Reference shows a tan band over the status-bar region, the band's color is kept and its meaning is To Verify."
           ]
         }
@@ -79,14 +80,15 @@ export default defineModule({
 
           ],
           notes: [
-            "SAMPLE CONTENT: the Reference shows 'xxxxx' placeholder lines. The Draft uses neutral sample text. The real legal text is CMS Rule Required.",
-            "Intentional differences vs Reference: body text is 16px with a 1.5 line height; the reading column is centered and capped (about 600 at medium, about 640 at expanded); sample headings and lists are added.",
+            "SAMPLE DATA / NOT BUSINESS RULE: the 'xxxxx / x / xx' filler lines are the Reference's own placeholder text, kept exactly (same lines, same 19px line pitch) because visible text length is part of the design. The real legal text is CMS Rule Required.",
+            "Intentional differences vs Reference: only the tablet reading column (centered, about 600 at medium and about 640 at expanded). The 440 render follows the Reference: header title 20px regular at y 85, heading at y 126, 16px text on a 19px line pitch.",
             "Gutter 20px is taken from the Reference through --shell-gutter.",
             "TEMPORARY PLACEHOLDER: the back glyph. The back destination is recorded as metadata only.",
             "Membership, refund / return, PDPA and other applicable policy screens remain a known review item (unchanged).",
             "Draft only. Not Approved or Master, and not a handoff source (no handoff.json).",
             "Migration Batch 1, provisional. Built from Shared Prototype Components (Draft / Provisional, not approved Design System components) under prototypes/_components/. Reference-observed colors come from prototypes/_ui-kit/reference-roles.css (Draft-only role values, not approved tokens).",
-            "Inter is used as a PROVISIONAL Draft font (Draft / Provisional / To Verify), not an approved brand font.",
+            "Inter is used as a PROVISIONAL Draft font (Draft / Provisional / Typeface To Verify), not an approved brand font. Sizes and weights are matched to the Reference by measured text width (within about 1 to 3%); if the original typeface is confirmed, Inter is replaced.",
+            "Reference-fidelity pass: the 440 x 956 render was measured against the Reference (positions, sizes, text extents, colours). What still differs is limited to marked placeholders for missing assets, approved changes, responsive-only changes and To Verify items.",
             "No OS status bar is drawn (Phase A rule). Where the Reference shows a tan band over the status-bar region, the band's color is kept and its meaning is To Verify."
           ]
         }

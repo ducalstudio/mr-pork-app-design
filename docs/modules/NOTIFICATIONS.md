@@ -13,6 +13,7 @@
 - Deep-link behavior To Verify; "Mark all as read" is Backend Dependency Unknown (not wired).
 - Read / unread styling follows Reference evidence (dark vs muted text) and is marked To Verify.
 - Single column list at every tier (no grid); centered column cap about 600 / 720.
+- Reference-fidelity pass: Reference sample copy kept verbatim (SAMPLE DATA); per-state matrix verified against all 12 Reference screenshots (wrapped row, Mark-all present / absent / red / black, call-to-action only on all-unread); content-driven row heights; red-disc thumbs. Matrix lives in `prototypes/notifications/MP-NOTIFY-001/states/samples.js`.
 
 **Major To Verify:** tab set vs `APP-STRUCTURE.md`; deep links; what read / unread mean; why "Mark all as read" is red on All and black elsewhere; the call-to-action text (only on All / unread in the Reference); empty copy per tab; narrow-phone tab wrap vs scroll.
 

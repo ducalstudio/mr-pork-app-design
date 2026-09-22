@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Account Home (Draft)</title>
+  <!-- Order matters: shared tier + protocol scripts, then the client (sets data-tier before first paint), then CSS. -->
+  <script src="../../../prototype-runtime/tiers.js"></script>
+  <script src="../../../prototype-runtime/protocol.js"></script>
+  <script src="../../../prototype-runtime/client.js"></script>
+  <link rel="stylesheet" href="../../_ui-kit/tokens.css">
+  <link rel="stylesheet" href="../../_ui-kit/reference-roles.css"><!-- Draft-only Reference-observed roles, not approved tokens -->
+  <link rel="stylesheet" href="../../_ui-kit/font-inter.css"><!-- Inter: provisional Draft font (To Verify), not an approved brand font -->
+  <link rel="stylesheet" href="../../_ui-kit/base.css">
+  <link rel="stylesheet" href="../../_components/app-shell/component.css">
+  <link rel="stylesheet" href="../../_components/image-placeholder/component.css">
+  <link rel="stylesheet" href="../../_components/icon-button/component.css">
+  <link rel="stylesheet" href="../../_components/app-header/component.css">
+  <link rel="stylesheet" href="../../_components/summary-stat/component.css">
+  <link rel="stylesheet" href="../../_components/profile-card/component.css">
+  <link rel="stylesheet" href="../../_components/section-header/component.css">
+  <link rel="stylesheet" href="../../_components/menu-row/component.css">
+  <link rel="stylesheet" href="../../_components/bottom-nav-reference/component.css">
+  <link rel="stylesheet" href="screen.css">
+  <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+  <!--
+    Draft. Variant A is the primary; Variant B is byte-identical in the Reference and reuses this same prototype (?state=variant-a | variant-b).
+    TEMPORARY PLACEHOLDERS / NOT SOURCE ASSETS (data-asset="temporary-placeholder"): the avatar photo, the edit (pencil), settings and bell
+    glyphs, the menu chevrons and the four navigation icons (line icons drawn for review, not approved iconography).
+    SAMPLE DATA / NOT BUSINESS RULE: the fictional name and phone stand in for a real person's details in the Reference (kept to a similar length and format);
+    the Credit / Points / Rewards values are the Reference's own. Menu items are exactly the ones visible in the Reference; nothing
+    below the "General" heading is shown in the Reference, so it is not invented (To Verify). Destinations are recorded, not navigated.
+    Language switch (EN) behavior is To Verify. Reference Navigation (four tabs) with Account selected; not Master Navigation.
+  -->
+  <div class="app-shell">
+    <div class="app-shell__top">
+      <div class="app-shell__inset" aria-hidden="true"></div>
+      <div class="app-shell__column">
+        <header class="app-header app-header--account-actions acct-header">
+          <button class="app-header__text-action" type="button" data-destination="language" aria-label="Language: EN">EN</button>
+          <button class="icon-button" type="button" data-destination="settings" data-asset="temporary-placeholder" aria-label="Settings">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 3v2.5M12 18.5V21M3 12h2.5M18.5 12H21M5.6 5.6l1.8 1.8M16.6 16.6l1.8 1.8M18.4 5.6l-1.8 1.8M7.4 16.6l-1.8 1.8"/><circle cx="12" cy="12" r="6.5"/></svg>
+          </button>
+          <button class="icon-button icon-button--flush-end" id="bell" type="button" data-destination="notifications" data-asset="temporary-placeholder" aria-label="Notifications">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5a5.5 5.5 0 0 0-5.5 5.5v3.4L4.5 16v1h15v-1l-2-3.6V9A5.5 5.5 0 0 0 12 3.5z"/><path d="M10 19.5a2 2 0 0 0 4 0"/></svg>
+            <span class="app-header__dot" id="bell-dot" hidden></span>
+          </button>
+        </header>
+      </div>
+    </div>
+
+    <main class="app-shell__body" id="main">
+      <div class="app-shell__column acct-column">
+        <section class="profile-card acct-profile" aria-label="Profile">
+          <div class="profile-card__id">
+            <div class="profile-card__avatar">
+              <div class="image-placeholder image-placeholder--circle" data-asset="temporary-placeholder" aria-hidden="true"></div>
+              <button class="icon-button profile-card__edit" type="button" data-destination="edit-profile" data-asset="temporary-placeholder" aria-label="Edit profile photo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19l1-4L16.500 4.500a2 2 0 0 1 3 3L9 18z"/></svg>
+              </button>
+            </div>
+            <div class="profile-card__who">
+              <h1 class="profile-card__name" id="member-name"></h1>
+              <p class="profile-card__phone" id="member-phone"></p>
+            </div>
+          </div>
+          <div class="profile-card__divider" role="presentation"></div>
+          <div class="summary-stats" aria-label="Member summary">
+            <button class="summary-stat summary-stat--inline" id="stat-credit" type="button" data-destination="my-credit">
+              <span class="summary-stat__label">Credit</span>
+              <span class="summary-stat__value"><span class="summary-stat__number"></span></span>
+            </button>
+            <button class="summary-stat summary-stat--inline" id="stat-points" type="button" data-destination="points-summary">
+              <span class="summary-stat__label">Points</span>
+              <span class="summary-stat__value"><span class="summary-stat__number"></span></span>
+            </button>
+            <button class="summary-stat summary-stat--inline" id="stat-rewards" type="button" data-destination="my-rewards">
+              <span class="summary-stat__label">Rewards</span>
+              <span class="summary-stat__value"><span class="summary-stat__number"></span></span>
+            </button>
+          </div>
+        </section>
+
+        <section class="acct-group" aria-labelledby="g-purchase">
+          <h2 class="section-header section-header--menu" id="g-purchase">My Purchase</h2>
+          <ul class="menu-list">
+            <li><button class="menu-row" type="button" data-destination="to-verify"><span class="menu-row__label">Order</span><span class="menu-row__chevron" data-asset="temporary-placeholder" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 4.6L9.4 8l-2.8 3.4"/></svg></span></button></li>
+          </ul>
+        </section>
+        <section class="acct-group" aria-labelledby="g-exclusive">
+          <h2 class="section-header section-header--menu" id="g-exclusive">Exclusive For You</h2>
+          <ul class="menu-list">
+            <li><button class="menu-row" type="button" data-destination="to-verify"><span class="menu-row__label">Daily Check-In</span><span class="menu-row__chevron" data-asset="temporary-placeholder" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 4.6L9.4 8l-2.8 3.4"/></svg></span></button></li>
+            <li><button class="menu-row" type="button" data-destination="to-verify"><span class="menu-row__label">Coupons &amp; Vouchers</span><span class="menu-row__chevron" data-asset="temporary-placeholder" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 4.6L9.4 8l-2.8 3.4"/></svg></span></button></li>
+            <li><button class="menu-row" type="button" data-destination="to-verify"><span class="menu-row__label">Invite Your Friends</span><span class="menu-row__chevron" data-asset="temporary-placeholder" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 4.6L9.4 8l-2.8 3.4"/></svg></span></button></li>
+          </ul>
+        </section>
+        <section class="acct-group" aria-labelledby="g-help">
+          <h2 class="section-header section-header--menu" id="g-help">Need Help?</h2>
+          <ul class="menu-list">
+            <li><button class="menu-row" type="button" data-destination="to-verify"><span class="menu-row__label">Help Centre</span><span class="menu-row__chevron" data-asset="temporary-placeholder" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 4.6L9.4 8l-2.8 3.4"/></svg></span></button></li>
+            <li><button class="menu-row" type="button" data-destination="to-verify"><span class="menu-row__label">Feedback</span><span class="menu-row__chevron" data-asset="temporary-placeholder" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 4.6L9.4 8l-2.8 3.4"/></svg></span></button></li>
+            <li><button class="menu-row" type="button" data-destination="to-verify"><span class="menu-row__label">Settings</span><span class="menu-row__chevron" data-asset="temporary-placeholder" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 4.6L9.4 8l-2.8 3.4"/></svg></span></button></li>
+          </ul>
+        </section>
+        <section class="acct-group" aria-labelledby="g-general">
+          <h2 class="section-header section-header--menu" id="g-general">General</h2>
+          <!-- The Reference is cut off at this heading: nothing below it is shown, so nothing is added here (To Verify). The note lives in versions.draft.notes, not on the page. -->
+        </section>
+      </div>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Primary"><div class="bottom-nav__inner" id="nav"></div></nav>
+  </div>
+
+  <script src="../../_components/summary-stat/component.js"></script>
+  <script src="../../_components/bottom-nav-reference/component.js"></script>
+  <script src="states/default.js"></script>
+  <script>
+    (function () {
+      var S = Object.assign({}, window.ACCOUNT_STATE);
+      var q = new URLSearchParams(location.search); // test-only overrides of the sample data
+      if (q.has("name")) S.displayName = q.get("name");
+      if (q.has("phone")) S.phone = q.get("phone");
+      if (q.has("credit")) S.credit = Number(q.get("credit"));
+      if (q.has("points")) S.points = Number(q.get("points"));
+      if (q.has("rewards")) S.rewards = Number(q.get("rewards"));
+      if (q.has("unread")) S.hasUnreadNotifications = q.get("unread") === "1";
+      var state = q.get("state") === "variant-b" ? "variant-b" : "variant-a"; // same prototype, same rendering
+      document.documentElement.setAttribute("data-state", state);
+
+      var P = window.MPProto, $ = function (id) { return document.getElementById(id); };
+      $("member-name").textContent = S.displayName;
+      $("member-phone").textContent = S.phone;
+      $("bell-dot").hidden = !S.hasUnreadNotifications;
+      $("bell").setAttribute("aria-label", S.hasUnreadNotifications ? "Notifications, unread" : "Notifications");
+
+      // Formatting is the PROPOSED rule used by Home (To Verify): Credit two decimals with separators, no currency symbol; Points / Rewards integers.
+      var stats = [
+        ["stat-credit", P.summaryStat.formatMoney(S.credit), "Credit "],
+        ["stat-points", P.summaryStat.formatCount(S.points), "Points "],
+        ["stat-rewards", P.summaryStat.formatCount(S.rewards), "Rewards "]
+      ];
+      stats.forEach(function (s) {
+        var el = $(s[0]);
+        el.querySelector(".summary-stat__number").textContent = s[1];
+        el.setAttribute("aria-label", s[2] + s[1]);
+      });
+      function fitAll() { stats.forEach(function (s) { P.summaryStat.fit($(s[0]).querySelector(".summary-stat__value"), 12); }); }
+      fitAll(); window.addEventListener("resize", fitAll); window.addEventListener("load", fitAll);
+
+      P.bottomNav.render($("nav"), "account"); // Reference Navigation, Account selected
+    })();
+  </script>
+</body>
+</html>

@@ -12,3 +12,11 @@ A small label above a value. Home — Member uses three of them (Credit, Points,
 - **Accessible name:** states the destination, for example "Credit 100.00, opens My Credit".
 - **Destination:** recorded in metadata; not navigated in the Draft.
 - **Open:** maximum value lengths, zero and very large values (`To Verify`).
+
+## Variant inline (Batch 2)
+
+No box; the value sits above the label, both centered (reading order stays label then value, so the accessible name is unchanged: "Credit 100.00"). Minimum height 48 for the touch target. Used in the Account profile card. Whether the stats are tappable there is To Verify (they record the same destinations as Home).
+
+## Reference-fidelity pass
+
+`inline`: 6px gap between value and label, minimum height 44. In the profile card the three stats sit on 80px items justified across the card (centres x 80 / 220 / 360 in the Reference); wider values grow their item up to a third of the row.

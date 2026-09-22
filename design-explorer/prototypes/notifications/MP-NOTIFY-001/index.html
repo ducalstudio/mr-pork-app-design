@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Notifications (Draft)</title>
+  <!-- Order matters: shared tier + protocol scripts, then the client (sets data-tier before first paint), then CSS. -->
+  <script src="../../../prototype-runtime/tiers.js"></script>
+  <script src="../../../prototype-runtime/protocol.js"></script>
+  <script src="../../../prototype-runtime/client.js"></script>
+  <link rel="stylesheet" href="../../_ui-kit/tokens.css">
+  <link rel="stylesheet" href="../../_ui-kit/reference-roles.css"><!-- Draft-only Reference-observed roles, not approved tokens -->
+  <link rel="stylesheet" href="../../_ui-kit/font-inter.css"><!-- Inter: provisional Draft font (To Verify), not an approved brand font -->
+  <link rel="stylesheet" href="../../_ui-kit/base.css">
+  <link rel="stylesheet" href="../../_components/app-shell/component.css">
+    <link rel="stylesheet" href="../../_components/icon-button/component.css">
+  <link rel="stylesheet" href="../../_components/app-header/component.css">
+  <link rel="stylesheet" href="../../_components/chip/component.css">
+  <link rel="stylesheet" href="../../_components/notification-row/component.css">
+  <link rel="stylesheet" href="../../_components/state-panel/component.css">
+  <link rel="stylesheet" href="screen.css">
+</head>
+<body>
+  <!--
+    Draft. ONE prototype, state-driven: ?state=<tab>-<mode> (all | orders | promotions | announcements) x (unread | read | empty).
+    SAMPLE DATA / NOT BUSINESS RULE (states/samples.js): the Reference's own placeholder copy, kept verbatim; the per-state structure follows the twelve Reference screenshots (see the state matrix in samples.js). TEMPORARY PLACEHOLDERS / NOT SOURCE ASSETS: the back glyph and the red thumbnail discs.
+    "Annoucements" is the Reference spelling: Copy To Verify, not corrected. Row tap destinations (deep links) are To Verify.
+    "Mark all as read" is not wired (Backend Dependency Unknown). The tan band is the Reference band (meaning To Verify); no OS status bar is drawn.
+  -->
+  <div class="app-shell app-shell--band">
+    <div class="app-shell__top">
+      <div class="app-shell__inset" aria-hidden="true"></div>
+      <div class="app-shell__column">
+        <header class="app-header app-header--back-title">
+          <button class="icon-button" type="button" data-destination="previous-screen" data-asset="temporary-placeholder" aria-label="Back">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15.2 7L10 12l5.2 5"/></svg>
+          </button>
+          <h1 class="app-header__title">Notification</h1>
+        </header>
+      </div>
+    </div>
+    <main class="app-shell__body" id="main">
+      <div class="app-shell__column notify-column">
+        <div class="chips notify-tabs" id="tabs" role="tablist" aria-label="Notification types"></div>
+        <div class="notify-panel" id="panel" role="tabpanel"></div>
+      </div>
+    </main>
+  </div>
+  <script src="../../_components/chip/component.js"></script>
+  <script src="states/samples.js"></script>
+  <script>
+    (function () {
+      var D = window.NOTIFY_SAMPLES;
+      var q = new URLSearchParams(location.search);
+      var st = (q.get("state") || "all-unread").split("-");
+      var tab = D.tabs.some(function (t) { return t.key === st[0]; }) ? st[0] : "all";
+      var mode = D.modes.indexOf(st[1]) >= 0 ? st[1] : "unread";
+      var long = q.get("long") === "1";
+      var count = Math.max(1, Math.min(12, Number(q.get("rows")) || 4));
+      var tabsEl = document.getElementById("tabs"), panel = document.getElementById("panel");
+
+      function el(tag, cls, text) { var n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; }
+
+      function renderTabs() {
+        tabsEl.innerHTML = "";
+        D.tabs.forEach(function (t) {
+          var b = el("button", "chip");
+          b.type = "button"; b.id = "tab-" + t.key; b.setAttribute("role", "tab");
+          b.setAttribute("data-key", t.key); b.setAttribute("aria-controls", "panel");
+          b.setAttribute("aria-selected", t.key === tab ? "true" : "false");
+          b.tabIndex = t.key === tab ? 0 : -1;
+          if (t.key === "announcements") b.setAttribute("data-copy", "to-verify"); // Reference spelling kept
+          b.appendChild(el("span", "chip__label", t.label));
+          tabsEl.appendChild(b);
+        });
+      }
+
+      function renderPanel() {
+        var key = tab + "-" + mode;
+        document.documentElement.setAttribute("data-state", key);
+        panel.setAttribute("aria-labelledby", "tab-" + tab);
+        panel.innerHTML = ""; panel.className = "notify-panel";
+        if (mode === "empty") {
+          var s = el("section", "state-panel state-panel--empty");
+          s.appendChild(el("p", "state-panel__title", D.emptyTitle));
+          s.appendChild(el("p", "state-panel__text", D.emptyText));
+          panel.appendChild(s);
+          return;
+        }
+        var tone = D.markAll[key];
+        panel.className = "notify-panel" + (tone === "none" ? "" : " notify-panel--markall");
+        if (tone !== "none") {
+          var mark = el("div", "notify-markall");
+          var mb = el("button", "notify-markall__button" + (tone === "accent" ? " is-accent" : ""), "Mark all as read");
+          mb.type = "button"; mb.setAttribute("data-destination", "mark-all-read"); // Backend Dependency Unknown: not wired
+          mark.appendChild(mb); panel.appendChild(mark);
+        }
+        var ul = el("ul", "notification-list");
+        var narrow = D.narrowRow.indexOf(key) >= 0;
+        var cta = key === "all-unread";
+        for (var i = 0; i < count; i++) {
+          var isNarrow = !long && narrow && i === 1;
+          var rowData = cta && D.allUnreadRows[i] ? D.allUnreadRows[i] : { body: D.bodyLong };
+          var title = D.title, body = rowData.body;
+          if (long) { title = "Sample notification title that is long enough to wrap onto more than one line sample-token-abcdefghijklmnopqrstuvwxyz-0123456789"; body = "Sample notification text that is long enough to wrap onto several lines so the row height and the date column can be reviewed."; }
+          var li = el("li");
+          var row = el("button", "notification-row" + (isNarrow ? " notification-row--narrow" : "")); row.type = "button";
+          row.setAttribute("data-read", mode === "read" ? "true" : "false");
+          row.setAttribute("data-destination", "notification-destination"); // deep link behavior: To Verify
+          var thumb = el("span", "notification-row__thumb");
+          thumb.setAttribute("data-asset", "temporary-placeholder"); thumb.setAttribute("aria-hidden", "true");
+          var text = el("span", "notification-row__text");
+          text.appendChild(el("span", "visually-hidden", mode === "read" ? "Read. " : "Unread. "));
+          text.appendChild(el("span", "notification-row__title", title));
+          var line = el("span", "notification-row__line");
+          line.appendChild(el("span", "notification-row__body", body));
+          if (cta) { var c = el("span", "notification-row__cta", D.ctaLabel); c.style.setProperty("--cta-inset", (rowData.ctaInset || 0) + "px"); line.appendChild(c); }
+          text.appendChild(line);
+          row.appendChild(thumb); row.appendChild(text); row.appendChild(el("span", "notification-row__date", D.date));
+          li.appendChild(row); ul.appendChild(li);
+        }
+        panel.appendChild(ul);
+      }
+
+      renderTabs(); renderPanel();
+      // Switching a tab keeps the current mode (unread / read / empty), so every Reference state is reachable by ?state= and by the tabs.
+      window.MPProto.chips.initTabs(tabsEl, function (key) { tab = key; renderPanel(); });
+    })();
+  </script>
+</body>
+</html>

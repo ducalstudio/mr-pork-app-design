@@ -35,6 +35,17 @@ Never scan `.ai-output/`, all of `reference-ui/`, all of `design-explorer/data/m
 
 Locate a section with `rg -n '^# 14\. ' APP-STRUCTURE.md` (headings are `# N.` / `## N.M`) and read only from there to the next heading.
 
+## Fast path and working data
+
+| Need | Use |
+|---|---|
+| Startup context for one screen | `node tools/task-packet.mjs <explorer-key> --task "..."` → `.ai-context/current-task.md` |
+| Reference measurements | `node tools/ref-cache.mjs status|init|set|show|px|bbox` → `.ai-cache/reference/` |
+| Which Drafts a change affects | `node tools/affected.mjs [paths]` |
+| Verification (Level 1 / 2 / 3) | `node tools/verify.mjs --keys … | --level 2 | --level 3 [--baseline <commit>]` |
+
+`.ai-context/`, `.ai-cache/` and `.ai-output/` are non-authoritative working data, git-ignored, never a source of truth. Rules: `CLAUDE.md` sections 1, 4 and 8.
+
 ## Where things live
 
 | Thing | Path |
@@ -46,7 +57,11 @@ Locate a section with `rg -n '^# 14\. ' APP-STRUCTURE.md` (headings are `# N.` /
 | Draft-only colour roles / Inter font / base CSS | `design-explorer/prototypes/_ui-kit/` |
 | Device presets, tiers | `design-explorer/js/config.js`, `design-explorer/prototype-runtime/tiers.js` |
 | Module context summaries | `docs/modules/` |
-| Historical working reports (do not read by default) | `.ai-output/` |
+| Working data (non-authoritative, git-ignored) | `.ai-context/` (task packet), `.ai-cache/` (Reference cache, verify output), `.ai-output/` (historical reports: do not read by default) |
+
+## Design philosophy
+
+The Reference UI is the visual source of truth; modularization and responsive work reproduce it, they do not restyle it. Stated once in `CLAUDE.md` (section 5, "Design philosophy"); not repeated here.
 
 ## Authority
 

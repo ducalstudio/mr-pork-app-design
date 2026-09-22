@@ -7,5 +7,5 @@
 /* Full-screen variant (launch interstitial): fills the viewport. */
 .media-overlay--screen { position: fixed; inset: 0; max-width: none; }
 .media-overlay--screen .media-overlay__art { position: absolute; inset: 0; aspect-ratio: auto; }
-.media-overlay__skip { position: absolute; top: var(--media-skip-top, 20px); right: var(--media-skip-right, 20px); z-index: 1; min-height: 44px; display: flex; align-items: center; padding: 0; border: 0; background: transparent; font: inherit; cursor: pointer; }
-.media-overlay__skip-pill { display: block; height: 28px; padding: 0 12px; border-radius: 14px; background: #ffffff; color: var(--proto-text); font-size: 14px; line-height: 28px; white-space: nowrap; }
+.media-overlay__skip { position: absolute; top: var(--media-skip-top, 12px); right: var(--media-skip-right, 20px); z-index: 1; min-height: 44px; display: flex; align-items: center; padding: 0; border: 0; background: transparent; font: inherit; cursor: pointer; }
+.media-overlay__skip-pill { display: block; height: 28px; padding: 0 10px; border-radius: 14px; background: #ffffff; color: var(--proto-text); font-size: 16px; line-height: 28px; white-space: nowrap; }

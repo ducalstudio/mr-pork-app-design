@@ -13,3 +13,7 @@ Status: **Draft / Provisional** (not an approved Design System component).
 ## Review view (Batch 1)
 
 `component.js` renders the four Reference tabs into a container and switches the selected tab (`MPProto.bottomNav.render / select`). Used only by the Bottom Navigation review Draft (optional `?state=home|shop|rewards|account`). Tapping a tab changes the selected state on that page only; nothing navigates. `bottom-nav--static` is an in-flow variant (unused so far). The Home Draft keeps its static markup and is unchanged.
+
+## Account selected (Batch 2)
+
+`MPProto.bottomNav.render(container, "account")` renders the Reference Navigation with Account selected (used by Account Home). Same measurements and tablet behavior as Home: full-width bar background, four items in a centered container of about 720.

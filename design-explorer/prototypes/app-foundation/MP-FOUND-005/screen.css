@@ -1,6 +1,9 @@
-/* Network Error (Draft). Values observed in the Reference (440 x 956). */
+/* Network Error (Draft). Values measured from the Reference (440 x 956). */
 :root {
-  --shell-gutter: 20px;     /* Reference: button spans x 21 to 419 */
-  --shell-top-inset: 54px;  /* Reference: the tan band ends at y 54 (status-bar region only; nothing drawn) */
+  --shell-gutter: 20px;      /* Reference: button spans x 21 to 419 */
+  --shell-top-inset: 54px;   /* Reference: the tan band ends at y 54 (status-bar region only; nothing drawn) */
+  --shell-nav-zone: 10px;    /* bottom clearance: lifts the centered block about 5px, as in the Reference (icon top y 362) */
+  --state-icon-w: 76px; --state-icon-h: 83px;   /* Reference icon footprint x 182 to 258, y 362 to 445 */
+  --state-title-top: 43px; --state-text-top: 18px; --state-action-top: 38px;
 }
 :focus-visible { outline: 2px solid var(--proto-focus); outline-offset: 2px; }

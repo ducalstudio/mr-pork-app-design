@@ -20,6 +20,8 @@
   --proto-page: #f9f8f3;            /* cream page (Legal, Network Error) */
   --proto-band: #f0eee4;            /* tan header band; what it means is To Verify */
   --proto-neutral-action: #a1a6af;  /* grey action (Logout "Yes") */
+  --proto-chip: #eaeaea;            /* inactive chip / tab fill (Notifications) */
+  --proto-thumb: #f32323;           /* notification thumbnail disc (Reference: solid red placeholder) */
   --proto-scrim: rgba(0, 0, 0, 0.6);/* dimming behind sheets and popups (Reference #666 over white) */
   --proto-font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; /* Inter: provisional Draft font */
 }

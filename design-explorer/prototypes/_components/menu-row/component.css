@@ -1,0 +1,7 @@
+/* Menu row: label + chevron inside a section group. Single column at every tier. Provisional. The chevron is a temporary placeholder. */
+.menu-list { list-style: none; margin: 0; padding: 0; }
+.menu-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; min-height: 44px; padding: 0 20px; border: 0; background: transparent; color: var(--proto-text); font: inherit; font-size: 16px; line-height: 1.3; text-align: left; cursor: pointer; }
+.menu-row:active { background: rgba(0, 0, 0, 0.04); }
+.menu-row__label { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.menu-row__chevron { flex: none; width: 16px; height: 16px; display: flex; color: #c2c5cd; } /* Reference chevron: 4 x 8 at x 390 to 394 */
+.menu-row__chevron svg { width: 100%; height: 100%; }

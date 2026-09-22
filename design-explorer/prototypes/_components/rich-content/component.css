@@ -7,3 +7,8 @@
 .rich-content p { margin: 0 0 12px; }
 .rich-content ul, .rich-content ol { margin: 0 0 12px; padding-inline-start: 24px; }
 .rich-content li { margin: 0 0 4px; }
+
+/* Variant plain (Reference-faithful legal page): 16px text on a 19px line pitch, regular heading. Content lines are SAMPLE (CMS Rule Required). */
+.rich-content--plain { font-size: 16px; line-height: 19px; }
+.rich-content--plain h2 { margin: 0 0 11px; font-size: 16px; font-weight: 400; line-height: 19px; }
+.rich-content--plain .rich-content__lines { margin: 0; }

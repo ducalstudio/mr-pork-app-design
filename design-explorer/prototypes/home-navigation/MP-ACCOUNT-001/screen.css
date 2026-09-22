@@ -1,0 +1,15 @@
+/* Account Home (Draft). Values observed in the Reference (440 x 956). */
+:root {
+  --shell-gutter: 20px;     /* Reference: profile card and headings start at x 20 */
+  --shell-top-inset: 50px;  /* as Home: stands in for the OS status bar / safe area; not drawn */
+  --shell-nav-zone: 90px;   /* Reference bottom navigation height (y 868 to 958) */
+  --nav-inner-max: none;
+}
+:focus-visible { outline: 2px solid var(--proto-focus); outline-offset: 2px; }
+.acct-header { margin-top: 12px; }
+.acct-column { padding-bottom: 24px; }
+/* Reference rhythm: card ends y 293, first heading centre 334, first row centre 377, next heading centre 441. */
+.acct-profile { margin-top: 20px; } /* Reference: card top y 126, header row ends y 106 */
+.acct-group { margin-top: 30px; }
+.acct-profile + .acct-group { margin-top: 29px; }
+.acct-group .menu-list { margin-top: 8px; }

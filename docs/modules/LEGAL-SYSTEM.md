@@ -11,7 +11,7 @@
 - Drafts (Batch 1, committed `458c51e`): Privacy, Terms, Network Error, Launch Interstitial. Prototypes: `prototypes/legal/{_shared,MP-SUPPORT-003,MP-SUPPORT-004}`, `prototypes/app-foundation/{MP-FOUND-005,launch-promotion-interstitial}`.
 - Splash: Reference only (native launch screen; brand assets absent).
 
-**Approved decisions:** column caps about 600 / 720, Legal reading width about 640, tablet panels about 480 (provisional). Legal sample content is approved for layout testing and must stay marked SAMPLE / CMS Rule Required. Interstitial "Skip 3 s" is static (no countdown).
+**Approved decisions:** Legal pages keep the Reference's own filler lines ("xxxxx / x / xx") exactly, marked SAMPLE; column caps about 600 / 720, Legal reading width about 640, tablet panels about 480 (provisional). Legal sample content is approved for layout testing and must stay marked SAMPLE / CMS Rule Required. Interstitial "Skip 3 s" is static (no countdown).
 
 **Major To Verify:** real legal text and source (CMS Rule Required); Membership, refund / return and PDPA policy screens (known review item); Refresh behavior and which failures use the Network Error screen; interstitial timing, skip rule, frequency and portrait crop on tablet (CMS Rule Required); tan header band meaning.
 

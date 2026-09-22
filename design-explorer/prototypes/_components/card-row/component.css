@@ -1,7 +1,7 @@
 /* Horizontal card row with a peeking last card. Card width is constant, so wider viewports show more cards. Provisional. */
 .card-row { display: flex; gap: 20px; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x proximity; scrollbar-width: none; padding: 2px 0; }
 .card-row::-webkit-scrollbar { display: none; }
-.card-row__card { flex: none; width: 150px; scroll-snap-align: start; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.card-row__card { flex: none; width: 150px; scroll-snap-align: start; display: flex; flex-direction: column; gap: 8px; min-width: 0; } /* Reference: label centre to tile top = 16px */
 .card-row__title { display: flex; align-items: center; gap: 6px; font-size: 12px; line-height: 16px; color: var(--proto-text-muted); white-space: nowrap; overflow: hidden; }
 .card-row__glyph { flex: none; width: 14px; height: 14px; border: 1.5px solid currentColor; border-radius: 3px; }
 .card-row__image { height: 100px; border-radius: 4px; overflow: hidden; }

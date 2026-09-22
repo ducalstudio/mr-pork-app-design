@@ -1,5 +1,5 @@
 /* Launch Promotion Interstitial (Draft). Reference: Skip pill 80 x 28 at 20px from the top and right edges. */
-:root { --media-skip-top: 20px; --media-skip-right: 20px; }
+:root { --media-skip-top: 12px; --media-skip-right: 20px; } /* 44px hit area starting 12px down: the 28px pill sits at y 20 to 48, x 339 to 420 as in the Reference */
 body { background: #2d2b31; }
 :focus-visible { outline: 2px solid var(--proto-focus); outline-offset: 2px; }
 .media-overlay--screen .image-placeholder { background: repeating-linear-gradient(45deg, #3a383f 0 8px, #46434b 8px 16px); color: #b9b6bd; }

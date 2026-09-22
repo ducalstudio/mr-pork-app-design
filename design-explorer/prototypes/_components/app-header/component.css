@@ -7,6 +7,10 @@
 .app-header__dot { position: absolute; top: 9px; right: 9px; width: 10px; height: 10px; border-radius: 50%; background: var(--proto-accent); box-shadow: 0 0 0 2px #ffffff; }
 .app-header__dot[hidden] { display: none; }
 /* Variant back-title (Batch 1): back button + page title. Sits inside the app-shell top band. The back glyph lines up with the gutter. */
-.app-header--back-title { justify-content: flex-start; gap: 8px; min-height: 52px; }
-.app-header--back-title .app-header__title { font-size: 20px; }
+.app-header--back-title { justify-content: flex-start; gap: 9px; min-height: 43px; }
+.app-header--back-title .app-header__title { font-size: 20px; font-weight: 400; } /* Reference: Inter-width match at 20 / regular */
 .app-header--back-title .icon-button { margin-inline: -10px; } /* glyph at the gutter, title 8px after the glyph */
+/* Variant account-actions (Batch 2): no title, actions on the right: a text action (language), then icon actions. */
+.app-header--account-actions { justify-content: flex-end; gap: 0; }
+.app-header__text-action { flex: none; min-width: 44px; height: 44px; padding: 0 6px; border: 0; border-radius: 22px; background: transparent; color: var(--proto-text); font: inherit; font-size: 20px; font-weight: 500; cursor: pointer; } /* Reference: EN cap height 15 */
+.app-header__text-action:active { background: rgba(0, 0, 0, 0.08); }

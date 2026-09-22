@@ -1,0 +1,24 @@
+/* Notifications (Draft). Values measured from the Reference (440 x 956). */
+:root {
+  --shell-gutter: 20px;     /* Reference: chips, rows and date start / end at x 20 and x 420 */
+  --shell-top-inset: 63px;  /* Reference: band 0 to 106, title centre y 85 (blank stand-in 63 + 43px header row) */
+  --chips-gap: 20px;        /* Reference: 20px between chips */
+}
+:focus-visible { outline: 2px solid var(--proto-focus); outline-offset: 2px; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.notify-column { flex: 1; display: flex; flex-direction: column; }
+.notify-panel { flex: 1; display: flex; flex-direction: column; }
+.notify-tabs { margin-top: 10px; }  /* visible chips start at y 126 (44px button around a 25px chip) */
+.notification-list { margin-bottom: 24px; }
+/* No "Mark all as read" row (orders-read): the first thumb sits at y 176, 1px below the chip hit area. */
+.notify-panel:not(.notify-panel--markall) .notification-list { margin-top: 1px; }
+
+/* "Mark all as read": right-aligned 10px text, centred at y 177 (Reference), inside a 44px hit area. It overlaps the chips' lower hit padding by about 5px (accepted, logged). */
+.notify-markall { display: flex; justify-content: flex-end; margin-top: -5px; }
+.notify-markall__button { min-height: 44px; margin-right: -6px; padding: 0 6px; border: 0; background: transparent; color: #303030; font: inherit; font-size: 10px; cursor: pointer; }
+.notify-markall__button.is-accent { color: var(--proto-accent); }
+/* With the row above present, the first row's hit area starts where the mark-all hit area ends (y 199), so the thumb lands at y 208. */
+.notify-panel--markall .notification-list > li:first-child .notification-row { padding-top: 9px; }
+/* Empty state: block centre at about y 565 in the Reference. */
+.notify-panel .state-panel--empty { --state-empty-pad: 6px; }

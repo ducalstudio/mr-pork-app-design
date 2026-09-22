@@ -10,4 +10,9 @@ Panel family used for sheets, popups and confirmations: optional head (title + c
 - **Tier behavior (Draft tablet presentation, not in the Reference):** medium / expanded = centered panel, max width 480, 12px radius.
 - **Spacing:** `--sheet-pad`, `--sheet-body-gap`, `--sheet-actions-gap` are set by the screen from Reference measurements.
 - **Accessibility:** `role="dialog"`, `aria-modal="true"`, labelled by its title; focus trapped by `overlay`.
-- **Open (To Verify):** dialog vs bottom-sheet presentation of the Logout capture, dismissal, sheet maximum height and internal scrolling (first needed in Batch 5).
+- **Resolved by decision:** dialog vs bottom-sheet presentation of the Logout capture — kept as a centered floating dialog (`sheet--floating`), not bottom-anchored, based on this component's own name note above (the only sheet with a full, uncropped capture is vertically centered, not bottom-anchored). Its exact on-screen offset is still To Verify (its own capture is cropped).
+- **Open (To Verify):** dismissal, sheet maximum height and internal scrolling (first needed in Batch 5).
+
+## Reference-fidelity pass
+
+Removed `text-wrap: balance` (it changed the Reference wrap). Spacing is now variable-driven so each screen supplies its measured values: `--sheet-pad`, `--sheet-radius` (floating fallback 8), `--sheet-title-size`, `--sheet-text-top`, `--sheet-text-lh`, `--sheet-actions-top`, `--sheet-actions-gap`, `--sheet-heading-max`. Logout (capture 400 x 269, radius about 20) and the Fulfilment Selector use them. Position on screen is E (To Verify) for Logout.

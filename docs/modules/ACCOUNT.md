@@ -12,6 +12,7 @@
 **Approved decisions**
 - Variant A is the primary Draft; Variant B reuses the same prototype (the two Reference PNGs are byte-identical).
 - Menu items are only those visible in the Reference; nothing below "General" is invented.
+- Reference-fidelity pass: personal details in the Reference are replaced by fictional values of similar length (`Kelvin Tan`, `0171120210`); credit / points / rewards are the Reference's own; no review note on the page; stats on the Reference's 80px item grid.
 - Single column at every tier; centered column cap about 600 / 720; bottom bar full-width with a centered inner container; `--shell-gutter` 20px from Reference evidence.
 
 **Major To Verify:** which variant is authoritative; everything below "General"; targets of every menu row; what EN (language) does; whether the profile stats are tappable; edit-profile behavior; maximum name and value lengths (known 375 limit for about 14+ character Credit values); unread-dot rule; Delivery-related items would be Future Scope.
