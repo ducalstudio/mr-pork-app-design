@@ -43,3 +43,10 @@ body { background: #ffffff; box-shadow: none; }
 
 /* Scrollers are keyboard focusable so arrow keys work. */
 .promo-carousel__scroller:focus-visible, .card-row:focus-visible { outline-offset: -2px; }
+
+/* Promotion slide 1 overlay: the Reference's own visible copy (kept so the placeholder reads as a promotion, not a
+   blank wireframe tile). Measured from the Reference (440 x 956): title top ~118px / left ~80px inside the 1:1 frame,
+   pill ~50px below the title's top. Slides 2+ have no Reference evidence and stay unlabelled artwork only. */
+.promo-carousel__art { flex-direction: column; align-items: flex-start; justify-content: flex-start; padding: 118px 16px 0 80px; text-align: left; }
+.promo-carousel__title { display: block; white-space: nowrap; font-size: 28px; font-weight: 800; line-height: 1.1; color: #4a2e26; }
+.promo-carousel__pill { display: inline-block; white-space: nowrap; margin-top: 12px; padding: 6px 14px; border-radius: 20px; background: rgba(60, 40, 35, 0.55); color: #ffffff; font-size: 12px; font-weight: 500; }

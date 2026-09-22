@@ -152,9 +152,14 @@
         slide.setAttribute("aria-roledescription", "slide");
         slide.setAttribute("aria-label", i + " of " + S.slides);
         var ph = document.createElement("div");
-        ph.className = "image-placeholder";
+        ph.className = "image-placeholder promo-carousel__art";
         ph.setAttribute("aria-hidden", "true");
-        ph.textContent = "Promotion image (CMS) " + i;
+        if (i === 1) {
+          // SAMPLE DATA / NOT BUSINESS RULE: the Reference's own visible promo copy for slide 1 (the only slide the
+          // Reference captures), kept so the placeholder still reads as "a promotion", not a blank wireframe tile.
+          // Slides 2+ have no Reference evidence, so they stay unlabelled artwork only.
+          ph.innerHTML = '<span class="promo-carousel__title">Mother’s Day</span><span class="promo-carousel__pill">From 1 May - 31 May 2026</span>';
+        }
         slide.appendChild(ph);
         scroller.appendChild(slide);
       }
