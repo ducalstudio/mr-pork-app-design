@@ -1,0 +1,36 @@
+/* Product Detail (Draft). Measured from the Reference (440 x 956) with tools/lib/png.mjs: hero fills y 0 to 392 (red
+   background, no status bar drawn per Phase A rule); name y 415 (16px / 600); size chips y 548; price y 812 (16px / 700);
+   stepper 92 x 18 at x 325, y 811; action buttons 399 x 55 at y 860. Footer pinned to the bottom via a flex column body
+   (not the Reference's fixed y) so it holds position across presets/content lengths. */
+:root { --shell-gutter: 20px; }
+html, body { height: 100%; }
+body { display: flex; flex-direction: column; background: #ffffff; }
+:focus-visible { outline: 2px solid var(--proto-focus); outline-offset: 2px; }
+
+.pd-hero { position: relative; flex: none; overflow: hidden; background: var(--proto-accent); aspect-ratio: 440 / 392; }
+.pd-back { position: absolute; top: 16px; left: 12px; color: #ffffff; }
+.pd-hero__image { position: absolute; top: 40px; right: 30px; bottom: 0; left: 30px; width: auto; height: auto; } /* width/height: auto so the explicit inset wins over image-placeholder's default 100% x 100% */
+
+.pd-body { flex: 1 1 auto; padding: 0 var(--shell-gutter); }
+.pd-name { margin: 23px 0 0; font-size: 16px; font-weight: 600; color: var(--proto-text); }
+.pd-name-cn { margin: 4px 0 0; font-size: 13px; color: var(--proto-text-muted); }
+.pd-desc { display: flex; align-items: baseline; gap: 6px; margin: 16px 0 0; font-size: 13px; line-height: 1.4; color: var(--proto-text); }
+.pd-desc__text { min-width: 0; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pd-desc--expanded .pd-desc__text { white-space: normal; }
+.pd-desc__more { flex: none; border: 0; background: none; padding: 14px 2px; margin: -14px -2px; font: inherit; font-size: 12px; color: var(--proto-text-muted); text-decoration: underline; cursor: pointer; }
+.pd-section-label { margin: 24px 0 0; font-size: 14px; font-weight: 600; color: var(--proto-text); }
+.pd-sizes { display: flex; gap: 10px; margin-top: 10px; }
+.pd-size-chip { min-height: 44px; padding: 0 18px; border: 1px solid #d7d9dd; border-radius: 8px; background: none; font: inherit; font-size: 13px; color: var(--proto-text); }
+.pd-size-chip[aria-pressed="true"] { border-color: var(--proto-accent); color: var(--proto-accent); background: var(--proto-accent-tint); }
+
+.pd-footer { flex: none; border-top: 1px solid #eee; padding: 14px var(--shell-gutter) 24px; }
+.pd-footer__row { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.pd-price { font-size: 20px; font-weight: 700; color: var(--proto-text); }
+.pd-stepper { display: flex; align-items: center; gap: 14px; }
+.pd-stepper__btn { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: 0; background: none; padding: 0; font-size: 16px; line-height: 1; color: var(--proto-text); }
+.pd-stepper__box { display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; border: 1px solid #d7d9dd; border-radius: 4px; }
+.pd-stepper__box--accent { border-color: var(--proto-accent); background: var(--proto-accent); color: #ffffff; }
+.pd-stepper__value { min-width: 16px; text-align: center; font-size: 15px; color: var(--proto-text); }
+.pd-footer__actions { display: flex; gap: 14px; margin-top: 14px; }
+.pd-footer__actions .button { flex: 1; }
+.pd-add-cart { background: none; border: 1px solid var(--proto-accent); color: var(--proto-accent); }

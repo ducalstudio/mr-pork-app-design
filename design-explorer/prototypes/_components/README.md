@@ -38,3 +38,4 @@ Rules:
 | `legal-footnote` | Batch 3 (Authentication) | bottom disclaimer, pinned via `margin-top: auto` |
 | `voucher-card` | Batch 4 (My Rewards, Voucher Detail) | valid (bordered, CTA); `--spent` (grey, no CTA) |
 | `radio-row` | Batch 5 (Credit: Transaction Type, Select Bank, Top-Up payment method) | label + red radio (real `<input>`) |
+| `store-card` | Batch 6 (Store Selection) | one card, two containers: `--scroll` (map), `--stack` (list); `--selected` |

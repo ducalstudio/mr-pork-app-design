@@ -1,0 +1,38 @@
+/* Your Order — Review (Pickup) (Draft). Band header ("Your Order"). Measured by eye from the Reference (440 x 956), a
+   faster pass than the pixel measurement used in earlier batches, consistent with the Batch 6 speed rule: red "Pick up"
+   pill; icon rows (Outlet Address, Add voucher); Pickup Time with a right-aligned "Select Time" link; a grey waiting-time
+   banner with red accent numbers; Order Summary product row; a divider; Payment Details / Payment Method label rows
+   (several have no adjacent value in the Reference, reproduced as-is); a bottom "Pay RM 39.30" button. */
+:root { --shell-gutter: 20px; --shell-top-inset: 63px; }
+body { background: #ffffff; }
+:focus-visible { outline: 2px solid var(--proto-focus); outline-offset: 2px; }
+.app-shell__body { display: flex; flex-direction: column; }
+
+.order-column { padding-bottom: 24px; }
+.order-fulfilment-pill { display: inline-block; margin-top: 14px; padding: 10px 22px; border-radius: 20px; background: var(--proto-accent); color: #ffffff; font-size: 14px; font-weight: 600; }
+
+.order-row { margin-top: 22px; font-size: 14px; color: var(--proto-text); }
+.order-row--icon { display: flex; align-items: center; gap: 8px; }
+.order-row--icon svg { color: var(--proto-text); flex: none; }
+.order-row--split { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.order-row__label { color: var(--proto-text); }
+.order-row__label--bold { font-weight: 700; font-size: 15px; }
+.order-row__value { color: var(--proto-text-muted); font-size: 13px; }
+.order-row__voucher { display: flex; align-items: center; gap: 8px; }
+.order-link { border: 0; background: none; padding: 12px 4px; margin: -12px -4px; font: inherit; font-size: 13px; color: var(--proto-text); text-decoration: underline; }
+.order-link--muted { color: var(--proto-text-muted); text-decoration: none; }
+
+.order-wait-banner { margin: 10px 0 0; padding: 10px 12px; border-radius: 6px; background: #f0f0f0; font-size: 12px; color: var(--proto-text-muted); }
+.order-wait-banner__accent { color: var(--proto-accent); font-style: normal; }
+
+.order-heading { margin: 26px 0 0; font-size: 16px; font-weight: 700; color: var(--proto-text); }
+.order-product { display: flex; align-items: flex-start; gap: 12px; margin-top: 16px; }
+.order-product__thumb { width: 56px; height: 56px; flex: none; border-radius: 6px; }
+.order-product__body { flex: 1; min-width: 0; }
+.order-product__name { margin: 0; font-size: 14px; font-weight: 600; color: var(--proto-text); }
+.order-product__sub { margin: 4px 0 0; font-size: 11px; color: var(--proto-text-muted); }
+.order-product__price { flex: none; text-align: right; font-size: 13px; color: var(--proto-text); }
+.order-product__qty { display: block; margin-top: 4px; font-size: 11px; color: var(--proto-text-muted); }
+
+.order-divider { margin: 22px 0 0; border: 0; border-top: 1px solid #eee; }
+.order-pay { margin-top: auto; padding: 24px 0; }

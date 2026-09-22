@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Search Results (Draft)</title>
+  <script src="../../../prototype-runtime/tiers.js"></script>
+  <script src="../../../prototype-runtime/protocol.js"></script>
+  <script src="../../../prototype-runtime/client.js"></script>
+  <link rel="stylesheet" href="../../_ui-kit/tokens.css">
+  <link rel="stylesheet" href="../../_ui-kit/reference-roles.css"><!-- Draft-only Reference-observed roles, not approved tokens -->
+  <link rel="stylesheet" href="../../_ui-kit/font-inter.css"><!-- Inter: provisional Draft font (To Verify), not an approved brand font -->
+  <link rel="stylesheet" href="../../_ui-kit/base.css">
+  <link rel="stylesheet" href="../../_components/app-shell/component.css">
+  <link rel="stylesheet" href="../../_components/icon-button/component.css">
+  <link rel="stylesheet" href="../../_components/image-placeholder/component.css">
+  <link rel="stylesheet" href="../../_components/button/component.css">
+  <link rel="stylesheet" href="../../_components/bottom-nav-reference/component.css">
+  <link rel="stylesheet" href="screen.css">
+</head>
+<body>
+  <!--
+    Draft. SAMPLE DATA / NOT BUSINESS RULE: product rows ("MacBook Neo", "512 GB Magic Keyboard with Touch ID",
+    "RM 5,201.30") and the search query ("zpoaaa") are the Reference's own placeholder content, kept verbatim (an
+    obvious CMS mock, not real Mr Pork products — not corrected, per the "reproduce the Reference" rule). The cart
+    total (RM 189.90) does not match the three listed rows: a Reference inconsistency, reproduced as-is, not corrected.
+    TEMPORARY PLACEHOLDER / NOT A SOURCE ASSET: the back / search glyphs, product thumbnails and the four bottom-nav icons.
+  -->
+  <div class="app-shell app-shell--page app-shell--band">
+    <div class="app-shell__top">
+      <div class="app-shell__inset" aria-hidden="true"></div>
+      <div class="app-shell__column">
+        <div class="search-header">
+          <button class="icon-button icon-button--flush-start" type="button" data-destination="previous-screen" data-asset="temporary-placeholder" aria-label="Back">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15.2 7L10 12l5.2 5"/></svg>
+          </button>
+          <div class="search-field">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" data-asset="temporary-placeholder"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35" stroke-linecap="round"/></svg>
+            <input type="text" value="zpoaaa" aria-label="Search products">
+          </div>
+        </div>
+      </div>
+    </div>
+    <main class="app-shell__body" id="main">
+      <ul class="app-shell__column product-list" id="list"></ul>
+      <div class="app-shell__column checkout-row">
+        <span class="checkout-row__total">RM 189.90</span>
+        <button class="button button--primary checkout-row__cta" type="button" data-destination="prototypes/ordering/review-order-pickup/index.html">Check Out</button>
+      </div>
+    </main>
+    <nav class="bottom-nav" aria-label="Primary"><div class="bottom-nav__inner" id="nav"></div></nav>
+  </div>
+  <script src="../../_components/bottom-nav-reference/component.js"></script>
+  <script>
+    (function () {
+      function el(tag, cls, text) { var n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; }
+      var list = document.getElementById("list");
+      for (var i = 0; i < 3; i++) {
+        var li = el("li", "product-row");
+        var thumb = el("div", "product-row__thumb image-placeholder"); thumb.setAttribute("data-asset", "temporary-placeholder"); thumb.setAttribute("aria-hidden", "true");
+        li.appendChild(thumb);
+        var body = el("div", "product-row__body");
+        body.appendChild(el("p", "product-row__name", "MacBook Neo"));
+        body.appendChild(el("p", "product-row__sub", "512 GB Magic Keyboard with Touch ID"));
+        body.appendChild(el("p", "product-row__price", "RM 5,201.30"));
+        li.appendChild(body);
+        var add = el("button", "product-row__add"); add.type = "button"; add.setAttribute("aria-label", "Add to cart"); add.setAttribute("data-destination", "add-to-cart");
+        add.setAttribute("data-asset", "temporary-placeholder");
+        add.innerHTML = '<span class="product-row__add-box"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span>';
+        li.appendChild(add);
+        list.appendChild(li);
+      }
+      MPProto.bottomNav.render(document.getElementById("nav"), "shop");
+    })();
+  </script>
+</body>
+</html>

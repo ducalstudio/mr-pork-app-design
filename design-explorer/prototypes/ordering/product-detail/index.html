@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Product Detail (Draft)</title>
+  <script src="../../../prototype-runtime/tiers.js"></script>
+  <script src="../../../prototype-runtime/protocol.js"></script>
+  <script src="../../../prototype-runtime/client.js"></script>
+  <link rel="stylesheet" href="../../_ui-kit/tokens.css">
+  <link rel="stylesheet" href="../../_ui-kit/reference-roles.css"><!-- Draft-only Reference-observed roles, not approved tokens -->
+  <link rel="stylesheet" href="../../_ui-kit/font-inter.css"><!-- Inter: provisional Draft font (To Verify), not an approved brand font -->
+  <link rel="stylesheet" href="../../_ui-kit/base.css">
+  <link rel="stylesheet" href="../../_components/icon-button/component.css">
+  <link rel="stylesheet" href="../../_components/image-placeholder/component.css">
+  <link rel="stylesheet" href="../../_components/button/component.css">
+  <link rel="stylesheet" href="screen.css">
+</head>
+<body>
+  <!--
+    Draft. TEMPORARY PLACEHOLDER / NOT A SOURCE ASSET: the hero product photo (not cropped from the Reference image) and
+    the back glyph. SAMPLE DATA / NOT BUSINESS RULE: product name ("Pala Segala"), its Chinese label, the long repeated-
+    "a" description (an obvious placeholder string, kept verbatim), size options and price are the Reference's own content.
+    Quantity stepper and Add To Cart / Place the order are Draft-interactive (no cart state persists); nothing navigates.
+  -->
+  <div class="pd-hero">
+    <button class="icon-button icon-button--flush-start pd-back" type="button" data-destination="previous-screen" data-asset="temporary-placeholder" aria-label="Back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15.2 7L10 12l5.2 5"/></svg>
+    </button>
+    <div class="image-placeholder pd-hero__image" data-asset="temporary-placeholder" aria-hidden="true"></div>
+  </div>
+  <main class="pd-body">
+    <h1 class="pd-name">Pala Segala</h1>
+    <p class="pd-name-cn">猪头</p>
+    <p class="pd-desc" id="desc"><span class="pd-desc__text">pig head with alll aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&hellip;</span><button type="button" class="pd-desc__more" id="desc-more">show more</button></p>
+    <p class="pd-section-label">Size</p>
+    <div class="pd-sizes" role="radiogroup" aria-label="Size">
+      <button type="button" class="pd-size-chip" data-size="100g" aria-pressed="true">100 G</button>
+      <button type="button" class="pd-size-chip" data-size="200g" aria-pressed="false">200 G</button>
+    </div>
+  </main>
+  <div class="pd-footer">
+    <div class="pd-footer__row">
+      <span class="pd-price">RM 9.90</span>
+      <div class="pd-stepper">
+        <button type="button" class="pd-stepper__btn" id="qty-minus" aria-label="Decrease quantity"><span class="pd-stepper__box">&minus;</span></button>
+        <span class="pd-stepper__value" id="qty-value">1</span>
+        <button type="button" class="pd-stepper__btn" id="qty-plus" aria-label="Increase quantity"><span class="pd-stepper__box pd-stepper__box--accent">+</span></button>
+      </div>
+    </div>
+    <div class="pd-footer__actions">
+      <button type="button" class="button pd-add-cart" data-destination="add-to-cart">Add To Cart</button>
+      <button type="button" class="button button--primary pd-place-order" data-destination="prototypes/ordering/review-order-pickup/index.html">Place the order</button>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var qty = 1;
+      var qtyEl = document.getElementById("qty-value");
+      document.getElementById("qty-minus").addEventListener("click", function () { qty = Math.max(1, qty - 1); qtyEl.textContent = qty; });
+      document.getElementById("qty-plus").addEventListener("click", function () { qty = qty + 1; qtyEl.textContent = qty; });
+      document.querySelectorAll(".pd-size-chip").forEach(function (chip) {
+        chip.addEventListener("click", function () {
+          document.querySelectorAll(".pd-size-chip").forEach(function (c) { c.setAttribute("aria-pressed", "false"); });
+          chip.setAttribute("aria-pressed", "true");
+        });
+      });
+      document.getElementById("desc-more").addEventListener("click", function () {
+        document.getElementById("desc").classList.toggle("pd-desc--expanded");
+      });
+    })();
+  </script>
+</body>
+</html>

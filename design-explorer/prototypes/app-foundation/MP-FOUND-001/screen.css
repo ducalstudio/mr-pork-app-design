@@ -1,0 +1,8 @@
+/* Splash (Draft). Measured from the Reference (440 x 956) with tools/lib/png.mjs: logo 224 x 196, centered, y 304 to 500;
+   tagline 23px below, centered; version number bottom-left, about 26px from the bottom edge. */
+:root { --shell-gutter: 20px; }
+body { background: #ffffff; }
+.splash-column { text-align: center; }
+.splash-logo { width: 224px; height: 196px; margin: 0 auto; }
+.splash-tagline { margin: 23px 0 0; font-size: 16px; color: var(--proto-text); }
+.splash-version { padding-bottom: 26px; font-size: 12px; color: var(--proto-text-muted); }

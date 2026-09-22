@@ -1,0 +1,27 @@
+/* Search Results (Draft). Tan band header with a back glyph + full-width search field (no separate title row). Product
+   rows: thumbnail, name/sub/price, a small square red add button. Bottom: running total + Check Out, then the Reference
+   bottom navigation (Shop selected). Measured by eye (a faster pass than earlier batches' pixel measurement). */
+:root { --shell-gutter: 20px; --shell-top-inset: 63px; --shell-nav-zone: 90px; --nav-inner-max: none; }
+body { background: #ffffff; }
+:focus-visible { outline: 2px solid var(--proto-focus); outline-offset: 2px; }
+.app-shell__body { display: flex; flex-direction: column; }
+
+.search-header { display: flex; align-items: center; gap: 10px; }
+.search-field { flex: 1; display: flex; align-items: center; gap: 10px; height: 40px; padding: 0 14px; border-radius: 20px; background: #e8e8e8; }
+.search-field svg { color: var(--proto-text-muted); flex: none; }
+.search-field input { flex: 1; min-width: 0; border: 0; background: none; font: inherit; font-size: 15px; color: var(--proto-text); }
+
+.product-list { list-style: none; margin: 20px auto 0; padding: 0; display: flex; flex-direction: column; gap: 20px; }
+.product-row { display: flex; align-items: center; gap: 12px; }
+.product-row__thumb { width: 60px; height: 60px; flex: none; border-radius: 6px; }
+.product-row__body { flex: 1; min-width: 0; }
+.product-row__name { margin: 0; font-size: 15px; font-weight: 600; color: var(--proto-text); }
+.product-row__sub { margin: 4px 0 0; font-size: 12px; color: var(--proto-text-muted); }
+.product-row__price { margin: 4px 0 0; font-size: 13px; font-weight: 600; color: #d9a441; }
+/* 44px hit area (the button itself) around a visually smaller 20px square red box (Reference: a small inline "+" chip). */
+.product-row__add { flex: none; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: 0; background: none; padding: 0; }
+.product-row__add-box { display: flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 4px; background: var(--proto-accent); color: #ffffff; }
+
+.checkout-row { margin-top: auto; padding: 20px 0; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.checkout-row__total { font-size: 18px; font-weight: 600; color: var(--proto-text); }
+.checkout-row__cta { min-width: 130px; }

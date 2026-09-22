@@ -9,7 +9,7 @@
 
 **Status**
 - Drafts (Batch 1, committed `458c51e`): Privacy, Terms, Network Error, Launch Interstitial. Prototypes: `prototypes/legal/{_shared,MP-SUPPORT-003,MP-SUPPORT-004}`, `prototypes/app-foundation/{MP-FOUND-005,launch-promotion-interstitial}`.
-- Splash: Reference only (native launch screen; brand assets absent).
+- Splash: **Draft** (Batch 6, `prototypes/app-foundation/MP-FOUND-001/`, verified 31/31, uncommitted pending checkpoint): centered logo, Reference Chinese tagline kept verbatim, bottom-left version number. Static, no launch timing/transition.
 
 **Approved decisions:** Legal pages keep the Reference's own filler lines ("xxxxx / x / xx") exactly, marked SAMPLE; column caps about 600 / 720, Legal reading width about 640, tablet panels about 480 (provisional). Legal sample content is approved for layout testing and must stay marked SAMPLE / CMS Rule Required. Interstitial "Skip 3 s" is static (no countdown).
 

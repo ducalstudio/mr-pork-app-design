@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Select Your Store (Draft)</title>
+  <script src="../../../prototype-runtime/tiers.js"></script>
+  <script src="../../../prototype-runtime/protocol.js"></script>
+  <script src="../../../prototype-runtime/client.js"></script>
+  <link rel="stylesheet" href="../../_ui-kit/tokens.css">
+  <link rel="stylesheet" href="../../_ui-kit/reference-roles.css"><!-- Draft-only Reference-observed roles, not approved tokens -->
+  <link rel="stylesheet" href="../../_ui-kit/font-inter.css"><!-- Inter: provisional Draft font (To Verify), not an approved brand font -->
+  <link rel="stylesheet" href="../../_ui-kit/base.css">
+  <link rel="stylesheet" href="../../_components/app-shell/component.css">
+  <link rel="stylesheet" href="../../_components/app-header/component.css">
+  <link rel="stylesheet" href="../../_components/icon-button/component.css">
+  <link rel="stylesheet" href="../../_components/image-placeholder/component.css">
+  <link rel="stylesheet" href="../../_components/store-card/component.css">
+  <link rel="stylesheet" href="../../_components/button/component.css">
+  <link rel="stylesheet" href="screen.css">
+</head>
+<body>
+  <!--
+    Draft. ONE prototype, state-driven: ?state=map (default) | list. The Reference titles the same flow "Select Your
+    Store" (map) and "Select Your Outlet" (list) — a Reference inconsistency, reproduced as-is per state, not unified.
+    TEMPORARY PLACEHOLDER / NOT A SOURCE ASSET: the map background (a flat grey fill, not a real map tile / SDK), the
+    location pin, the outlet photos, and the locate-me / search / state-city chevron glyphs.
+    SAMPLE DATA / NOT BUSINESS RULE: outlet name, hours and distance are the Reference's own sample content. The
+    address shown in the Reference looked like real personal address text reused as sample outlet data; sanitized to a
+    fictional address of similar length/format (CLAUDE.md §5), consistent with the Registration form's Draft address.
+    Map rendering, live location and geocoding are Backend Dependency Unknown; the map is a static placeholder.
+  -->
+  <div class="app-shell app-shell--page">
+    <div class="app-shell__top">
+      <div class="app-shell__inset" aria-hidden="true"></div>
+      <div class="app-shell__column">
+        <header class="app-header app-header--back-title">
+          <button class="icon-button icon-button--flush-start" type="button" data-destination="previous-screen" data-asset="temporary-placeholder" aria-label="Back">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15.2 7L10 12l5.2 5"/></svg>
+          </button>
+          <h1 class="app-header__title" id="title">Select Your Store</h1>
+          <button class="icon-button" type="button" data-destination="use-current-location" data-asset="temporary-placeholder" aria-label="Use current location">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="8"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3"/></svg>
+          </button>
+        </header>
+      </div>
+    </div>
+    <div id="map-view" class="store-map">
+      <div class="store-map__pin" aria-hidden="true">
+        <svg viewBox="0 0 24 30" width="32" height="40" fill="var(--proto-accent)" stroke="#ffffff" stroke-width="1.5" data-asset="temporary-placeholder"><path d="M12 1a9 9 0 00-9 9c0 6.5 9 19 9 19s9-12.5 9-19a9 9 0 00-9-9z"/><circle cx="12" cy="10" r="3.2" fill="#ffffff" stroke="none"/></svg>
+      </div>
+      <p class="store-map__hint">We always choose the store closest to you, select another one if you&rsquo;d like</p>
+      <div class="store-cards store-cards--scroll app-shell__column" id="map-cards"></div>
+    </div>
+    <main class="app-shell__body" id="list-view" hidden>
+      <div class="app-shell__column list-column">
+        <div class="list-search">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" data-asset="temporary-placeholder"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35" stroke-linecap="round"/></svg>
+          <input type="text" placeholder="Search for Mr. Pork Outlet" aria-label="Search outlet">
+        </div>
+        <div class="list-filters">
+          <div class="list-filters__field"><span class="list-filters__label">State</span><button type="button" class="list-filters__pill">All States <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" data-asset="temporary-placeholder"><path d="M6 9l6 6 6-6"/></svg></button></div>
+          <div class="list-filters__field"><span class="list-filters__label">City</span><button type="button" class="list-filters__pill">All Cities <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" data-asset="temporary-placeholder"><path d="M6 9l6 6 6-6"/></svg></button></div>
+        </div>
+        <div class="store-cards store-cards--stack" id="list-cards"></div>
+      </div>
+    </main>
+  </div>
+  <script>
+    (function () {
+      var OUTLET = { name: "Jalan Wong King Huo, Sibu", hours: "Open | Close 6:00pm", address: "24, Jalan Selasih 5B, 96000 Sibu, Sarawak", distance: "100.10KM" };
+      var CC_OUTLET = { name: "CC Fresh Sibiyu, Bintulu", hours: "Open | Close 6:00pm", distance: "3.33km" };
+      var JUNCTION_OUTLET = { name: "Junction City, Bintulu", hours: "Closed", distance: "" };
+
+      function el(tag, cls) { var n = document.createElement(tag); if (cls) n.className = cls; return n; }
+      function storeCardMap(o, open) {
+        var c = el("article", "store-card");
+        var photo = el("div", "store-card__photo image-placeholder"); photo.setAttribute("data-asset", "temporary-placeholder"); photo.setAttribute("aria-hidden", "true");
+        c.appendChild(photo);
+        var body = el("div", "store-card__body");
+        var name = el("p", "store-card__name"); name.textContent = o.name; body.appendChild(name);
+        var status = el("p", "store-card__status" + (open ? "" : " store-card__status--closed")); status.textContent = o.hours; body.appendChild(status);
+        var row = el("div", "store-card__row");
+        var dist = el("span", "store-card__distance"); dist.textContent = o.distance; row.appendChild(dist);
+        var link = el("button", "store-card__link"); link.type = "button"; link.textContent = "Get Direction"; link.setAttribute("data-destination", "get-direction"); row.appendChild(link);
+        body.appendChild(row);
+        var btn = el("button", "button button--primary store-card__order"); btn.type = "button"; btn.textContent = "Select This Store"; btn.setAttribute("data-destination", "prototypes/ordering/store-selection/index.html?state=list");
+        body.appendChild(btn);
+        c.appendChild(body);
+        return c;
+      }
+      function storeCardList(o, selected) {
+        var c = el("article", "store-card" + (selected ? " store-card--selected" : ""));
+        var photo = el("div", "store-card__photo image-placeholder"); photo.setAttribute("data-asset", "temporary-placeholder"); photo.setAttribute("aria-hidden", "true");
+        c.appendChild(photo);
+        var body = el("div", "store-card__body");
+        var name = el("p", "store-card__name"); name.textContent = o.name; body.appendChild(name);
+        var status = el("p", "store-card__status"); status.textContent = o.hours; body.appendChild(status);
+        var addr = el("div", "store-card__address");
+        var pin = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        pin.setAttribute("viewBox", "0 0 24 24"); pin.setAttribute("width", "12"); pin.setAttribute("height", "12"); pin.setAttribute("fill", "currentColor"); pin.setAttribute("aria-hidden", "true"); pin.setAttribute("data-asset", "temporary-placeholder");
+        pin.innerHTML = '<path d="M12 2a7 7 0 00-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 00-7-7z"/>';
+        addr.appendChild(pin);
+        var addrText = el("span"); addrText.textContent = o.address; addr.appendChild(addrText);
+        body.appendChild(addr);
+        var row = el("div", "store-card__action-row");
+        var dist = el("span", "store-card__distance"); dist.textContent = o.distance; row.appendChild(dist);
+        var btn = el("button", "button button--primary store-card__order"); btn.type = "button"; btn.textContent = "ORDER"; btn.setAttribute("data-destination", "prototypes/ordering/search-results/index.html");
+        row.appendChild(btn);
+        body.appendChild(row);
+        c.appendChild(body);
+        return c;
+      }
+
+      document.getElementById("map-cards").appendChild(storeCardMap(CC_OUTLET, true));
+      document.getElementById("map-cards").appendChild(storeCardMap(JUNCTION_OUTLET, false));
+      document.getElementById("list-cards").appendChild(storeCardList(OUTLET, true));
+      document.getElementById("list-cards").appendChild(storeCardList(OUTLET, false));
+
+      var q = new URLSearchParams(location.search);
+      var state = q.get("state") === "list" ? "list" : "map";
+      document.documentElement.setAttribute("data-state", state);
+      document.getElementById("title").textContent = state === "list" ? "Select Your Outlet" : "Select Your Store";
+      // Not the `hidden` attribute alone: .app-shell__body's own `display: flex` (author CSS) beats the UA [hidden]
+      // rule on a same-specificity tie, so it would leak through. Set display explicitly instead.
+      var mapView = document.getElementById("map-view"), listView = document.getElementById("list-view");
+      mapView.hidden = state !== "map"; mapView.style.display = state === "map" ? "" : "none";
+      listView.hidden = state !== "list"; listView.style.display = state === "list" ? "" : "none";
+    })();
+  </script>
+</body>
+</html>

@@ -24,6 +24,20 @@ export default defineModule({
           secondaryActions: [],
           notes: [],
           devices: devices({ mobile: phase1("app-foundation/MP-FOUND-001_splash_reference.png") })
+        },
+        draft: {
+          status: "Draft",
+          prototype: "prototypes/app-foundation/MP-FOUND-001/index.html",
+          description: "Responsive Draft of the brand splash: centered logo, tagline, bottom-left version number.",
+          primaryAction: "None (automatic)",
+          secondaryActions: [],
+          notes: [
+            "Measured from the Reference (440 x 956) with tools/lib/png.mjs: logo 224 x 196 centered; tagline 23px below; version number bottom-left, about 26px from the bottom edge.",
+            "SAMPLE DATA / NOT BUSINESS RULE: the tagline is the Reference's own Chinese copy, kept verbatim (not translated or replaced); the version string '1.0.0.0' is the Reference's own sample.",
+            "TEMPORARY PLACEHOLDER / NOT A SOURCE ASSET: the brand mark. Static: no launch timing, transition or animation (Backend: Session / configuration decides the next screen, To Verify, unchanged from the Reference note).",
+            "Draft only. Not Approved or Master, and not a handoff source (no handoff.json). Migration Batch 6, provisional. Built from Shared Prototype Components under prototypes/_components/.",
+            "Inter is used as a PROVISIONAL Draft font (Draft / Provisional / Typeface To Verify)."
+          ]
         }
       }
     }),

@@ -1,0 +1,29 @@
+/* store-card. Provisional. Store Selection (map + list): photo, name, open status, address / distance, Order action.
+   Used two ways from the same markup: horizontally (map view, card-row-style peek scroll) and stacked (list view, with
+   a --selected variant, pink fill + border, for the first / nearest result). */
+.store-card { flex: none; display: flex; flex-direction: column; border: 1px solid var(--proto-accent-border); border-radius: 12px; background: var(--proto-bg); overflow: hidden; }
+.store-card__photo { height: 100px; }
+.store-card__body { padding: 12px 14px 14px; }
+.store-card__name { margin: 0; font-size: 15px; font-weight: 700; color: var(--proto-text); }
+.store-card__status { display: flex; align-items: center; gap: 6px; margin: 4px 0 0; font-size: 12px; color: #1a9a4a; }
+.store-card__status--closed { color: var(--proto-text-muted); }
+.store-card__row { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 8px; }
+.store-card__address { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 12px; color: var(--proto-text-muted); }
+.store-card__address svg { flex: none; color: var(--proto-accent); }
+.store-card__distance { flex: none; font-size: 12px; color: var(--proto-accent); font-weight: 600; }
+.store-card__action-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 10px; }
+.store-card__link { font-size: 12px; text-decoration: underline; color: var(--proto-text); background: none; border: 0; padding: 12px 4px; margin: -12px -4px; font: inherit; } /* padding + matching negative margin expands the tap target to >= 44px without moving the visible text */
+.store-card__order { min-height: 36px; padding: 0 20px; font-size: 12px; }
+
+.store-card--selected { background: var(--proto-accent-tint); }
+
+/* Map layout: horizontal peek scroll, cards fixed width. */
+.store-cards--scroll { display: flex; gap: 16px; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x proximity; scrollbar-width: none; }
+.store-cards--scroll::-webkit-scrollbar { display: none; }
+.store-cards--scroll .store-card { width: 320px; scroll-snap-align: start; }
+
+/* List layout: stacked, full width, more compact photo. */
+.store-cards--stack { display: flex; flex-direction: column; gap: 16px; }
+.store-cards--stack .store-card { flex-direction: row; }
+.store-cards--stack .store-card__photo { width: 64px; height: 64px; flex: none; margin: 14px 0 14px 14px; border-radius: 6px; }
+.store-cards--stack .store-card__body { flex: 1; min-width: 0; padding: 14px; }
