@@ -1,0 +1,15 @@
+/* voucher-card. Provisional. My Rewards list card: title, subtitle, valid-until, terms note, optional CTA button.
+   Default (valid): white fill, pink border (--proto-accent-border), red "Use Now" button. --spent: grey fill, no border,
+   no CTA (invalid / used tabs — the Reference removes the button and mutes every text colour). */
+.voucher-card { position: relative; padding: 20px 22px; border-radius: 12px; background: var(--proto-bg); border: 1px solid var(--proto-accent-border); }
+.voucher-card__title { margin: 0; font-size: 24px; font-weight: 800; color: var(--proto-accent); line-height: 1.2; }
+.voucher-card__subtitle { margin: 6px 0 0; font-size: 11px; color: var(--proto-text); }
+.voucher-card__meta { margin: 22px 0 0; font-size: 10px; color: var(--proto-text-muted); }
+.voucher-card__terms { margin: 6px 0 0; font-size: 10px; color: var(--proto-text-muted); }
+.voucher-card__cta { position: absolute; right: 22px; bottom: 20px; min-height: 44px; padding: 0 20px; font-size: 13px; } /* Reference measures 35px tall; raised to the 44px touch-target minimum, a small and visually negligible increase inside the 174px card */
+
+.voucher-card--spent { background: var(--proto-chip); border-color: transparent; }
+.voucher-card--spent .voucher-card__title { color: #9aa0ab; }
+.voucher-card--spent .voucher-card__subtitle,
+.voucher-card--spent .voucher-card__meta,
+.voucher-card--spent .voucher-card__terms { color: #b0b5bd; }

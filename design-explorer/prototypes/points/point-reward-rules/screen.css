@@ -1,0 +1,13 @@
+/* Point Reward Rules (Draft). Partial sheet capture (400 x 618 content): sheet 400 wide (--sheet-margin: 20, same
+   technique as Logout / redemption). Title 18px / 700, close glyph 14 x 14 muted. Body content re-set from the Reference's
+   own placeholder text at a compact 14px size (the capture's dense list reads smaller than the 16px rich-content default). */
+:root { --overlay-align: center; --sheet-margin: 20px; --sheet-radius: 12px; --sheet-pad: 24px 22px 30px; }
+body { background: #ffffff; }
+:focus-visible { outline: 2px solid var(--proto-focus); outline-offset: 2px; }
+.sheet__head .icon-button { color: var(--proto-text-muted); }
+.rules-sheet { max-height: calc(100vh - 80px); overflow-y: auto; }
+.rules-body { margin-top: 18px; font-size: 14px; line-height: 1.4; }
+.rules-body h3 { margin: 20px 0 4px; font-size: 14px; font-weight: 600; }
+.rules-body h3:first-child { margin-top: 0; }
+.rules-body p { margin: 0 0 8px; color: var(--proto-text); }
+.rules-body ul { margin: 0 0 8px; }

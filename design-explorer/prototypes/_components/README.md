@@ -36,3 +36,4 @@ Rules:
 | `otp-input` | Batch 3 (Login / Registration OTP) | 6-box code entry, real inputs, auto-advance |
 | `link-button` | Batch 3 (Authentication) | blue underlined link; `--muted` plain text action |
 | `legal-footnote` | Batch 3 (Authentication) | bottom disclaimer, pinned via `margin-top: auto` |
+| `voucher-card` | Batch 4 (My Rewards, Voucher Detail) | valid (bordered, CTA); `--spent` (grey, no CTA) |

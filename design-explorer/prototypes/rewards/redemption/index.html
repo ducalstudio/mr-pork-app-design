@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reward Redemption (Draft)</title>
+  <script src="../../../prototype-runtime/tiers.js"></script>
+  <script src="../../../prototype-runtime/protocol.js"></script>
+  <script src="../../../prototype-runtime/client.js"></script>
+  <link rel="stylesheet" href="../../_ui-kit/tokens.css">
+  <link rel="stylesheet" href="../../_ui-kit/reference-roles.css"><!-- Draft-only Reference-observed roles, not approved tokens -->
+  <link rel="stylesheet" href="../../_ui-kit/font-inter.css"><!-- Inter: provisional Draft font (To Verify), not an approved brand font -->
+  <link rel="stylesheet" href="../../_ui-kit/base.css">
+  <link rel="stylesheet" href="../../_components/overlay/component.css">
+  <link rel="stylesheet" href="../../_components/bottom-sheet/component.css">
+  <link rel="stylesheet" href="../../_components/icon-button/component.css">
+  <link rel="stylesheet" href="../../_components/image-placeholder/component.css">
+  <link rel="stylesheet" href="screen.css">
+</head>
+<body>
+  <!--
+    Draft. ONE prototype, state-driven: ?state=code (My Reward / QR, MP-REWARD partial capture) | success | failed. All
+    three Reference captures are partial (400px wide sheets, no full-screen position evidence) — same situation as the
+    Logout confirmation: kept as a centered floating dialog (not bottom-anchored), following the same Fulfilment Selector
+    precedent (see bottom-sheet/spec.md), dimmed over the Voucher Detail Draft (the screen "Use Now" is reached from).
+    SAMPLE DATA / NOT BUSINESS RULE: the "5 minutes" countdown and the 6-digit code are the Reference's own sample values.
+    TEMPORARY PLACEHOLDER / NOT A SOURCE ASSET: the QR code graphic (a functional QR is not fabricated) and the close glyph.
+  -->
+  <iframe class="overlay__underlay" src="../MP-REWARD-006/index.html" title="Voucher Detail (Draft), dimmed" tabindex="-1" aria-hidden="true" inert sandbox="allow-scripts"></iframe>
+  <div class="overlay" id="overlay">
+    <div class="overlay__scrim"></div>
+    <div class="overlay__layer">
+      <section class="sheet sheet--floating redemption-sheet" role="dialog" aria-modal="true" aria-labelledby="rd-title" tabindex="-1">
+        <div class="sheet__head">
+          <h2 class="sheet__title" id="rd-title">My Reward</h2>
+          <button class="icon-button icon-button--flush-end" type="button" data-dismiss data-asset="temporary-placeholder" aria-label="Close">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
+          </button>
+        </div>
+        <div id="rd-body"></div>
+      </section>
+    </div>
+  </div>
+  <script src="../../_components/overlay/component.js"></script>
+  <script>
+    (function () {
+      var q = new URLSearchParams(location.search);
+      var state = ["code", "success", "failed"].indexOf(q.get("state")) >= 0 ? q.get("state") : "code";
+      document.documentElement.setAttribute("data-state", state);
+      var title = document.getElementById("rd-title"), body = document.getElementById("rd-body");
+      function el(tag, cls, text) { var n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; }
+      if (state === "code") {
+        title.textContent = "My Reward";
+        body.appendChild(el("p", "redemption-timer", "5 minutes"));
+        var qr = el("div", "image-placeholder image-placeholder--square redemption-qr");
+        qr.setAttribute("data-asset", "temporary-placeholder"); qr.setAttribute("aria-hidden", "true");
+        body.appendChild(qr);
+        body.appendChild(el("p", "redemption-code", "312796"));
+        body.appendChild(el("p", "redemption-scan-label", "Scan QR Code"));
+      } else if (state === "success") {
+        title.textContent = "Successful";
+        body.appendChild(el("p", "redemption-message", "You have successfully redeem"));
+      } else {
+        title.textContent = "Failed";
+        body.appendChild(el("p", "redemption-message", "Invalid code or used."));
+      }
+      document.title = title.textContent + " — Reward Redemption (Draft)";
+      MPProto.overlay.init(document.getElementById("overlay"), { dismissible: true });
+    })();
+  </script>
+</body>
+</html>

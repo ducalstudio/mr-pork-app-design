@@ -3,6 +3,6 @@
    text, not blue links). */
 /* padding + a matching negative margin expands the tap target to >= 44px tall without moving the visible text (the Reference
    text position is unaffected; the extra hit area is invisible, same technique as the Notifications chip fix). */
-.link-button { display: inline; padding: 14px 2px; margin: -14px -2px; border: 0; background: none; font: inherit; font-size: inherit; color: var(--proto-link); text-decoration: underline; cursor: pointer; }
+.link-button { display: inline-block; padding: 14px 6px; margin: -14px -6px; border: 0; background: none; font: inherit; font-size: inherit; color: var(--proto-link); text-decoration: underline; cursor: pointer; }
 .link-button--muted { color: var(--proto-text-muted); text-decoration: none; }
 .link-button:focus-visible { outline: 2px solid var(--proto-focus); outline-offset: 2px; }

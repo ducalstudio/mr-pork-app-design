@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Point Reward Detail (Draft)</title>
+  <script src="../../../prototype-runtime/tiers.js"></script>
+  <script src="../../../prototype-runtime/protocol.js"></script>
+  <script src="../../../prototype-runtime/client.js"></script>
+  <link rel="stylesheet" href="../../_ui-kit/tokens.css">
+  <link rel="stylesheet" href="../../_ui-kit/reference-roles.css"><!-- Draft-only Reference-observed roles, not approved tokens -->
+  <link rel="stylesheet" href="../../_ui-kit/font-inter.css"><!-- Inter: provisional Draft font (To Verify), not an approved brand font -->
+  <link rel="stylesheet" href="../../_ui-kit/base.css">
+  <link rel="stylesheet" href="../../_components/app-shell/component.css">
+  <link rel="stylesheet" href="../../_components/app-header/component.css">
+  <link rel="stylesheet" href="../../_components/icon-button/component.css">
+  <link rel="stylesheet" href="../../_components/button/component.css">
+  <link rel="stylesheet" href="../../_components/rich-content/component.css">
+  <link rel="stylesheet" href="screen.css">
+</head>
+<body>
+  <!--
+    Draft. ONE prototype, state-driven: ?state=redeemable (red "Redeem Now") | insufficient (grey "Insufficient Points",
+    disabled-looking). Both Reference captures are structurally identical except the bottom button.
+    SAMPLE DATA / NOT BUSINESS RULE: reward copy and Terms & Conditions are the Reference's own placeholder content.
+    TEMPORARY PLACEHOLDER / NOT A SOURCE ASSET: the back glyph. The "MR.PORK" wordmark on the card is re-set as text
+    (rotated), not cropped from the Reference image.
+  -->
+  <div class="app-shell app-shell--page app-shell--band">
+    <div class="app-shell__top">
+      <div class="app-shell__inset" aria-hidden="true"></div>
+      <div class="app-shell__column">
+        <header class="app-header app-header--back-title">
+          <button class="icon-button icon-button--flush-start" type="button" data-destination="previous-screen" data-asset="temporary-placeholder" aria-label="Back">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15.2 7L10 12l5.2 5"/></svg>
+          </button>
+          <h1 class="app-header__title">My Rewards</h1>
+        </header>
+      </div>
+    </div>
+    <main class="app-shell__body" id="main">
+      <div class="app-shell__column point-reward-column">
+        <article class="point-reward-card">
+          <span class="point-reward-card__currency">RM</span>
+          <span class="point-reward-card__amount">3</span>
+          <span class="point-reward-card__off">OFF</span>
+          <span class="point-reward-card__brand" aria-hidden="true">MR.PORK</span>
+        </article>
+        <p class="point-reward-title">RM3 OFF</p>
+        <p class="point-reward-meta">Redemption Limit 99999</p>
+        <p class="point-reward-meta">Redemption Points Required: 300</p>
+        <div class="rich-content point-reward-terms">
+          <h3>Details</h3>
+          <p class="point-reward-terms__label">Terms &amp; Conditions:</p>
+          <ol>
+            <li>Valid for 30 days upon receiving.</li>
+            <li>Applicable for single transaction and minimum spend of RM 15 is required.</li>
+            <li>Not aplll</li>
+            <li>Payment must be made via MR.PORK Mobile App.</li>
+            <li>Mr. Pork reserves the right to amend the terms and conditions without prior notice.</li>
+          </ol>
+        </div>
+      </div>
+      <div class="app-shell__column point-reward-action">
+        <button class="button button--primary button--block" type="button" id="pr-action" data-destination="redeem-point-reward">Redeem Now</button>
+      </div>
+    </main>
+  </div>
+  <script>
+    (function () {
+      var q = new URLSearchParams(location.search);
+      var state = q.get("state") === "insufficient" ? "insufficient" : "redeemable";
+      document.documentElement.setAttribute("data-state", state);
+      var btn = document.getElementById("pr-action");
+      if (state === "insufficient") {
+        btn.textContent = "Insufficient Points";
+        btn.className = "button button--neutral button--block";
+        btn.setAttribute("aria-disabled", "true"); // Reference: "disabled-looking", not a real disabled control (matches button --pale elsewhere)
+      }
+    })();
+  </script>
+</body>
+</html>

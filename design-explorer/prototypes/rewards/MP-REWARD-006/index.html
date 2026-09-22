@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Voucher Detail (Draft)</title>
+  <script src="../../../prototype-runtime/tiers.js"></script>
+  <script src="../../../prototype-runtime/protocol.js"></script>
+  <script src="../../../prototype-runtime/client.js"></script>
+  <link rel="stylesheet" href="../../_ui-kit/tokens.css">
+  <link rel="stylesheet" href="../../_ui-kit/reference-roles.css"><!-- Draft-only Reference-observed roles, not approved tokens -->
+  <link rel="stylesheet" href="../../_ui-kit/font-inter.css"><!-- Inter: provisional Draft font (To Verify), not an approved brand font -->
+  <link rel="stylesheet" href="../../_ui-kit/base.css">
+  <link rel="stylesheet" href="../../_components/app-shell/component.css">
+  <link rel="stylesheet" href="../../_components/app-header/component.css">
+  <link rel="stylesheet" href="../../_components/icon-button/component.css">
+  <link rel="stylesheet" href="../../_components/voucher-card/component.css">
+  <link rel="stylesheet" href="../../_components/button/component.css">
+  <link rel="stylesheet" href="../../_components/rich-content/component.css">
+  <link rel="stylesheet" href="screen.css">
+</head>
+<body>
+  <!--
+    Draft. SAMPLE DATA / NOT BUSINESS RULE: voucher copy and the Terms & Conditions list are the Reference's own
+    placeholder content, kept verbatim (including the trailing "with ....." the Reference's own capture cuts off at).
+    TEMPORARY PLACEHOLDER / NOT A SOURCE ASSET: the back glyph. "Use Now" opens the redemption sheet Draft; nothing else navigates.
+  -->
+  <div class="app-shell app-shell--page">
+    <div class="app-shell__top">
+      <div class="app-shell__inset" aria-hidden="true"></div>
+      <div class="app-shell__column">
+        <header class="app-header app-header--back-title">
+          <button class="icon-button icon-button--flush-start" type="button" data-destination="previous-screen" data-asset="temporary-placeholder" aria-label="Back">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15.2 7L10 12l5.2 5"/></svg>
+          </button>
+          <h1 class="app-header__title">My Rewards</h1>
+        </header>
+      </div>
+    </div>
+    <main class="app-shell__body" id="main">
+      <div class="app-shell__column voucher-detail-column">
+        <article class="voucher-card">
+          <h2 class="voucher-card__title">20% OFF</h2>
+          <p class="voucher-card__subtitle">Enjoy 20% Off on Wed</p>
+          <p class="voucher-card__meta">Valid Until 31/12/2026 23:59</p>
+          <p class="voucher-card__terms">Terms &amp; Conditions applied</p>
+        </article>
+        <dl class="voucher-detail-rows">
+          <div class="voucher-detail-row"><dt>Validity</dt><dd>03/04/2026 00:01</dd></div>
+          <div class="voucher-detail-row"><dt>Min. Spend</dt><dd>RM 10</dd></div>
+          <div class="voucher-detail-row"><dt>Delivery Method</dt><dd>Pick Up</dd></div>
+        </dl>
+        <div class="rich-content voucher-detail-terms">
+          <h3>Terms and Conditions</h3>
+          <ol>
+            <li>Mr. Pork reserves the right to amend/ cancel the promotion at any time.</li>
+            <li>Payment must be made via MR.PORK Mobile App.</li>
+            <li>Each User is limited to one (1) redemption throughout the Promotion period.</li>
+            <li>This Voucher Code is valid for Mr. Pork outlets, except &hellip;..</li>
+            <li>This Voucher Code is not applicable with any other ongoing promotions, discounts, vouchers, or membership privileges.</li>
+            <li>This Voucher Code is not exchangeable or replaceable for cash.</li>
+            <li>MR.Pork shall be entitled to withhold any benefits under the services rendered, with &hellip;</li>
+          </ol>
+        </div>
+      </div>
+      <div class="app-shell__column voucher-detail-action">
+        <button class="button button--primary button--block" type="button" data-destination="prototypes/rewards/redemption/index.html?state=code">Use Now</button>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

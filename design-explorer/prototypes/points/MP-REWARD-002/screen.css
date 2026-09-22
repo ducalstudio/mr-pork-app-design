@@ -1,0 +1,25 @@
+/* Point Reward Detail (Draft: redeemable / insufficient). Measured from both Reference captures (440 x 956, identical
+   except the bottom button) with tools/lib/png.mjs: band header 106 total (63 + 43); card 400 x 274 at y 126, white fill,
+   pink border, radius ~12; "RM" 49 x 28 at y 186, "3" 41 x 56 at y 255 (33px gap), "OFF" 67 x 28 at y 325 (14px gap);
+   "MR.PORK" rotated 90deg, right-aligned in the card; title/meta rows below the card on an about 20 to 27px pitch;
+   "Details" + Terms & Conditions list; action button 400 x 46, pinned to the bottom via margin-top: auto. */
+:root { --shell-gutter: 20px; --shell-top-inset: 63px; }
+body { background: #ffffff; }
+:focus-visible { outline: 2px solid var(--proto-focus); outline-offset: 2px; }
+.app-shell__body { display: flex; flex-direction: column; }
+
+.point-reward-column { margin-top: 20px; }
+.point-reward-card { position: relative; display: block; height: 274px; padding: 34px 22px; border-radius: 12px; background: var(--proto-bg); border: 1px solid var(--proto-accent-border); }
+.point-reward-card__currency { display: block; font-size: 22px; font-weight: 700; color: var(--proto-text); }
+.point-reward-card__amount { display: block; margin-top: 12px; font-size: 48px; font-weight: 800; line-height: 1; color: var(--proto-text); }
+.point-reward-card__off { display: block; margin-top: 8px; font-size: 22px; font-weight: 700; color: var(--proto-text); }
+.point-reward-card__brand { position: absolute; right: 30px; top: 50%; font-size: 20px; font-weight: 700; letter-spacing: 0.08em; color: var(--proto-text); writing-mode: vertical-rl; transform: translateY(-50%) rotate(180deg); }
+
+.point-reward-title { margin: 32px 0 0; font-size: 14px; font-weight: 600; color: var(--proto-text); }
+.point-reward-meta { margin: 8px 0 0; font-size: 10px; color: var(--proto-text); }
+.point-reward-terms { margin-top: 26px; font-size: 12px; line-height: 1.5; }
+.point-reward-terms h3 { margin: 0 0 8px; font-size: 16px; font-weight: 500; color: var(--proto-text); }
+.point-reward-terms__label { margin: 0 0 4px; color: var(--proto-text); }
+.point-reward-terms li { color: var(--proto-text); }
+.point-reward-action { margin-top: auto; padding: 24px 0; }
+.point-reward-action .button[aria-disabled="true"] { opacity: 1; } /* Reference: solid grey, not dimmed — "disabled-looking", not a real disabled state */

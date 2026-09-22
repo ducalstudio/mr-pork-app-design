@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Rewards (Draft)</title>
+  <script src="../../../prototype-runtime/tiers.js"></script>
+  <script src="../../../prototype-runtime/protocol.js"></script>
+  <script src="../../../prototype-runtime/client.js"></script>
+  <link rel="stylesheet" href="../../_ui-kit/tokens.css">
+  <link rel="stylesheet" href="../../_ui-kit/reference-roles.css"><!-- Draft-only Reference-observed roles, not approved tokens -->
+  <link rel="stylesheet" href="../../_ui-kit/font-inter.css"><!-- Inter: provisional Draft font (To Verify), not an approved brand font -->
+  <link rel="stylesheet" href="../../_ui-kit/base.css">
+  <link rel="stylesheet" href="../../_components/app-shell/component.css">
+  <link rel="stylesheet" href="../../_components/app-header/component.css">
+  <link rel="stylesheet" href="../../_components/icon-button/component.css">
+  <link rel="stylesheet" href="../../_components/chip/component.css">
+  <link rel="stylesheet" href="../../_components/button/component.css">
+  <link rel="stylesheet" href="../../_components/voucher-card/component.css">
+  <link rel="stylesheet" href="../../_components/link-button/component.css">
+  <link rel="stylesheet" href="../../_components/state-panel/component.css">
+  <link rel="stylesheet" href="../../_components/bottom-nav-reference/component.css">
+  <link rel="stylesheet" href="screen.css">
+</head>
+<body>
+  <!--
+    Draft. ONE prototype, state-driven: ?state=<tab>-<mode> (valid | invalid | used) x (content | empty).
+    SAMPLE DATA / NOT BUSINESS RULE (states/samples.js): the Reference's own placeholder voucher copy, kept verbatim.
+    Valid tab only: "Add coupon or voucher" promo-code field and each card's border + red "Use Now" CTA. Invalid / Used
+    cards are grey, borderless, no CTA (the Reference removes the action rather than disabling it).
+    TEMPORARY PLACEHOLDER / NOT A SOURCE ASSET: the back glyph and the promo-code scan icon.
+    "Claim" / "Use Now" are recorded destinations only; nothing navigates except "Use Now", which opens the redemption
+    sheet Draft.
+  -->
+  <div class="app-shell app-shell--page">
+    <div class="app-shell__top">
+      <div class="app-shell__inset" aria-hidden="true"></div>
+      <div class="app-shell__column">
+        <header class="app-header app-header--back-title">
+          <button class="icon-button icon-button--flush-start" type="button" data-destination="previous-screen" data-asset="temporary-placeholder" aria-label="Back">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15.2 7L10 12l5.2 5"/></svg>
+          </button>
+          <h1 class="app-header__title">My Rewards</h1>
+        </header>
+      </div>
+    </div>
+    <main class="app-shell__body" id="main">
+      <div class="app-shell__column rewards-column">
+        <div class="chips rewards-tabs" id="tabs" role="tablist" aria-label="Voucher status"></div>
+        <div id="panel" role="tabpanel"></div>
+      </div>
+    </main>
+    <nav class="bottom-nav" aria-label="Primary"><div class="bottom-nav__inner" id="nav"></div></nav>
+  </div>
+  <script src="../../_components/chip/component.js"></script>
+  <script src="../../_components/bottom-nav-reference/component.js"></script>
+  <script src="states/samples.js"></script>
+  <script>
+    (function () {
+      var D = window.REWARDS_SAMPLES, P = window.MPProto;
+      var q = new URLSearchParams(location.search);
+      var st = (q.get("state") || "valid-content").split("-");
+      var tab = D.tabs.some(function (t) { return t.key === st[0]; }) ? st[0] : "valid";
+      var mode = st[1] === "empty" ? "empty" : "content";
+      var tabsEl = document.getElementById("tabs"), panel = document.getElementById("panel");
+
+      function el(tag, cls, text) { var n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; }
+
+      function renderTabs() {
+        tabsEl.innerHTML = "";
+        D.tabs.forEach(function (t) {
+          var b = el("button", "chip");
+          b.type = "button"; b.id = "tab-" + t.key; b.setAttribute("role", "tab");
+          b.setAttribute("data-key", t.key); b.setAttribute("aria-controls", "panel");
+          b.setAttribute("aria-selected", t.key === tab ? "true" : "false");
+          b.tabIndex = t.key === tab ? 0 : -1;
+          b.appendChild(el("span", "chip__label", t.label));
+          tabsEl.appendChild(b);
+        });
+      }
+
+      function renderPanel() {
+        document.documentElement.setAttribute("data-state", tab + "-" + mode);
+        panel.setAttribute("aria-labelledby", "tab-" + tab);
+        panel.innerHTML = "";
+        if (tab === "valid") {
+          var claim = el("div", "rewards-claim");
+          claim.appendChild(el("p", "rewards-claim__label", "Add coupon or voucher"));
+          var field = el("div", "rewards-promo-field");
+          var icon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+          icon.setAttribute("viewBox", "0 0 24 24"); icon.setAttribute("aria-hidden", "true"); icon.setAttribute("data-asset", "temporary-placeholder");
+          icon.innerHTML = '<path d="M4 8V5a1 1 0 011-1h3M20 8V5a1 1 0 00-1-1h-3M4 16v3a1 1 0 001 1h3M20 16v3a1 1 0 01-1 1h-3M9 12h6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>';
+          field.appendChild(icon);
+          var input = document.createElement("input");
+          input.type = "text"; input.placeholder = "Enter promo code here"; input.className = "rewards-promo-field__input"; input.setAttribute("aria-label", "Promo code");
+          field.appendChild(input);
+          var claimBtn = el("button", "link-button link-button--muted rewards-promo-field__claim", "Claim");
+          claimBtn.type = "button"; claimBtn.setAttribute("data-destination", "claim-promo-code");
+          field.appendChild(claimBtn);
+          claim.appendChild(field);
+          panel.appendChild(claim);
+        }
+        panel.appendChild(el("p", "rewards-coupon-label", "Coupon or Voucher"));
+        if (mode === "empty") {
+          var s = el("section", "state-panel state-panel--empty rewards-empty");
+          s.appendChild(el("p", "state-panel__title", D.emptyTitle));
+          s.appendChild(el("p", "state-panel__text", D.emptyText));
+          panel.appendChild(s);
+          return;
+        }
+        var list = el("div", "rewards-list");
+        var count = D.counts[tab] || 1;
+        for (var i = 0; i < count; i++) {
+          var card = el("article", "voucher-card" + (tab === "valid" ? "" : " voucher-card--spent"));
+          card.appendChild(el("h2", "voucher-card__title", D.card.title));
+          card.appendChild(el("p", "voucher-card__subtitle", D.card.subtitle));
+          card.appendChild(el("p", "voucher-card__meta", D.card.meta));
+          card.appendChild(el("p", "voucher-card__terms", D.card.terms));
+          if (tab === "valid") {
+            var use = el("button", "button button--primary voucher-card__cta", "Use Now");
+            use.type = "button"; use.setAttribute("data-destination", "prototypes/rewards/redemption/index.html?state=code");
+            card.appendChild(use);
+          }
+          list.appendChild(card);
+        }
+        panel.appendChild(list);
+        panel.appendChild(el("p", "rewards-end", "- THE END -"));
+      }
+
+      function select(key) {
+        tab = key; renderTabs(); renderPanel();
+        document.getElementById("tab-" + key).focus();
+      }
+
+      tabsEl.addEventListener("click", function (e) {
+        var b = e.target.closest(".chip"); if (!b) return; select(b.getAttribute("data-key"));
+      });
+      tabsEl.addEventListener("keydown", function (e) {
+        var keys = D.tabs.map(function (t) { return t.key; }); var i = keys.indexOf(tab);
+        if (e.key === "ArrowRight") { select(keys[(i + 1) % keys.length]); e.preventDefault(); }
+        else if (e.key === "ArrowLeft") { select(keys[(i - 1 + keys.length) % keys.length]); e.preventDefault(); }
+        else if (e.key === "Home") { select(keys[0]); e.preventDefault(); }
+        else if (e.key === "End") { select(keys[keys.length - 1]); e.preventDefault(); }
+      });
+
+      renderTabs(); renderPanel();
+      P.bottomNav.render(document.getElementById("nav"), "rewards");
+    })();
+  </script>
+</body>
+</html>

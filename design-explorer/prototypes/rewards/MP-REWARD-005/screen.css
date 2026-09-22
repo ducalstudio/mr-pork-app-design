@@ -1,0 +1,26 @@
+/* My Rewards (Draft). Measured from the Reference (440 x 956, Valid tab) with tools/lib/png.mjs: no tan band (white top,
+   header geometry reused: 106 total); tabs row y 126 to 151 (pill chips, selected = pale pink #fbd2d5 fill + red text,
+   unselected = #ebecef fill + dark text — a tonal style specific to this screen, not the Notifications chip's solid-red
+   selected style, so it is overridden here per screen); promo field 400 x 44 at y 208; cards 400 wide, about 174 tall,
+   34px gap; bottom nav zone 90 (y 868 to 958, as Home / Account). */
+:root { --shell-gutter: 20px; --shell-top-inset: 63px; --shell-nav-zone: 90px; --nav-inner-max: none; }
+body { background: #ffffff; }
+:focus-visible { outline: 2px solid var(--proto-focus); outline-offset: 2px; }
+
+.rewards-column { padding-bottom: 24px; }
+.rewards-tabs { margin-top: 12px; }
+.rewards-tabs .chip__label { border-radius: 14px; background: #ebecef; color: var(--proto-text); }
+.rewards-tabs .chip[aria-selected="true"] .chip__label { background: var(--proto-accent-tint); color: var(--proto-accent); }
+
+.rewards-claim { margin-top: 22px; }
+.rewards-claim__label { margin: 0 0 8px; font-size: 13px; font-weight: 500; color: var(--proto-text-muted); }
+.rewards-promo-field { display: flex; align-items: center; gap: 10px; height: 44px; padding: 0 16px; border-radius: 8px; background: #f3f4f6; }
+.rewards-promo-field svg { width: 18px; height: 18px; flex: none; color: var(--proto-text-muted); }
+.rewards-promo-field__input { flex: 1; min-width: 0; border: 0; background: none; font: inherit; font-size: 14px; color: var(--proto-text); }
+.rewards-promo-field__input::placeholder { color: #9aa0ab; }
+.rewards-promo-field__claim { font-size: 14px; color: #b7bcc4; }
+
+.rewards-coupon-label { margin: 22px 0 12px; font-size: 13px; font-weight: 500; color: var(--proto-text-muted); }
+.rewards-list { display: flex; flex-direction: column; gap: 34px; }
+.rewards-end { margin: 20px 0 0; text-align: center; font-size: 11px; letter-spacing: 0.04em; color: var(--proto-text-muted); }
+.rewards-empty { margin-top: 60px; }

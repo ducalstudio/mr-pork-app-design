@@ -1,0 +1,13 @@
+/* Exchange Records (Draft). Measured from the Reference (440 x 956) with tools/lib/png.mjs: band header 106 total
+   (63 + 43); rows start y 149, title/status on one line (14px), status right-aligned; date 15px below (12px, muted);
+   rows repeat on an approximate 68px pitch (measured by eye at this list density, not pixel-verified per row). */
+:root { --shell-gutter: 20px; --shell-top-inset: 63px; }
+body { background: #ffffff; }
+:focus-visible { outline: 2px solid var(--proto-focus); outline-offset: 2px; }
+
+.exchange-list { list-style: none; margin: 26px auto 0; padding: 0; display: flex; flex-direction: column; gap: 30px; }
+.exchange-row__line { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.exchange-row__title { font-size: 14px; font-weight: 600; color: var(--proto-text); }
+.exchange-row__status { font-size: 13px; color: var(--proto-text); }
+.exchange-row__status--success { color: #c98a1f; }
+.exchange-row__date { margin: 6px 0 0; font-size: 11px; color: var(--proto-text-muted); }

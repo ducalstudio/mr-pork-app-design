@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Exchange Records (Draft)</title>
+  <script src="../../../prototype-runtime/tiers.js"></script>
+  <script src="../../../prototype-runtime/protocol.js"></script>
+  <script src="../../../prototype-runtime/client.js"></script>
+  <link rel="stylesheet" href="../../_ui-kit/tokens.css">
+  <link rel="stylesheet" href="../../_ui-kit/reference-roles.css"><!-- Draft-only Reference-observed roles, not approved tokens -->
+  <link rel="stylesheet" href="../../_ui-kit/font-inter.css"><!-- Inter: provisional Draft font (To Verify), not an approved brand font -->
+  <link rel="stylesheet" href="../../_ui-kit/base.css">
+  <link rel="stylesheet" href="../../_components/app-shell/component.css">
+  <link rel="stylesheet" href="../../_components/app-header/component.css">
+  <link rel="stylesheet" href="../../_components/icon-button/component.css">
+  <link rel="stylesheet" href="screen.css">
+</head>
+<body>
+  <!--
+    Draft. SAMPLE DATA / NOT BUSINESS RULE: row copy (item names, timestamps, statuses) is the Reference's own sample content.
+    TEMPORARY PLACEHOLDER / NOT A SOURCE ASSET: the back glyph. Row tap destinations are not supplied: To Verify.
+    Status colour meaning (amber "successful" vs dark "cancel") is To Verify, reproduced as observed.
+  -->
+  <div class="app-shell app-shell--page app-shell--band">
+    <div class="app-shell__top">
+      <div class="app-shell__inset" aria-hidden="true"></div>
+      <div class="app-shell__column">
+        <header class="app-header app-header--back-title">
+          <button class="icon-button icon-button--flush-start" type="button" data-destination="previous-screen" data-asset="temporary-placeholder" aria-label="Back">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15.2 7L10 12l5.2 5"/></svg>
+          </button>
+          <h1 class="app-header__title">Exchange Records</h1>
+        </header>
+      </div>
+    </div>
+    <main class="app-shell__body" id="main">
+      <ul class="app-shell__column exchange-list">
+        <li class="exchange-row">
+          <div class="exchange-row__line"><span class="exchange-row__title">RM 3 OFF</span><span class="exchange-row__status exchange-row__status--success">successful</span></div>
+          <p class="exchange-row__date">24/08/2024 17:05:01</p>
+        </li>
+        <li class="exchange-row">
+          <div class="exchange-row__line"><span class="exchange-row__title">FREE 1 Meatball Package</span><span class="exchange-row__status exchange-row__status--success">successful</span></div>
+          <p class="exchange-row__date">24/08/2024 17:05:01</p>
+        </li>
+        <li class="exchange-row">
+          <div class="exchange-row__line"><span class="exchange-row__title">RM 9 OFF</span><span class="exchange-row__status">cancel</span></div>
+          <p class="exchange-row__date">24/08/2024 17:05:01</p>
+        </li>
+      </ul>
+    </main>
+  </div>
+</body>
+</html>
