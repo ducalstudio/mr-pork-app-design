@@ -1,0 +1,17 @@
+/* Top-Up Credit (Draft: default / online-banking). Measured from the Reference (440 x 603 content) with tools/lib/png.mjs:
+   sheet full width (440, no side margin — this capture is not inset like the other Credit sheets); title 20px / 700;
+   amount display 400 x 56, grey fill, large amber/gold amount text; 4 quick-amount pale-pink chips in a row; radio-row
+   payment methods below; a red Submit / Confirm button. */
+:root { --overlay-align: center; --sheet-margin: 0px; --sheet-radius: 0px; --sheet-pad: 24px 20px 30px; --sheet-title-size: 20px; }
+body { background: #ffffff; }
+:focus-visible { outline: 2px solid var(--proto-focus); outline-offset: 2px; }
+.sheet__head .icon-button { color: var(--proto-text-muted); }
+:where([data-tier="medium"]) .sheet, :where([data-tier="expanded"]) .sheet { --sheet-margin: 20px; --sheet-radius: 12px; }
+
+.topup-amount { margin-top: 20px; padding: 16px 18px; border-radius: 8px; background: #e8e8e8; font-size: 26px; font-weight: 700; color: #d9a441; }
+.topup-quick { display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
+.topup-quick__chip { min-height: 44px; padding: 0 16px; border: 0; border-radius: 8px; background: var(--proto-accent-pale); color: var(--proto-accent-pale-text); font: inherit; font-size: 14px; font-weight: 600; }
+.topup-methods { margin-top: 12px; display: flex; flex-direction: column; }
+.topup-bank-row { margin: 2px 0 4px; }
+.topup-bank-row__btn { display: flex; align-items: center; justify-content: space-between; width: 100%; min-height: 44px; padding: 0 16px; border: 0; border-radius: 8px; background: var(--proto-accent-pale); color: var(--proto-text); font: inherit; font-size: 15px; font-weight: 600; }
+.topup-submit { margin-top: 20px; }

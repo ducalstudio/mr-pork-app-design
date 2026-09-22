@@ -1,0 +1,18 @@
+/* Date Selection (Draft: default / selected / complete). Partial sheet capture (400 wide): sheet 400 wide (--sheet-margin:
+   20, same technique as Logout). Title 20px / 700; weekday row 14px muted; month/year nav row with chevrons; 7-column day
+   grid, each cell about 44px; day 11 is the Reference's outlined/filled sample date, day 1 the range's other endpoint. */
+:root { --overlay-align: center; --sheet-margin: 20px; --sheet-radius: 12px; --sheet-pad: 24px 22px 22px; --sheet-title-size: 20px; }
+body { background: #ffffff; }
+:focus-visible { outline: 2px solid var(--proto-focus); outline-offset: 2px; }
+.sheet__head .icon-button { color: var(--proto-text-muted); }
+
+.cal-weekdays { display: grid; grid-template-columns: repeat(7, 1fr); margin-top: 20px; font-size: 13px; font-weight: 600; color: var(--proto-text); text-align: center; }
+.cal-nav { display: flex; justify-content: space-between; margin-top: 16px; font-size: 14px; font-weight: 600; color: var(--proto-text); }
+.cal-nav__group { display: flex; align-items: center; gap: 10px; }
+.cal-nav__btn { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; margin: -12px 0; border: 0; background: none; color: var(--proto-text-muted); font-size: 16px; line-height: 1; cursor: pointer; } /* a fixed 44px hit area, negative vertical margin so it doesn't push the row taller than the Reference */
+.cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); row-gap: 10px; margin-top: 14px; }
+.cal-day { display: flex; align-items: center; justify-content: center; height: 36px; border-radius: 50%; font-size: 14px; color: var(--proto-text); }
+.cal-day--out { color: #c7cad0; }
+.cal-day--outline { border: 1.5px solid var(--proto-accent); color: var(--proto-accent); }
+.cal-day--filled { background: var(--proto-accent); color: var(--proto-on-accent); }
+.cal-submit { margin-top: 20px; }

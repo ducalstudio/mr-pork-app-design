@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Date Selection (Draft)</title>
+  <script src="../../../prototype-runtime/tiers.js"></script>
+  <script src="../../../prototype-runtime/protocol.js"></script>
+  <script src="../../../prototype-runtime/client.js"></script>
+  <link rel="stylesheet" href="../../_ui-kit/tokens.css">
+  <link rel="stylesheet" href="../../_ui-kit/reference-roles.css"><!-- Draft-only Reference-observed roles, not approved tokens -->
+  <link rel="stylesheet" href="../../_ui-kit/font-inter.css"><!-- Inter: provisional Draft font (To Verify), not an approved brand font -->
+  <link rel="stylesheet" href="../../_ui-kit/base.css">
+  <link rel="stylesheet" href="../../_components/overlay/component.css">
+  <link rel="stylesheet" href="../../_components/bottom-sheet/component.css">
+  <link rel="stylesheet" href="../../_components/icon-button/component.css">
+  <link rel="stylesheet" href="../../_components/button/component.css">
+  <link rel="stylesheet" href="screen.css">
+</head>
+<body>
+  <!--
+    Draft. ONE prototype, state-driven: ?state=default (day 11 outlined) | selected (day 11 filled) | complete (day 1 AND
+    day 11 filled — a range's two endpoints; no fill is shown for the days between them in the Reference, reproduced as-is).
+    SAMPLE DATA / NOT BUSINESS RULE: July 2026 is the Reference's own sample month; the calendar grid is static markup,
+    not a real date computation (the month / year arrows are recorded destinations only; nothing navigates).
+    Partial Reference capture (400 wide, no position evidence): centered floating dialog, dimmed over the My Credit Draft,
+    same precedent as Logout (see bottom-sheet/spec.md). TEMPORARY PLACEHOLDER / NOT A SOURCE ASSET: the close glyph and
+    the month / year chevrons.
+  -->
+  <iframe class="overlay__underlay" src="../MP-MEMBER-009/index.html" title="My Credit (Draft), dimmed" tabindex="-1" aria-hidden="true" inert sandbox="allow-scripts"></iframe>
+  <div class="overlay" id="overlay">
+    <div class="overlay__scrim"></div>
+    <div class="overlay__layer">
+      <section class="sheet sheet--floating" role="dialog" aria-modal="true" aria-labelledby="dr-title" tabindex="-1">
+        <div class="sheet__head">
+          <h2 class="sheet__title" id="dr-title">Date Selection</h2>
+          <button class="icon-button icon-button--flush-end" type="button" data-dismiss data-asset="temporary-placeholder" aria-label="Close">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
+          </button>
+        </div>
+        <div class="cal-weekdays">
+          <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+        </div>
+        <div class="cal-nav">
+          <span class="cal-nav__group"><button type="button" class="cal-nav__btn" data-asset="temporary-placeholder" aria-label="Previous month">&lsaquo;</button> Jul <button type="button" class="cal-nav__btn" data-asset="temporary-placeholder" aria-label="Next month">&rsaquo;</button></span>
+          <span class="cal-nav__group"><button type="button" class="cal-nav__btn" data-asset="temporary-placeholder" aria-label="Previous year">&lsaquo;</button> 2026 <button type="button" class="cal-nav__btn" data-asset="temporary-placeholder" aria-label="Next year">&rsaquo;</button></span>
+        </div>
+        <div class="cal-grid" id="grid">
+          <span></span><span></span><span></span><span class="cal-day" data-day="1">1</span><span class="cal-day" data-day="2">2</span><span class="cal-day" data-day="3">3</span><span class="cal-day" data-day="4">4</span>
+          <span class="cal-day" data-day="5">5</span><span class="cal-day" data-day="6">6</span><span class="cal-day" data-day="7">7</span><span class="cal-day" data-day="8">8</span><span class="cal-day" data-day="9">9</span><span class="cal-day" data-day="10">10</span><span class="cal-day" data-day="11">11</span>
+          <span class="cal-day cal-day--out" data-day="12">12</span><span class="cal-day cal-day--out" data-day="13">13</span><span class="cal-day cal-day--out" data-day="14">14</span><span class="cal-day cal-day--out" data-day="15">15</span><span class="cal-day cal-day--out" data-day="16">16</span><span class="cal-day cal-day--out" data-day="17">17</span><span class="cal-day cal-day--out" data-day="18">18</span>
+          <span class="cal-day cal-day--out" data-day="19">19</span><span class="cal-day cal-day--out" data-day="20">20</span><span class="cal-day cal-day--out" data-day="21">21</span><span class="cal-day cal-day--out" data-day="22">22</span><span class="cal-day cal-day--out" data-day="23">23</span><span class="cal-day cal-day--out" data-day="24">24</span><span class="cal-day cal-day--out" data-day="25">25</span>
+          <span class="cal-day cal-day--out" data-day="26">26</span><span class="cal-day cal-day--out" data-day="27">27</span><span class="cal-day cal-day--out" data-day="28">28</span><span class="cal-day cal-day--out" data-day="29">29</span><span class="cal-day cal-day--out" data-day="30">30</span><span class="cal-day cal-day--out" data-day="31">31</span><span></span>
+        </div>
+        <button class="button button--primary button--block cal-submit" type="button" data-destination="prototypes/credit/MP-MEMBER-009/index.html?state=all-ranged">Submit</button>
+      </section>
+    </div>
+  </div>
+  <script src="../../_components/overlay/component.js"></script>
+  <script>
+    (function () {
+      var q = new URLSearchParams(location.search);
+      var state = ["default", "selected", "complete"].indexOf(q.get("state")) >= 0 ? q.get("state") : "default";
+      document.documentElement.setAttribute("data-state", state);
+      var d11 = document.querySelector('.cal-day[data-day="11"]'), d1 = document.querySelector('.cal-day[data-day="1"]');
+      if (state === "default") { d11.classList.add("cal-day--outline"); }
+      else if (state === "selected") { d11.classList.add("cal-day--filled"); }
+      else { d1.classList.add("cal-day--filled"); d11.classList.add("cal-day--filled"); }
+      MPProto.overlay.init(document.getElementById("overlay"), { dismissible: true });
+    })();
+  </script>
+</body>
+</html>

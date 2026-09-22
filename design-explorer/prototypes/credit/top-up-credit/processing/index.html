@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Processing Payment (Draft)</title>
+  <script src="../../../../prototype-runtime/tiers.js"></script>
+  <script src="../../../../prototype-runtime/protocol.js"></script>
+  <script src="../../../../prototype-runtime/client.js"></script>
+  <link rel="stylesheet" href="../../../_ui-kit/tokens.css">
+  <link rel="stylesheet" href="../../../_ui-kit/reference-roles.css"><!-- Draft-only Reference-observed roles, not approved tokens -->
+  <link rel="stylesheet" href="../../../_ui-kit/font-inter.css"><!-- Inter: provisional Draft font (To Verify), not an approved brand font -->
+  <link rel="stylesheet" href="../../../_ui-kit/base.css">
+  <link rel="stylesheet" href="../../../_components/app-shell/component.css">
+  <link rel="stylesheet" href="../../../_components/icon-button/component.css">
+  <link rel="stylesheet" href="../../../_components/state-panel/component.css">
+  <link rel="stylesheet" href="screen.css">
+</head>
+<body>
+  <!--
+    Draft. SAMPLE DATA / NOT BUSINESS RULE: "Powered by Payex" is the Reference's own badge; reproduced as text, not a
+    real vendor integration (the actual payment processor is To Verify / Backend Dependency Unknown). TEMPORARY
+    PLACEHOLDER: the back glyph. No spinner/animation: the Reference is a static capture of this state.
+  -->
+  <div class="app-shell app-shell--page app-shell--band">
+    <div class="app-shell__top">
+      <div class="app-shell__inset" aria-hidden="true"></div>
+      <div class="app-shell__column">
+        <button class="icon-button icon-button--flush-start" type="button" data-destination="previous-screen" data-asset="temporary-placeholder" aria-label="Back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15.2 7L10 12l5.2 5"/></svg>
+        </button>
+      </div>
+    </div>
+    <main class="app-shell__body app-shell__body--center" id="main">
+      <div class="app-shell__column">
+        <section class="state-panel" aria-labelledby="proc-title">
+          <h1 class="state-panel__title" id="proc-title">Processing Payment</h1>
+          <p class="state-panel__text">Please wait while we fetch your transactions details and process your payment</p>
+          <p class="processing-badge">Powered by Payex</p>
+        </section>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

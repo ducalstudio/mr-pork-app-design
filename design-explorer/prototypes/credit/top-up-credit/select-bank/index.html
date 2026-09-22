@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Select Bank (Draft)</title>
+  <script src="../../../../prototype-runtime/tiers.js"></script>
+  <script src="../../../../prototype-runtime/protocol.js"></script>
+  <script src="../../../../prototype-runtime/client.js"></script>
+  <link rel="stylesheet" href="../../../_ui-kit/tokens.css">
+  <link rel="stylesheet" href="../../../_ui-kit/reference-roles.css"><!-- Draft-only Reference-observed roles, not approved tokens -->
+  <link rel="stylesheet" href="../../../_ui-kit/font-inter.css"><!-- Inter: provisional Draft font (To Verify), not an approved brand font -->
+  <link rel="stylesheet" href="../../../_ui-kit/base.css">
+  <link rel="stylesheet" href="../../../_components/overlay/component.css">
+  <link rel="stylesheet" href="../../../_components/bottom-sheet/component.css">
+  <link rel="stylesheet" href="../../../_components/icon-button/component.css">
+  <link rel="stylesheet" href="../../../_components/radio-row/component.css">
+  <link rel="stylesheet" href="../../../_components/button/component.css">
+  <link rel="stylesheet" href="screen.css">
+</head>
+<body>
+  <!--
+    Draft. ONE prototype, state-driven: ?state=default (full list, Confirm pale/inactive-looking) | search (query "May",
+    filtered to 2 matches) | selected (Maybank2U checked, Confirm red/active). SAMPLE DATA / NOT BUSINESS RULE: the bank
+    names and the sample search query are the Reference's own content; the search does not actually filter beyond
+    reproducing the one captured query. Partial Reference capture (400 wide, no position evidence): centered floating
+    dialog, dimmed over the Top-Up Credit Draft, same precedent as Logout (see bottom-sheet/spec.md).
+    TEMPORARY PLACEHOLDER: the close glyph and the search icon.
+  -->
+  <iframe class="overlay__underlay" src="../payment-method/index.html?state=online-banking" title="Top-Up Credit (Draft), dimmed" tabindex="-1" aria-hidden="true" inert sandbox="allow-scripts"></iframe>
+  <div class="overlay" id="overlay">
+    <div class="overlay__scrim"></div>
+    <div class="overlay__layer">
+      <section class="sheet sheet--floating" role="dialog" aria-modal="true" aria-labelledby="sb-title" tabindex="-1">
+        <div class="sheet__head">
+          <h2 class="sheet__title" id="sb-title">Select Bank</h2>
+          <button class="icon-button icon-button--flush-end" type="button" data-dismiss data-asset="temporary-placeholder" aria-label="Close">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
+          </button>
+        </div>
+        <div class="bank-search">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" data-asset="temporary-placeholder"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35" stroke-linecap="round"/></svg>
+          <input type="text" id="search-input" placeholder="" aria-label="Search bank">
+        </div>
+        <form class="bank-list" id="list">
+          <label class="radio-row" data-bank="AmBank"><span class="radio-row__label">AmBank</span><input class="radio-row__input" type="radio" name="bank" value="AmBank"></label>
+          <label class="radio-row" data-bank="BSN"><span class="radio-row__label">BSN</span><input class="radio-row__input" type="radio" name="bank" value="BSN"></label>
+          <label class="radio-row" data-bank="CIMB"><span class="radio-row__label">CIMB</span><input class="radio-row__input" type="radio" name="bank" value="CIMB"></label>
+          <label class="radio-row" data-bank="Maybank2U"><span class="radio-row__label">Maybank2U</span><input class="radio-row__input" type="radio" name="bank" value="Maybank2U"></label>
+          <label class="radio-row" data-bank="Maybank2E"><span class="radio-row__label">Maybank2E</span><input class="radio-row__input" type="radio" name="bank" value="Maybank2E"></label>
+        </form>
+        <button class="button button--primary button--block bank-confirm" type="button" id="confirm-btn" data-destination="prototypes/credit/top-up-credit/payment-method/index.html?state=online-banking">Confirm</button>
+      </section>
+    </div>
+  </div>
+  <script src="../../../_components/overlay/component.js"></script>
+  <script>
+    (function () {
+      var q = new URLSearchParams(location.search);
+      var state = ["default", "search", "selected"].indexOf(q.get("state")) >= 0 ? q.get("state") : "default";
+      document.documentElement.setAttribute("data-state", state);
+      var input = document.getElementById("search-input"), confirmBtn = document.getElementById("confirm-btn");
+      var rows = Array.from(document.querySelectorAll(".bank-list .radio-row"));
+      function sync() {
+        var checked = document.querySelector('input[name="bank"]:checked');
+        confirmBtn.classList.toggle("button--pale-confirm", !checked);
+      }
+      if (state === "search") {
+        input.value = "May";
+        rows.forEach(function (r) { r.hidden = r.dataset.bank.indexOf("Maybank") !== 0; });
+      } else if (state === "selected") {
+        document.querySelector('input[value="Maybank2U"]').checked = true;
+      }
+      document.getElementById("list").addEventListener("change", sync);
+      sync();
+      MPProto.overlay.init(document.getElementById("overlay"), { dismissible: true });
+    })();
+  </script>
+</body>
+</html>

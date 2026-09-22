@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Credit (Draft)</title>
+  <script src="../../../prototype-runtime/tiers.js"></script>
+  <script src="../../../prototype-runtime/protocol.js"></script>
+  <script src="../../../prototype-runtime/client.js"></script>
+  <link rel="stylesheet" href="../../_ui-kit/tokens.css">
+  <link rel="stylesheet" href="../../_ui-kit/reference-roles.css"><!-- Draft-only Reference-observed roles, not approved tokens -->
+  <link rel="stylesheet" href="../../_ui-kit/font-inter.css"><!-- Inter: provisional Draft font (To Verify), not an approved brand font -->
+  <link rel="stylesheet" href="../../_ui-kit/base.css">
+  <link rel="stylesheet" href="../../_components/app-shell/component.css">
+  <link rel="stylesheet" href="../../_components/app-header/component.css">
+  <link rel="stylesheet" href="../../_components/icon-button/component.css">
+  <link rel="stylesheet" href="../../_components/button/component.css">
+  <link rel="stylesheet" href="screen.css">
+</head>
+<body>
+  <!--
+    Draft. ONE prototype, state-driven: ?state=<type>-<date> (type: all | buy-product | order-refund | top-up; date: all |
+    ranged). SAMPLE DATA / NOT BUSINESS RULE (states/samples.js): the Reference's own placeholder row content, kept verbatim.
+    TEMPORARY PLACEHOLDER / NOT A SOURCE ASSET: the back glyph and the info glyph next to "Credit Balance".
+    The two filter pills open the Transaction Type / Date Range sheet Drafts (recorded destinations). "Pay At Outlet" and
+    "Top-Up" are recorded destinations only; nothing navigates except Top-Up.
+  -->
+  <div class="app-shell app-shell--page app-shell--band">
+    <div class="app-shell__top">
+      <div class="app-shell__inset" aria-hidden="true"></div>
+      <div class="app-shell__column">
+        <header class="app-header app-header--back-title">
+          <button class="icon-button icon-button--flush-start" type="button" data-destination="previous-screen" data-asset="temporary-placeholder" aria-label="Back">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15.2 7L10 12l5.2 5"/></svg>
+          </button>
+          <h1 class="app-header__title">My Credit</h1>
+        </header>
+      </div>
+    </div>
+    <main class="app-shell__body" id="main">
+      <div class="app-shell__column credit-column">
+        <p class="credit-balance-label">Credit Balance
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" data-asset="temporary-placeholder"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v5h1" stroke-linecap="round"/></svg>
+        </p>
+        <p class="credit-balance-value" id="balance">0.00</p>
+        <p class="credit-history-label">Transaction History</p>
+        <div class="credit-filters">
+          <button class="credit-filter-pill" type="button" id="type-filter" data-destination="prototypes/credit/transaction-type-filter/index.html">
+            <span id="type-label">All types</span>
+            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" data-asset="temporary-placeholder"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <button class="credit-filter-pill" type="button" id="date-filter" data-destination="prototypes/credit/date-range-filter/index.html">
+            <span id="date-label">All dates</span>
+            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" data-asset="temporary-placeholder"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+        </div>
+        <div id="rows"></div>
+      </div>
+      <div class="app-shell__column credit-actions">
+        <button class="button credit-actions__outlet" type="button" data-destination="pay-at-outlet">Pay At Outlet</button>
+        <button class="button button--primary credit-actions__topup" type="button" data-destination="prototypes/credit/top-up-credit/payment-method/index.html">Top-Up</button>
+      </div>
+    </main>
+  </div>
+  <script src="states/samples.js"></script>
+  <script>
+    (function () {
+      var D = window.CREDIT_SAMPLES;
+      var q = new URLSearchParams(location.search);
+      // parse from the right: last token is date (all|ranged), everything before is the type key
+      var parts = (q.get("state") || "all-all").split("-");
+      var date = parts[parts.length - 1] === "ranged" ? "ranged" : "all";
+      var type = parts.slice(0, -1).join("-") || "all";
+      if (!D.typeLabels[type]) type = "all";
+      document.documentElement.setAttribute("data-state", type + "-" + date);
+      document.getElementById("type-label").textContent = D.typeLabels[type];
+      document.getElementById("date-label").textContent = D.dateLabels[date];
+      document.getElementById("balance").textContent = D.balance;
+
+      var rowsEl = document.getElementById("rows");
+      function el(tag, cls, text) { var n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; }
+      var list = date === "ranged" ? [] : (D.rows[type] || []);
+      if (list.length === 0) {
+        rowsEl.appendChild(el("p", "credit-empty", "No records"));
+      } else {
+        var ul = el("ul", "credit-rows");
+        list.forEach(function (r) {
+          var li = el("li", "credit-row");
+          var line = el("div", "credit-row__line");
+          line.appendChild(el("span", "credit-row__title", r.title));
+          line.appendChild(el("span", "credit-row__amount" + (r.negative ? "" : " credit-row__amount--positive"), r.amount));
+          li.appendChild(line);
+          li.appendChild(el("p", "credit-row__order", D.orderId));
+          li.appendChild(el("p", "credit-row__date", D.date));
+          ul.appendChild(li);
+        });
+        rowsEl.appendChild(ul);
+      }
+    })();
+  </script>
+</body>
+</html>

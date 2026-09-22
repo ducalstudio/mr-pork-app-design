@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Top-Up Credit (Draft)</title>
+  <script src="../../../../prototype-runtime/tiers.js"></script>
+  <script src="../../../../prototype-runtime/protocol.js"></script>
+  <script src="../../../../prototype-runtime/client.js"></script>
+  <link rel="stylesheet" href="../../../_ui-kit/tokens.css">
+  <link rel="stylesheet" href="../../../_ui-kit/reference-roles.css"><!-- Draft-only Reference-observed roles, not approved tokens -->
+  <link rel="stylesheet" href="../../../_ui-kit/font-inter.css"><!-- Inter: provisional Draft font (To Verify), not an approved brand font -->
+  <link rel="stylesheet" href="../../../_ui-kit/base.css">
+  <link rel="stylesheet" href="../../../_components/overlay/component.css">
+  <link rel="stylesheet" href="../../../_components/bottom-sheet/component.css">
+  <link rel="stylesheet" href="../../../_components/icon-button/component.css">
+  <link rel="stylesheet" href="../../../_components/radio-row/component.css">
+  <link rel="stylesheet" href="../../../_components/button/component.css">
+  <link rel="stylesheet" href="screen.css">
+</head>
+<body>
+  <!--
+    Draft. ONE prototype, state-driven: ?state=default | online-banking (Online Banking selected, revealing a bank-picker
+    row and changing the action label Submit -> Confirm). SAMPLE DATA / NOT BUSINESS RULE: quick amounts (RM 50/100/500/1,000)
+    and the selected bank name are the Reference's own sample content. Partial Reference capture (440 wide, 603 tall content,
+    no full-screen position evidence): centered floating dialog, dimmed over the My Credit Draft, same precedent as Logout
+    (see bottom-sheet/spec.md). TEMPORARY PLACEHOLDER: the close glyph.
+  -->
+  <iframe class="overlay__underlay" src="../../MP-MEMBER-009/index.html" title="My Credit (Draft), dimmed" tabindex="-1" aria-hidden="true" inert sandbox="allow-scripts"></iframe>
+  <div class="overlay" id="overlay">
+    <div class="overlay__scrim"></div>
+    <div class="overlay__layer">
+      <section class="sheet sheet--floating" role="dialog" aria-modal="true" aria-labelledby="tu-title" tabindex="-1">
+        <div class="sheet__head">
+          <h2 class="sheet__title" id="tu-title">Top-Up Credit</h2>
+          <button class="icon-button icon-button--flush-end" type="button" data-dismiss data-asset="temporary-placeholder" aria-label="Close">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
+          </button>
+        </div>
+        <div class="topup-amount" id="amount">RM 0.00</div>
+        <div class="topup-quick">
+          <button class="topup-quick__chip" type="button" data-amount="50">RM 50</button>
+          <button class="topup-quick__chip" type="button" data-amount="100">RM 100</button>
+          <button class="topup-quick__chip" type="button" data-amount="500">RM 500</button>
+          <button class="topup-quick__chip" type="button" data-amount="1000">RM 1,000</button>
+        </div>
+        <form class="topup-methods" id="methods">
+          <label class="radio-row"><span class="radio-row__label">Online Banking</span><input class="radio-row__input" type="radio" name="method" value="online-banking"></label>
+          <div class="topup-bank-row" id="bank-row" hidden>
+            <button type="button" class="topup-bank-row__btn" data-destination="prototypes/credit/top-up-credit/select-bank/index.html">
+              <span>Maybank2u</span>
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" data-asset="temporary-placeholder"><path d="M9 6l6 6-6 6"/></svg>
+            </button>
+          </div>
+          <label class="radio-row"><span class="radio-row__label">Touch&rsquo;n Go</span><input class="radio-row__input" type="radio" name="method" value="touch-n-go"></label>
+          <label class="radio-row"><span class="radio-row__label">Grabpay</span><input class="radio-row__input" type="radio" name="method" value="grabpay"></label>
+          <label class="radio-row"><span class="radio-row__label">Credit / Debit</span><input class="radio-row__input" type="radio" name="method" value="credit-debit"></label>
+        </form>
+        <button class="button button--primary button--block topup-submit" type="button" id="submit-btn" data-destination="prototypes/credit/top-up-credit/processing/index.html">Submit</button>
+      </section>
+    </div>
+  </div>
+  <script src="../../../_components/overlay/component.js"></script>
+  <script>
+    (function () {
+      var q = new URLSearchParams(location.search);
+      var state = q.get("state") === "online-banking" ? "online-banking" : "default";
+      document.documentElement.setAttribute("data-state", state);
+      var bankRow = document.getElementById("bank-row"), submitBtn = document.getElementById("submit-btn");
+      var amountEl = document.getElementById("amount");
+      function sync() {
+        var checked = document.querySelector('input[name="method"]:checked');
+        var isOnline = checked && checked.value === "online-banking";
+        bankRow.hidden = !isOnline;
+        submitBtn.textContent = isOnline ? "Confirm" : "Submit";
+      }
+      if (state === "online-banking") {
+        document.querySelector('input[value="online-banking"]').checked = true;
+        amountEl.textContent = "RM 500.00";
+      }
+      document.getElementById("methods").addEventListener("change", sync);
+      document.querySelectorAll(".topup-quick__chip").forEach(function (c) {
+        c.addEventListener("click", function () { amountEl.textContent = "RM " + Number(c.dataset.amount).toFixed(2); });
+      });
+      sync();
+      MPProto.overlay.init(document.getElementById("overlay"), { dismissible: true });
+    })();
+  </script>
+</body>
+</html>

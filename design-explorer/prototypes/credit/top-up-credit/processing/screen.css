@@ -1,0 +1,7 @@
+/* Processing Payment (Draft). Band header with only a back glyph (no title). Centered state-panel: bold title, muted
+   body text, a dark "Powered by Payex" pill below (measured position by eye, consistent with the state-panel pattern
+   used by Network Error). */
+:root { --shell-gutter: 20px; --shell-top-inset: 63px; }
+body { background: #ffffff; }
+:focus-visible { outline: 2px solid var(--proto-focus); outline-offset: 2px; }
+.processing-badge { display: inline-block; margin-top: 40px; padding: 10px 20px; border-radius: 8px; background: #17213f; color: #ffffff; font-size: 13px; }

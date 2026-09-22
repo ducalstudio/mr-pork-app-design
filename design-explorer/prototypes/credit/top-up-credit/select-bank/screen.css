@@ -1,0 +1,15 @@
+/* Select Bank (Draft: default / search / selected). Partial sheet capture (400 wide): sheet 400 wide (--sheet-margin: 20,
+   same technique as Logout). Title 20px / 700; a grey search field with an icon; a radio-row bank list; Confirm is pale
+   grey ("disabled-looking", not a real disabled state — same convention as button --pale) until a bank is checked, then
+   switches to the primary red fill. */
+:root { --overlay-align: center; --sheet-margin: 20px; --sheet-radius: 12px; --sheet-pad: 24px 22px 22px; --sheet-title-size: 20px; }
+body { background: #ffffff; }
+:focus-visible { outline: 2px solid var(--proto-focus); outline-offset: 2px; }
+.sheet__head .icon-button { color: var(--proto-text-muted); }
+
+.bank-search { display: flex; align-items: center; gap: 10px; margin-top: 20px; height: 44px; padding: 0 14px; border-radius: 8px; background: #e8e8e8; }
+.bank-search svg { color: var(--proto-text-muted); flex: none; }
+.bank-search input { flex: 1; min-width: 0; border: 0; background: none; font: inherit; font-size: 14px; color: var(--proto-text); }
+.bank-list { margin-top: 12px; display: flex; flex-direction: column; }
+.bank-confirm { margin-top: 20px; }
+.bank-confirm.button--pale-confirm { background: var(--proto-neutral-action); }

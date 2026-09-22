@@ -1,0 +1,8 @@
+/* Transaction Type filter (Draft). Partial sheet capture (400 wide): sheet 400 wide (--sheet-margin: 20, same technique
+   as Logout). Title 20px / 700; 4 radio-row options, roughly 68px pitch; a full-width Submit button below the list. */
+:root { --overlay-align: center; --sheet-margin: 20px; --sheet-radius: 12px; --sheet-pad: 24px 22px 22px; --sheet-title-size: 20px; }
+body { background: #ffffff; }
+:focus-visible { outline: 2px solid var(--proto-focus); outline-offset: 2px; }
+.sheet__head .icon-button { color: var(--proto-text-muted); }
+.type-filter-list { margin-top: 20px; display: flex; flex-direction: column; }
+.type-filter-submit { margin-top: 24px; }

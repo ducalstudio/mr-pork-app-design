@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Credit Description (Draft)</title>
+  <script src="../../../prototype-runtime/tiers.js"></script>
+  <script src="../../../prototype-runtime/protocol.js"></script>
+  <script src="../../../prototype-runtime/client.js"></script>
+  <link rel="stylesheet" href="../../_ui-kit/tokens.css">
+  <link rel="stylesheet" href="../../_ui-kit/reference-roles.css"><!-- Draft-only Reference-observed roles, not approved tokens -->
+  <link rel="stylesheet" href="../../_ui-kit/font-inter.css"><!-- Inter: provisional Draft font (To Verify), not an approved brand font -->
+  <link rel="stylesheet" href="../../_ui-kit/base.css">
+  <link rel="stylesheet" href="../../_components/overlay/component.css">
+  <link rel="stylesheet" href="../../_components/bottom-sheet/component.css">
+  <link rel="stylesheet" href="../../_components/icon-button/component.css">
+  <link rel="stylesheet" href="../../_components/rich-content/component.css">
+  <link rel="stylesheet" href="screen.css">
+</head>
+<body>
+  <!--
+    Draft. Partial sheet capture (400 wide, no position evidence): centered floating dialog, dimmed over the My Credit
+    Draft, same precedent as Logout (see bottom-sheet/spec.md). SAMPLE DATA / NOT BUSINESS RULE: the Reference's own
+    placeholder content is kept verbatim, including the repeated "1. Introduction / You haven't collected any coupon or
+    voucher yet." blocks (the same CMS placeholder filler seen on Point Reward Rules). TEMPORARY PLACEHOLDER: the close glyph.
+  -->
+  <iframe class="overlay__underlay" src="../MP-MEMBER-009/index.html" title="My Credit (Draft), dimmed" tabindex="-1" aria-hidden="true" inert sandbox="allow-scripts"></iframe>
+  <div class="overlay" id="overlay">
+    <div class="overlay__scrim"></div>
+    <div class="overlay__layer">
+      <section class="sheet sheet--floating rules-sheet" role="dialog" aria-modal="true" aria-labelledby="cd-title" tabindex="-1">
+        <div class="sheet__head">
+          <h2 class="sheet__title" id="cd-title">Credit Description</h2>
+          <button class="icon-button icon-button--flush-end" type="button" data-dismiss data-asset="temporary-placeholder" aria-label="Close">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
+          </button>
+        </div>
+        <div class="rich-content rules-body">
+          <h3>1. Introduction</h3>
+          <p>You haven&rsquo;t collected any coupon or voucher yet.</p>
+          <h3>1. Introduction</h3>
+          <p>You haven&rsquo;t collected any coupon or voucher yet.</p>
+          <h3>1. Introduction</h3>
+          <p>You haven&rsquo;t collected any coupon or voucher yet.</p>
+          <h3>1. Introduction</h3>
+          <p>You haven&rsquo;t collected any coupon or voucher yet.</p>
+          <h3>1. Introduction</h3>
+          <p>You haven&rsquo;t collected any coupon or voucher yet.</p>
+          <h3>1. Introduction</h3>
+          <p>You haven&rsquo;t collected any coupon or voucher yet.</p>
+        </div>
+      </section>
+    </div>
+  </div>
+  <script src="../../_components/overlay/component.js"></script>
+  <script>MPProto.overlay.init(document.getElementById("overlay"), { dismissible: true });</script>
+</body>
+</html>
